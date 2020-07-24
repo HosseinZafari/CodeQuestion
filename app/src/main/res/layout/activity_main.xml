@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.activity.MainActivity">
+
+
+    <com.luseen.spacenavigation.SpaceNavigationView
+        android:id="@+id/navigation_view"
+        android:layout_width="match_parent"
+        android:layout_height="38dp"
+        android:gravity="center"
+        android:layout_alignParentBottom="true"
+        app:centre_button_icon="@drawable/ic_giftcard_white_24dp"
+        app:space_background_color="@color/space_white"
+        app:active_centre_button_background_color="@color/colorAccent"
+        app:inactive_item_color="@color/colorBackgroundHighlightWhite"
+        app:active_item_color="@color/colorYellow"
+        app:space_item_icon_size="24dp"
+        app:centre_button_color="@color/colorAccent"
+        app:inactive_centre_button_icon_color="@color/colorPrimary"
+        app:active_centre_button_icon_color="@color/colorDarkPrimary"
+        android:elevation="4dp"
+        tools:targetApi="lollipop" />
+
+    <FrameLayout
+        android:id="@+id/framelayout"
+        android:layout_above="@+id/navigation_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        />
+
+
+</RelativeLayout>

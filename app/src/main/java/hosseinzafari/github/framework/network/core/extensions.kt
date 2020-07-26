@@ -42,12 +42,6 @@ fun retrofitBuilder(baseUri: HttpUrl, block: CRetrofitBuilder.()->Unit): Retrofi
 }
 
 
-fun serviceBuilder(retrofit: Retrofit): BaseService {
-    BaseService.retrofit = retrofit
-    return BaseService
-}
-
-
 
 // lambda functions using by dsl
 fun httpClientOriginal(block:OkHttpClient.Builder.()->Unit)  = OkHttpClient.Builder().apply(block)

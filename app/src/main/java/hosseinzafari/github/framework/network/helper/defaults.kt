@@ -1,8 +1,8 @@
 package network.helper
 
 import android.content.Context
-import hosseinzafari.github.retrofit_startup2.helper.G
-import hosseinzafari.github.retrofit_startup2.lib.core.retrofitBuilder
+import hosseinzafari.github.framework.core.app.G
+import network.core.retrofitBuilder
 import okhttp3.Cache
 import java.io.File
 
@@ -14,7 +14,7 @@ import java.io.File
 @email  hosseinzafari2000@gmail.com 
 */
 
-fun getDefaultCache(context: Context = G.mContext, size: Long = 10 * 1024 * 1024) = Cache(File(context.cacheDir.toURI()) , size)
+fun getDefaultCache(context: Context = G.getContext(), size: Long = 10 * 1024 * 1024) = Cache(File(context.cacheDir.toURI()) , size)
 
 
 fun getDefaultRetrofit(uri: String) =

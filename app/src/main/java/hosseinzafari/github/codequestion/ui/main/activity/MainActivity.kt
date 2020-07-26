@@ -1,11 +1,11 @@
-package hosseinzafari.github.codequestion.ui.activity
+package hosseinzafari.github.codequestion.ui.ui.main.activity
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import com.luseen.spacenavigation.SpaceItem
 import com.luseen.spacenavigation.SpaceOnClickListener
 import hosseinzafari.github.codequestion.R
-import hosseinzafari.github.codequestion.ui.fragment.FactoryFragment
+import hosseinzafari.github.codequestion.ui.ui.main.fragment.FactoryFragment
 import hosseinzafari.github.codequestion.ui.helper.log
 import hosseinzafari.github.framework.core.ui.activity.GAppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
@@ -30,6 +30,7 @@ class MainActivity : GAppCompatActivity() {
         return FactoryFragment.getFragment(byte)
     }
 
+    // Prepare And Customize Navigation View
     private fun initNavigationView(){
         navigation_view.apply { 
             addSpaceItem(SpaceItem("پروفایل" , R.drawable.ic_people_white_24dp))

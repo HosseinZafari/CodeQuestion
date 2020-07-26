@@ -1,4 +1,4 @@
-package hosseinzafari.github.codequestion.ui.fragment
+package hosseinzafari.github.codequestion.ui.ui.main.fragment
 
 import androidx.fragment.app.Fragment
 

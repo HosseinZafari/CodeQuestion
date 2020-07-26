@@ -1,4 +1,4 @@
-package hosseinzafari.github.codequestion.ui.fragment
+package hosseinzafari.github.codequestion.ui.ui.main.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,13 +8,13 @@ import hosseinzafari.github.codequestion.R
 import hosseinzafari.github.framework.core.ui.fragment.GFragment
 
 
-class CartFragment : GFragment() {
+class CodeFragment : GFragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_cart, container, false)
+        return inflater.inflate(R.layout.fragment_code, container, false)
     }
 
 }

@@ -1,5 +1,8 @@
 package hosseinzafari.github.framework.extensions
 
+import android.content.Context
+import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.LayoutRes
 import hosseinzafari.github.framework.core.app.G
@@ -18,6 +21,14 @@ fun ViewGroup.inflate(
     @LayoutRes layoutRes: Int ,
     attachToRoot: Boolean = false
 ) = G.layoutInflater.inflate(layoutRes , this , attachToRoot)
+
+fun ViewGroup.inflateMaterial(
+    @LayoutRes layoutRes: Int ,
+    attachToRoot: Boolean = false
+) : View {
+    val inflater = G.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+    return inflater.inflate(layoutRes , this , attachToRoot)
+}
 
 fun ViewGroup.inflate(
     xmlPullParser: XmlPullParser ,

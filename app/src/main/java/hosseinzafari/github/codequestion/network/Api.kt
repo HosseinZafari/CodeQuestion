@@ -1,5 +1,6 @@
 package hosseinzafari.github.codequestion.ui.network
 
+import hosseinzafari.github.codequestion.ui.struct.UserModel
 import retrofit2.http.GET
 
 /*
@@ -12,7 +13,7 @@ import retrofit2.http.GET
 
 interface Api {
 
-    @GET("")
-    fun getBestUser() : 
+    @GET("best-user")
+    suspend fun getBestUser() :  List<UserModel>
 
 }

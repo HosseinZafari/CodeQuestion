@@ -114,4 +114,14 @@ dependencies {
 
     // kotlin coroutine
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.8'
+
+    // Material Design
+    implementation 'com.google.android.material:material:1.2.0-alpha01'
+
+    // Circular ImageView
+    implementation 'de.hdodenhof:circleimageview:3.1.0'
+
+
+    // Glide
+    implementation 'com.github.bumptech.glide:glide:4.9.0'
 }

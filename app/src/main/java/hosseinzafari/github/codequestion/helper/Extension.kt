@@ -1,6 +1,9 @@
 package hosseinzafari.github.codequestion.ui.helper
 
 import android.util.Log
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 
 /*
 
@@ -10,4 +13,11 @@ import android.util.Log
 @email  hosseinzafari2000@gmail.com 
 */
 
-fun log(msg: Any) = Log.i("Test" , "$msg")
+fun log(msg: Any) = Log.i("Test", "$msg")
+
+
+// Helper for Coroutine Kotiln
+suspend fun <T> io(block: suspend CoroutineScope.() -> T) = withContext(Dispatchers.IO) { block(this) }
+suspend fun <T> ui(block: suspend CoroutineScope.() -> T) = withContext(Dispatchers.Main) { block(this) }
+suspend fun <T> cpuCore(block: suspend CoroutineScope.() -> T) = withContext(Dispatchers.Default) { block(this) }
+suspend fun <T> uiReverse(block: suspend CoroutineScope.() -> T) = withContext(Dispatchers.Unconfined) { block(this) }

@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="380dp"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="8dp"
+    android:theme="@style/AppTheme"
+    app:cardBackgroundColor="#fe4354"
+    app:cardCornerRadius="10dp"
+    app:cardElevation="10dp"
+    app:contentPadding="4dp"
+    app:rippleColor="@color/colorAccent">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/img_course"
+            android:layout_width="140dp"
+            android:layout_height="140dp"
+            app:backgroundImage="@color/colorAccent"
+            app:fadeDuration="500"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:placeholderImage="@drawable/placeholder2"
+            app:placeholderImageScaleType="centerCrop"
+            app:roundAsCircle="true"
+            app:roundingBorderColor="@color/space_white"
+            app:roundingBorderWidth="4dp" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/txt_title_course"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="8dp"
+            android:textColor="@color/space_white"
+            android:textSize="14dp"
+            app:layout_constraintEnd_toStartOf="@+id/img_course"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="آموزش پیاده سازی و برنامه نویسی در فلاتر برای اندروید و Ios" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/txt_price_course"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:background="@drawable/shape_bg_price"
+            android:gravity="center_vertical|right"
+            android:paddingLeft="15dp"
+            android:paddingTop="4dp"
+            android:paddingRight="15dp"
+            android:paddingBottom="4dp"
+            android:textColor="@color/space_white"
+            android:textSize="12dp"
+            app:layout_constraintEnd_toStartOf="@+id/img_course"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txt_title_course"
+            tools:text="200.000 تومان" />
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="4dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/img_course"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/txt_prority_coursse"
+                android:layout_width="28dp"
+                android:layout_height="27dp"
+                android:background="@drawable/shape_bg_price"
+                android:gravity="center"
+                android:textColor="@color/space_white"
+                app:fontFamily="monospace"
+                tools:text="1" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="اولویت زمانی برای این دوره :"
+                android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+                android:textColor="@color/space_white"
+                app:fontFamily="@font/iran_light" />
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</com.google.android.material.card.MaterialCardView>

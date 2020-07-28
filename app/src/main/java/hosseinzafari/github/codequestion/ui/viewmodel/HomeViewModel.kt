@@ -3,12 +3,13 @@ package hosseinzafari.github.codequestion.ui.ui.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
+import hosseinzafari.github.codequestion.data.repository.CourseRepository
+import hosseinzafari.github.codequestion.struct.CourseModel
 import hosseinzafari.github.codequestion.ui.data.repository.UserRepository
+import hosseinzafari.github.codequestion.ui.helper.io
 import hosseinzafari.github.codequestion.ui.helper.log
 import hosseinzafari.github.codequestion.ui.struct.UserModel
 import hosseinzafari.github.codequestion.ui.ui.util.Resource
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
 
 /*
 @created in 25/07/2020 - 01:19 PM
@@ -20,6 +21,7 @@ import kotlinx.coroutines.withContext
 class HomeViewModel : ViewModel() {
 
     private val repositoryUser = UserRepository()
+    private val repositoryCourse = CourseRepository()
 
     fun getBestUser(): LiveData<Resource<List<UserModel>>> = liveData {
         // set loading data
@@ -35,9 +37,23 @@ class HomeViewModel : ViewModel() {
         }
     }
 
-    private suspend fun getBestUserData(): LiveData<List<UserModel>> {
-        return withContext(Dispatchers.IO) {
-            repositoryUser.getBestUser()
+    private suspend fun getBestUserData() =  io {
+        repositoryUser.getBestUser()
+    }
+
+    fun getCourses(): LiveData<Resource<List<CourseModel>?>> = liveData {
+        emit(Resource.loading())
+        try {
+            val courses = getCoursesData()
+            emit(Resource.success(courses.value))
+        } catch(e: Exception) {
+            emit(Resource.error<List<CourseModel>>("" + e.message))
         }
+    }
+
+
+
+    private suspend fun getCoursesData() = io {
+        repositoryCourse.getCourses()
     }
 }

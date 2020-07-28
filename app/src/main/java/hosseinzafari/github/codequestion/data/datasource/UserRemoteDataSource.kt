@@ -6,7 +6,6 @@ import hosseinzafari.github.codequestion.ui.data.main.UserMain
 import hosseinzafari.github.codequestion.ui.helper.log
 import hosseinzafari.github.codequestion.ui.network.api
 import hosseinzafari.github.codequestion.ui.struct.UserModel
-import kotlinx.coroutines.delay
 
 /*
 
@@ -22,7 +21,6 @@ class UserRemoteDataSource : UserMain {
 
      override suspend fun getBestUser(): LiveData<List<UserModel>>  {
          log("remoteDataSource thread : " + Thread.currentThread().name )
-         delay(300)
         _bestUserLiveData.postValue(api.getBestUser())
         return _bestUserLiveData
     }

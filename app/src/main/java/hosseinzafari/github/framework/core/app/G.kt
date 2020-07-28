@@ -5,6 +5,7 @@ import android.content.Context
 import android.view.LayoutInflater
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import com.facebook.drawee.backends.pipeline.Fresco
 
 /*
 
@@ -21,6 +22,7 @@ open class G : Application() {
         super.onCreate()
 
         _context = applicationContext
+        Fresco.initialize(applicationContext)
     }
 
     companion object {

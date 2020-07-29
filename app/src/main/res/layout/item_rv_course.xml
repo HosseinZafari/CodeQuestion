@@ -2,15 +2,17 @@
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="380dp"
-    android:layout_height="wrap_content"
-    android:layout_marginLeft="8dp"
+    android:layout_width="410dp"
+    android:layout_height="180dp"
+    android:layout_marginTop="8dp"
+    android:layout_marginBottom="8dp"
+    android:layout_marginLeft="12dp"
     android:theme="@style/AppTheme"
-    app:cardBackgroundColor="#fe4354"
+    app:cardBackgroundColor="@color/colorBlue"
     app:cardCornerRadius="10dp"
-    app:cardElevation="10dp"
+    app:cardElevation="5dp"
     app:contentPadding="4dp"
-    app:rippleColor="@color/colorAccent">
+    app:rippleColor="@color/space_white">
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -21,7 +23,7 @@
             android:id="@+id/img_course"
             android:layout_width="140dp"
             android:layout_height="140dp"
-            app:backgroundImage="@color/colorAccent"
+            app:backgroundImage="@color/colorBackgroundHighlightWhite"
             app:fadeDuration="500"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -38,7 +40,7 @@
             android:layout_height="wrap_content"
             android:layout_marginRight="8dp"
             android:textColor="@color/space_white"
-            android:textSize="14dp"
+            android:textSize="14sp"
             app:layout_constraintEnd_toStartOf="@+id/img_course"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -56,7 +58,8 @@
             android:paddingRight="15dp"
             android:paddingBottom="4dp"
             android:textColor="@color/space_white"
-            android:textSize="12dp"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toTopOf="@+id/linearLayoutCompat"
             app:layout_constraintEnd_toStartOf="@+id/img_course"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -64,9 +67,9 @@
             tools:text="200.000 تومان" />
 
         <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/linearLayoutCompat"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
             android:gravity="center_vertical"
             android:orientation="horizontal"
             android:padding="4dp"
@@ -75,21 +78,23 @@
             app:layout_constraintStart_toStartOf="parent">
 
             <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/txt_prority_coursse"
-                android:layout_width="28dp"
-                android:layout_height="27dp"
+                android:id="@+id/txt_prority_course"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
                 android:background="@drawable/shape_bg_price"
                 android:gravity="center"
                 android:textColor="@color/space_white"
-                app:fontFamily="monospace"
+                android:textSize="10sp"
                 tools:text="1" />
 
             <com.google.android.material.textview.MaterialTextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:gravity="center_vertical"
                 android:text="اولویت زمانی برای این دوره :"
                 android:textAppearance="@style/TextAppearance.AppCompat.Caption"
                 android:textColor="@color/space_white"
+                android:textSize="12sp"
                 app:fontFamily="@font/iran_light" />
         </androidx.appcompat.widget.LinearLayoutCompat>
 

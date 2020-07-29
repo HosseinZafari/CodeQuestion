@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import hosseinzafari.github.codequestion.R
 import hosseinzafari.github.codequestion.adapter.BestUserRVAdapter
+import hosseinzafari.github.codequestion.adapter.CourseRVAdapter
 import hosseinzafari.github.codequestion.ui.helper.log
 import hosseinzafari.github.codequestion.ui.ui.util.Status
 import hosseinzafari.github.codequestion.ui.ui.viewmodel.HomeViewModel
@@ -20,9 +21,11 @@ import hosseinzafari.github.framework.core.ui.fragment.GFragment
 class HomeFragment : GFragment() {
 
     private val homeViewModel: HomeViewModel by viewModels()
-    private val bestUserAdapter = BestUserRVAdapter(){
-        Toast.makeText(activity, "clicked id is $it", Toast.LENGTH_SHORT).show()
-    }
+    private lateinit var bestUserAdapter : BestUserRVAdapter
+    private lateinit var courseAdapter   : CourseRVAdapter
+
+    private lateinit var rv_home_bestuser : RecyclerView;
+    private lateinit var rv_home_bestcourse : RecyclerView;
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,10 +37,8 @@ class HomeFragment : GFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // setup recyclerview
-        val bestUserRecyclerView = view.findViewById<RecyclerView>(R.id.rv_home_bestuser)
-        bestUserRecyclerView.layoutManager = LinearLayoutManager(activity , LinearLayoutManager.HORIZONTAL , true)
-        bestUserRecyclerView.adapter = bestUserAdapter
+        setupAdapters()
+        setupViews(view)
 
         homeViewModel.getBestUser().observe(viewLifecycleOwner , Observer {
             when(it.status){
@@ -49,5 +50,39 @@ class HomeFragment : GFragment() {
                 }
             }
         })
+
+        homeViewModel.getCourses().observe(viewLifecycleOwner , Observer {
+            when(it.status){
+                Status.ERROR -> log("getCourses Error ${it.message}")
+                Status.LOADING -> log("getCourses Loading ${it.message}")
+                Status.SUCCEESS -> {
+                    log("getCourses Success ${it.data}")
+                    // adapter this here
+                    courseAdapter.updateData(it.data)
+                }
+            }
+        })
+    }
+
+    private fun setupAdapters(){
+        bestUserAdapter = BestUserRVAdapter { debugOnClick(it) }
+        courseAdapter   = CourseRVAdapter { debugOnClick(it) }
+    }
+
+    private fun setupViews(view: View){
+        // setup best user recyclerview
+        rv_home_bestuser = view.findViewById(R.id.rv_home_bestuser)
+        rv_home_bestuser.layoutManager = LinearLayoutManager(activity , LinearLayoutManager.HORIZONTAL , true)
+        rv_home_bestuser.adapter = bestUserAdapter
+
+        // setup courses recyclerview
+        rv_home_bestcourse = view.findViewById(R.id.rv_home_bestcourse)
+        rv_home_bestcourse.layoutManager = LinearLayoutManager(activity , LinearLayoutManager.HORIZONTAL , true)
+        rv_home_bestcourse.adapter = courseAdapter
+    }
+
+
+    private fun debugOnClick(id: String){
+        Toast.makeText(activity, "clicked id is $id", Toast.LENGTH_SHORT).show()
     }
 }

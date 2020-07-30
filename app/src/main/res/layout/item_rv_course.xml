@@ -8,7 +8,7 @@
     android:layout_marginBottom="8dp"
     android:layout_marginLeft="12dp"
     android:theme="@style/AppTheme"
-    app:cardBackgroundColor="@color/colorBlue"
+    app:cardBackgroundColor="@color/colorPrimaryDark"
     app:cardCornerRadius="10dp"
     app:cardElevation="5dp"
     app:contentPadding="4dp"
@@ -23,7 +23,7 @@
             android:id="@+id/img_course"
             android:layout_width="140dp"
             android:layout_height="140dp"
-            app:backgroundImage="@color/colorBackgroundHighlightWhite"
+            app:backgroundImage="@color/colorPrimary"
             app:fadeDuration="500"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -31,7 +31,7 @@
             app:placeholderImage="@drawable/placeholder2"
             app:placeholderImageScaleType="centerCrop"
             app:roundAsCircle="true"
-            app:roundingBorderColor="@color/space_white"
+            app:roundingBorderColor="@color/colorAccent"
             app:roundingBorderWidth="4dp" />
 
         <com.google.android.material.textview.MaterialTextView
@@ -84,7 +84,7 @@
                 android:background="@drawable/shape_bg_price"
                 android:gravity="center"
                 android:textColor="@color/space_white"
-                android:textSize="10sp"
+                android:textSize="12sp"
                 tools:text="1" />
 
             <com.google.android.material.textview.MaterialTextView

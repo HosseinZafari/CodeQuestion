@@ -1,75 +1,88 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="300dp"
-    android:layout_height="wrap_content"
     xmlns:tools="http://schemas.android.com/tools"
-    app:rippleColor="@color/space_white"
-    app:cardElevation="5dp"
-    android:theme="@style/AppTheme"
-    app:cardBackgroundColor="@color/colorDarkPrimary2"
-    app:cardCornerRadius="10dp"
-    app:contentPaddingRight="14dp"
-    app:contentPadding="8dp"
+    android:layout_width="250dp"
+    android:layout_height="110dp"
     android:layout_marginLeft="16dp"
+    android:layout_marginTop="8dp"
     android:layout_marginRight="4dp"
     android:layout_marginBottom="8dp"
-    android:layout_marginTop="8dp"
+    android:theme="@style/AppTheme"
+    app:cardBackgroundColor="@color/space_white"
+    app:cardCornerRadius="10dp"
+    app:cardElevation="5dp"
+    app:rippleColor="@color/colorPrimary"
     tools:context=".ui.ui.main.activity.MainActivity">
 
-<androidx.constraintlayout.widget.ConstraintLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-   >
+    <View
+        android:layout_width="4dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="right"
+        android:layout_marginLeft="4dp"
+        android:background="@color/colorPrimary" />
 
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/img_user"
-        android:layout_width="85dp"
-        android:layout_height="85dp"
-        android:scaleType="centerCrop"
-        app:civ_border_width="5dp"
-        app:civ_border_overlay="false"
-        app:civ_border_color="@color/colorPrimary"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:src="@drawable/user_famale" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:padding="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/txt_bestuser_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="حسین ظفری"
-        android:textSize="14dp"
-        android:textColor="@color/space_white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/img_user"
-        app:layout_constraintHorizontal_bias="0.91"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/img_user"
+            android:layout_width="85dp"
+            android:layout_height="85dp"
+            app:placeholderImage="@drawable/user_man"
+            app:fadeDuration="500"
+            app:roundingBorderWidth="4dp"
+            app:placeholderImageScaleType="centerCrop"
+            app:roundAsCircle="true"
+            app:roundingBorderColor="@color/colorPrimaryDark"
+            app:backgroundImage="@color/colorPrimaryDark"
+            android:src="@drawable/user_famale"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/img_star"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
-        android:layout_marginStart="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.87000004"
-        app:srcCompat="@drawable/ic_star24dp" />
+        <TextView
+            android:id="@+id/txt_bestuser_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/img_user"
+            app:layout_constraintHorizontal_bias="0.91"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="حسین ظفری" />
 
-    <TextView
-        android:id="@+id/txt_star_value"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:gravity="center"
-        android:text="120"
-        android:textColor="@color/space_white"
-        android:textSize="17dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/img_star"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.97" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/img_star"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:adjustViewBounds="true"
+                android:scaleType="centerCrop"
+                android:layout_marginRight="8dp"
+                android:layout_gravity="center_vertical"
+                android:tint="@color/colorAccent"
+                app:srcCompat="@drawable/ic_star24dp" />
+
+            <TextView
+                android:id="@+id/txt_star_value"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
+                android:gravity="center"
+                android:fontFamily="@font/iran_light"
+                android:textColor="@color/colorAccent"
+                android:textSize="16dp"
+                tools:text="120" />
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </com.google.android.material.card.MaterialCardView>

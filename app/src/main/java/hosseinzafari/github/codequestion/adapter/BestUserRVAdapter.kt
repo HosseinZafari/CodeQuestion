@@ -1,13 +1,12 @@
 package hosseinzafari.github.codequestion.adapter
 
+import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.TextView
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
+import com.facebook.drawee.view.SimpleDraweeView
 import hosseinzafari.github.codequestion.R
 import hosseinzafari.github.codequestion.ui.struct.UserModel
 import hosseinzafari.github.framework.core.app.G
@@ -48,7 +47,7 @@ class BestUserRVAdapter(val block:(String)-> Unit) : RecyclerView.Adapter<BestUs
         val root : View ,
         val txt_bestuser_name: TextView = root.findViewById(R.id.txt_bestuser_name),
         val txt_star_value: TextView = root.findViewById(R.id.txt_star_value),
-        val img_user: ImageView = root.findViewById(R.id.img_user)
+        val img_user: SimpleDraweeView = root.findViewById(R.id.img_user)
     ) : RecyclerView.ViewHolder(root) {
 
         fun onBind(userModel: UserModel){
@@ -57,12 +56,12 @@ class BestUserRVAdapter(val block:(String)-> Unit) : RecyclerView.Adapter<BestUs
 
             if(userModel.image == null){
                 if (userModel.gender == 0.toByte()) { // is Male
-                    img_user.setImageDrawable(ContextCompat.getDrawable(G.getContext() , R.drawable.user_man))
+                    img_user.setActualImageResource(R.drawable.user_man)
                 } else { // is Female
-                    img_user.setImageDrawable(ContextCompat.getDrawable(G.getContext() , R.drawable.user_famale))
+                    img_user.setActualImageResource(R.drawable.user_famale)
                 }
             } else {
-                Glide.with(G.getContext()).load(userModel.image).into(img_user)
+                img_user.setImageURI(Uri.parse(userModel.image))
             }
         }
     }

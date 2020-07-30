@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="320dp"
+    android:layout_height="190dp"
+    android:layout_marginLeft="16dp"
+    android:layout_marginTop="8dp"
+    android:layout_marginRight="4dp"
+    android:layout_marginBottom="8dp"
+    android:theme="@style/AppTheme"
+    app:cardBackgroundColor="#ffffff"
+    app:cardCornerRadius="10dp"
+    app:cardElevation="5dp"
+    app:rippleColor="@color/colorPrimary"
+    tools:context=".ui.ui.main.activity.MainActivity">
+
+    <View
+        android:layout_width="4dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="right"
+        android:layout_marginLeft="4dp"
+        android:background="@color/colorAccent" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="8dp"
+        android:padding="4dp">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/txt_title_code"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginBottom="8dp"
+            android:ellipsize="end"
+            android:gravity="right"
+            android:maxLines="2"
+            android:textColor="@color/colorPrimary"
+            tools:text="مشکل در عدم دریافت  مشکل در عدم دریافت مشکل در عدم فت مشکل در عدم از گوشی کاربر" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/txt_source_code"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txt_title_code"
+            android:layout_alignParentRight="true"
+            app:fontFamily="@font/iran_light"
+            android:ellipsize="end"
+            android:textSize="14dp"
+            android:maxLines="3"
+            android:textDirection="rtl"
+            tools:text="  این کد بساز با حوصله نوشته شده لطفا مراقب نوشتن آن باشید با تشکر از شما و دوستانی که در این کد ها مشارکت کرده اند  والا .با استفاده از کد زیر شما میتوانید if(true) p" />
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginTop="4dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="4dp"
+                android:adjustViewBounds="true"
+                android:scaleType="centerCrop"
+                app:srcCompat="@drawable/ic_star24dp" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/txt_point"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginRight="4dp"
+                app:fontFamily="@font/iran_light"
+                android:gravity="center_vertical"
+                tools:text="45" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="12dp"
+                android:gravity="center_vertical"
+                android:textColor="@color/colorPrimary"
+                android:textSize="14dp"
+                app:fontFamily="@font/iran_light"
+                android:text="امتیاز" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+    </RelativeLayout>
+
+</com.google.android.material.card.MaterialCardView>

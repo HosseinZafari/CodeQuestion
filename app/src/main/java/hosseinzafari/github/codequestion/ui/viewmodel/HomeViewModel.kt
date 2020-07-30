@@ -4,7 +4,9 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
 import hosseinzafari.github.codequestion.data.repository.CourseRepository
+import hosseinzafari.github.codequestion.struct.CodeModel
 import hosseinzafari.github.codequestion.struct.CourseModel
+import hosseinzafari.github.codequestion.ui.data.repository.CodeRepository
 import hosseinzafari.github.codequestion.ui.data.repository.UserRepository
 import hosseinzafari.github.codequestion.ui.helper.io
 import hosseinzafari.github.codequestion.ui.helper.log
@@ -22,6 +24,7 @@ class HomeViewModel : ViewModel() {
 
     private val repositoryUser = UserRepository()
     private val repositoryCourse = CourseRepository()
+    private val repositoryCode = CodeRepository()
 
     fun getBestUser(): LiveData<Resource<List<UserModel>>> = liveData {
         // set loading data
@@ -37,9 +40,7 @@ class HomeViewModel : ViewModel() {
         }
     }
 
-    private suspend fun getBestUserData() =  io {
-        repositoryUser.getBestUser()
-    }
+    private suspend fun getBestUserData() =  io { repositoryUser.getBestUser() }
 
     fun getCourses(): LiveData<Resource<List<CourseModel>?>> = liveData {
         emit(Resource.loading())
@@ -53,7 +54,17 @@ class HomeViewModel : ViewModel() {
 
 
 
-    private suspend fun getCoursesData() = io {
-        repositoryCourse.getCourses()
+    private suspend fun getCoursesData() = io { repositoryCourse.getCourses() }
+
+    fun getCodes(): LiveData<Resource<List<CodeModel>?>> = liveData {
+        emit(Resource.loading())
+        try {
+            val codes = getCodesData()
+            emit(Resource.success(codes.value))
+        } catch (e: Exception) {
+            emit(Resource.error<List<CodeModel>>())
+        }
     }
+
+    private suspend fun getCodesData() = io { repositoryCode.getBestCode() }
 }

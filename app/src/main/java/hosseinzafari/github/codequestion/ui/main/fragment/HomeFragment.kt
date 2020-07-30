@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import hosseinzafari.github.codequestion.R
 import hosseinzafari.github.codequestion.adapter.BestUserRVAdapter
+import hosseinzafari.github.codequestion.adapter.CodeRVAdapter
 import hosseinzafari.github.codequestion.adapter.CourseRVAdapter
 import hosseinzafari.github.codequestion.ui.helper.log
 import hosseinzafari.github.codequestion.ui.ui.util.Status
@@ -23,9 +24,11 @@ class HomeFragment : GFragment() {
     private val homeViewModel: HomeViewModel by viewModels()
     private lateinit var bestUserAdapter : BestUserRVAdapter
     private lateinit var courseAdapter   : CourseRVAdapter
+    private lateinit var bestCodeAdapter : CodeRVAdapter
 
-    private lateinit var rv_home_bestuser : RecyclerView;
+    private lateinit var rv_home_bestuser   : RecyclerView;
     private lateinit var rv_home_bestcourse : RecyclerView;
+    private lateinit var rv_home_bestcode   : RecyclerView;
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -62,11 +65,23 @@ class HomeFragment : GFragment() {
                 }
             }
         })
+
+        homeViewModel.getCodes().observe(viewLifecycleOwner , Observer {
+            when(it.status){
+                Status.ERROR -> log("getCodes Error")
+                Status.LOADING -> log("getCodes is Loading")
+                Status.SUCCEESS -> {
+                    log("getCodes Success ${it.data}" )
+                    bestCodeAdapter.updateData(it.data)
+                }
+            }
+        })
     }
 
     private fun setupAdapters(){
         bestUserAdapter = BestUserRVAdapter { debugOnClick(it) }
         courseAdapter   = CourseRVAdapter { debugOnClick(it) }
+        bestCodeAdapter   = CodeRVAdapter { debugOnClick(it) }
     }
 
     private fun setupViews(view: View){
@@ -79,6 +94,11 @@ class HomeFragment : GFragment() {
         rv_home_bestcourse = view.findViewById(R.id.rv_home_bestcourse)
         rv_home_bestcourse.layoutManager = LinearLayoutManager(activity , LinearLayoutManager.HORIZONTAL , true)
         rv_home_bestcourse.adapter = courseAdapter
+
+        // setup best codes recyclerview
+        rv_home_bestcode = view.findViewById(R.id.rv_home_bestcode)
+        rv_home_bestcode.layoutManager = LinearLayoutManager(activity , LinearLayoutManager.HORIZONTAL , true)
+        rv_home_bestcode.adapter = bestCodeAdapter
     }
 
 

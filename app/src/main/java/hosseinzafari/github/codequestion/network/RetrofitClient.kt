@@ -15,7 +15,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 */
 
 val retrofit by lazy {
-    retrofitBuilder("http://192.168.0.3/code-question/api/v1/") {
+    retrofitBuilder("http://192.168.1.5/code-question/api/v1/") {
         +GsonConverterFactory.create()
         +true
         +httpClient {

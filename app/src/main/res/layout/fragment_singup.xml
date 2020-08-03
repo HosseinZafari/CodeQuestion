@@ -3,41 +3,49 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    style="@style/AppTheme"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <androidx.appcompat.widget.AppCompatImageButton
         android:id="@+id/img_back_singup"
-        android:layout_width="28dp"
-        android:layout_height="28dp"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
         android:background="?attr/selectableItemBackground"
+        android:scaleType="fitCenter"
         app:layout_constraintEnd_toStartOf="@+id/guideline5"
         app:layout_constraintTop_toTopOf="@+id/guideline6"
         app:srcCompat="@drawable/ic_baseline_arrow_forward_24" />
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/materialTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="ثبت نام"
-        android:textColor="@color/colorAccent"
-        android:textSize="18dp"
-        app:fontFamily="@font/iran_bold"
-        app:layout_constraintEnd_toStartOf="@+id/guideline5"
-        app:layout_constraintTop_toBottomOf="@+id/img_back_singup" />
 
     <ScrollView
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/guideline5"
         app:layout_constraintStart_toStartOf="@+id/guideline4"
         app:layout_constraintTop_toBottomOf="@id/guideline2">
 
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
+            android:paddingStart="22dp"
+            android:paddingEnd="22dp"
+            android:paddingBottom="22dp"
+            android:paddingTop="4dp"
+            android:gravity="right"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/materialTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:text="ثبت نام"
+                android:textColor="@color/colorPrimary"
+                android:textSize="18sp"
+                 />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/edt_singup_layout_name"
@@ -49,7 +57,11 @@
                 android:layoutDirection="rtl"
                 android:textColorHint="@color/colorGrayDark"
                 app:boxStrokeColor="@color/colorAccent"
+                app:counterEnabled="true"
+                app:counterMaxLength="30"
+                app:counterTextColor="@color/colorGrayDark"
                 app:endIconMode="clear_text"
+                app:errorEnabled="true"
                 app:startIconDrawable="@drawable/ic_assignment_ind">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -58,7 +70,9 @@
                     android:layout_height="match_parent"
                     android:gravity="right"
                     android:inputType="text"
-                    android:textColor="@color/colorAccent"
+                    android:fontFamily="@font/iran_ultra_light"
+                    android:textSize="14sp"
+                    android:textColor="@color/colorPrimary"
                     tools:text="حسین" />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -69,13 +83,16 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
                 android:gravity="right"
                 android:hint="نام خانوادگی"
                 android:layoutDirection="rtl"
                 android:textColorHint="@color/colorGrayDark"
                 app:boxStrokeColor="@color/colorAccent"
+                app:counterEnabled="true"
+                app:counterMaxLength="30"
+                app:counterTextColor="@color/colorGrayDark"
                 app:endIconMode="clear_text"
+                app:errorEnabled="true"
                 app:startIconDrawable="@drawable/ic_assignment_ind">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -84,7 +101,9 @@
                     android:layout_height="match_parent"
                     android:gravity="right"
                     android:inputType="text"
-                    android:textColor="@color/colorAccent"
+                    android:fontFamily="@font/iran_ultra_light"
+                    android:textSize="14sp"
+                    android:textColor="@color/colorPrimary"
                     tools:text="ظفری" />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -94,13 +113,13 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
                 android:gravity="right"
                 android:hint="ایمیل"
                 android:layoutDirection="rtl"
                 android:textColorHint="@color/colorGrayDark"
                 app:boxStrokeColor="@color/colorAccent"
                 app:endIconMode="clear_text"
+                app:errorEnabled="true"
                 app:startIconDrawable="@drawable/ic_email">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -108,8 +127,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="right"
+                    android:fontFamily="@font/iran_ultra_light"
+                    android:textSize="14sp"
                     android:inputType="textEmailAddress"
-                    android:textColor="@color/colorAccent"
+                    android:textColor="@color/colorPrimary"
                     tools:text="ho3einzafari@gmail.com" />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -119,13 +140,16 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
                 android:gravity="right"
-                android:hint="شماره تلفن"
+                android:hint="شماره همراه"
                 android:layoutDirection="rtl"
                 android:textColorHint="@color/colorGrayDark"
                 app:boxStrokeColor="@color/colorAccent"
+                app:counterEnabled="true"
+                app:counterMaxLength="11"
+                app:counterTextColor="@color/colorGrayDark"
                 app:endIconMode="clear_text"
+                app:errorEnabled="true"
                 app:startIconDrawable="@drawable/ic_local_phone">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -134,7 +158,9 @@
                     android:layout_height="match_parent"
                     android:gravity="right"
                     android:inputType="number"
-                    android:textColor="@color/colorAccent"
+                    android:fontFamily="@font/iran_ultra_light"
+                    android:textSize="14sp"
+                    android:textColor="@color/colorPrimary"
                     tools:text="0903541111" />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -144,13 +170,13 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
                 android:gravity="right"
                 android:hint="رمز عبور"
                 android:layoutDirection="rtl"
                 android:textColorHint="@color/colorGrayDark"
                 app:boxStrokeColor="@color/colorAccent"
-                app:endIconMode="clear_text"
+                app:endIconMode="password_toggle"
+                app:errorEnabled="true"
                 app:startIconDrawable="@drawable/ic_lock_outline">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -158,8 +184,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="right"
+                    android:fontFamily="@font/iran_ultra_light"
+                    android:textSize="14sp"
                     android:inputType="textPassword"
-                    android:textColor="@color/colorAccent"
+                    android:textColor="@color/colorPrimary"
                     tools:text="این یک تست است" />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -169,13 +197,13 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
                 android:gravity="right"
                 android:hint="تکرار رمز عبور"
                 android:layoutDirection="rtl"
                 android:textColorHint="@color/colorGrayDark"
                 app:boxStrokeColor="@color/colorAccent"
-                app:endIconMode="clear_text"
+                app:endIconMode="password_toggle"
+                app:errorEnabled="true"
                 app:startIconDrawable="@drawable/ic_lock_outline">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -183,8 +211,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="right"
+                    android:fontFamily="@font/iran_ultra_light"
+                    android:textSize="14sp"
                     android:inputType="textPassword"
-                    android:textColor="@color/colorAccent"
+                    android:textColor="@color/colorPrimary"
                     tools:text="این یک تست است" />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -193,14 +223,15 @@
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btn_singup_create"
                 style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-                android:layout_width="240dp"
-                android:layout_height="60dp"
+                android:layout_width="250dp"
+                android:layout_height="70dp"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="16dp"
                 android:text="ایجاد حساب"
                 app:cornerRadius="35dp"
                 app:elevation="4dp"
-                app:rippleColor="@color/colorAccent" />
+                android:fontFamily="@font/iran_light"
+                android:textSize="14sp"
+                app:rippleColor="@color/colorPrimary" />
 
 
         </androidx.appcompat.widget.LinearLayoutCompat>
@@ -212,7 +243,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.15" />
+        app:layout_constraintGuide_percent="0.08" />
 
 
     <androidx.constraintlayout.widget.Guideline

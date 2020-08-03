@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -17,11 +18,12 @@
         android:id="@+id/materialTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginRight="24dp"
+        android:fontFamily="@font/iran_bold"
         android:text="ورود به حساب کاربری"
-        android:textColor="@color/colorAccent"
+        android:textColor="@color/colorPrimary"
         android:textSize="18dp"
-        app:fontFamily="@font/iran_bold"
         app:layout_constraintEnd_toStartOf="@+id/guideline5"
         app:layout_constraintTop_toBottomOf="@+id/img_back_login" />
 
@@ -30,6 +32,8 @@
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
         android:gravity="right"
         android:hint="ایمیل"
         android:layoutDirection="rtl"
@@ -44,7 +48,9 @@
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="right" />
+            android:fontFamily="@font/iran_ultra_light"
+            android:gravity="right"
+            android:textSize="14sp" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -54,12 +60,14 @@
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
         android:gravity="right"
         android:hint="رمز عبور"
         android:layoutDirection="rtl"
         android:textColorHint="@color/colorGrayDark"
         app:boxStrokeColor="@color/colorAccent"
-        app:endIconMode="clear_text"
+        app:endIconMode="password_toggle"
         app:layout_constraintEnd_toStartOf="@+id/guideline5"
         app:layout_constraintStart_toStartOf="@+id/guideline4"
         app:layout_constraintTop_toTopOf="@+id/guideline3"
@@ -69,38 +77,49 @@
             android:id="@+id/edt_login_pass"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="right" />
+            android:fontFamily="@font/iran_ultra_light"
+            android:gravity="right"
+            android:textSize="14sp" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btn_login_enter"
-        style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
-        android:layout_width="240dp"
-        android:layout_height="60dp"
-        android:layout_marginTop="16dp"
-        android:text="ورود به حساب"
-        app:cornerRadius="35dp"
-        app:elevation="4dp"
-        app:layout_constraintEnd_toStartOf="@+id/guideline5"
-        app:layout_constraintStart_toStartOf="@+id/guideline4"
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="75dp"
+        android:gravity="right"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/edt_login_layout_pass"
+        app:layout_constraintStart_toStartOf="@+id/edt_login_layout_pass"
         app:layout_constraintTop_toBottomOf="@+id/edt_login_layout_pass"
-        app:rippleColor="@color/colorAccent" />
+        app:layout_constraintVertical_bias="0.050000012">
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btn_login_gosingup"
-        style="@style/Widget.MaterialComponents.Button.TextButton"
-        android:layout_width="140dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="16dp"
-        android:text="ثبت نام"
-        app:cornerRadius="35dp"
-        app:elevation="4dp"
-        app:layout_constraintEnd_toStartOf="@+id/guideline5"
-        app:layout_constraintHorizontal_bias="0.501"
-        app:layout_constraintStart_toStartOf="@+id/guideline4"
-        app:layout_constraintTop_toBottomOf="@+id/btn_login_enter"
-        app:rippleColor="@color/colorAccent" />
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_login_gosingup"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginRight="4dp"
+            android:layout_weight="1"
+            android:text="ثبت نام"
+            android:textColor="@color/colorAccent"
+            app:cornerRadius="35dp"
+            app:elevation="4dp"
+            app:rippleColor="@color/colorPrimary" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_login_enter"
+            style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="4dp"
+            android:layout_weight="1"
+            android:text="ورود به حساب"
+            app:cornerRadius="35dp"
+            app:elevation="4dp"
+            app:rippleColor="@color/space_white" />
+
+    </LinearLayout>
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline2"

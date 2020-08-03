@@ -1,6 +1,8 @@
 package hosseinzafari.github.codequestion.ui.data.repository
 
 import androidx.lifecycle.LiveData
+import hosseinzafari.github.codequestion.struct.ResponseStdModel
+import hosseinzafari.github.codequestion.struct.UserSignupModel
 import hosseinzafari.github.codequestion.ui.data.datasource.UserRemoteDataSource
 import hosseinzafari.github.codequestion.ui.data.main.UserMain
 import hosseinzafari.github.codequestion.ui.struct.UserModel
@@ -17,6 +19,10 @@ class UserRepository : UserMain{
 
     override suspend fun getBestUser(): LiveData<List<UserModel>> {
         return userRemote.getBestUser()
+    }
+
+    override suspend fun signupUser(userSignupModel: UserSignupModel): LiveData<ResponseStdModel> {
+        return userRemote.signupUser(userSignupModel)
     }
 
 }

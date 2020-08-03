@@ -2,8 +2,12 @@ package hosseinzafari.github.codequestion.ui.network
 
 import hosseinzafari.github.codequestion.struct.CodeModel
 import hosseinzafari.github.codequestion.struct.CourseModel
+import hosseinzafari.github.codequestion.struct.ResponseStdModel
+import hosseinzafari.github.codequestion.struct.UserSignupModel
 import hosseinzafari.github.codequestion.ui.struct.UserModel
+import retrofit2.http.Body
 import retrofit2.http.GET
+import retrofit2.http.POST
 
 /*
 
@@ -15,7 +19,6 @@ import retrofit2.http.GET
 
 interface Api {
 
-
     @GET("best-user")
     suspend fun getBestUser() :  List<UserModel>
 
@@ -24,4 +27,8 @@ interface Api {
 
     @GET("best-code")
     suspend fun getBestCode(): List<CodeModel>
+
+
+    @POST("signup")
+    suspend fun signupUser(@Body userSignup: UserSignupModel): ResponseStdModel
 }

@@ -2,6 +2,8 @@ package hosseinzafari.github.codequestion.ui.data.datasource
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import hosseinzafari.github.codequestion.struct.ResponseStdModel
+import hosseinzafari.github.codequestion.struct.UserSignupModel
 import hosseinzafari.github.codequestion.ui.data.main.UserMain
 import hosseinzafari.github.codequestion.ui.helper.log
 import hosseinzafari.github.codequestion.ui.network.api
@@ -18,11 +20,18 @@ import hosseinzafari.github.codequestion.ui.struct.UserModel
 class UserRemoteDataSource : UserMain {
 
     private var _bestUserLiveData = MutableLiveData<List<UserModel>>()
+    private var _signupLiveData = MutableLiveData<ResponseStdModel>()
 
      override suspend fun getBestUser(): LiveData<List<UserModel>>  {
-         log("remoteDataSource thread : " + Thread.currentThread().name )
+         log("userRemoteDataSource getBestUser thread : " + Thread.currentThread().name )
         _bestUserLiveData.postValue(api.getBestUser())
         return _bestUserLiveData
+    }
+
+    override suspend fun signupUser(userSignupModel: UserSignupModel): LiveData<ResponseStdModel> {
+        log("userRemoteDataSource signup thread : " + Thread.currentThread().name )
+        _signupLiveData.postValue(api.signupUser(userSignupModel))
+        return _signupLiveData
     }
 
 }

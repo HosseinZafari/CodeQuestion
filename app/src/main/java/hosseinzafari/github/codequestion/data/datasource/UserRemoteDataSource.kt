@@ -21,6 +21,7 @@ class UserRemoteDataSource : UserMain {
 
     private var _bestUserLiveData = MutableLiveData<List<UserModel>>()
     private var _signupLiveData = MutableLiveData<ResponseStdModel>()
+    private var _loginLiveData = MutableLiveData<ResponseStdModel>()
 
      override suspend fun getBestUser(): LiveData<List<UserModel>>  {
          log("userRemoteDataSource getBestUser thread : " + Thread.currentThread().name )
@@ -32,6 +33,11 @@ class UserRemoteDataSource : UserMain {
         log("userRemoteDataSource signup thread : " + Thread.currentThread().name )
         _signupLiveData.postValue(api.signupUser(userSignupModel))
         return _signupLiveData
+    }
+
+    override suspend fun loginUser(password: String, email: String): LiveData<ResponseStdModel> {
+        _loginLiveData.postValue(api.loginUser(email , password))
+        return _loginLiveData
     }
 
 }

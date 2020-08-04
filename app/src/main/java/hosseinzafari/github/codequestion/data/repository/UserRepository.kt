@@ -25,4 +25,8 @@ class UserRepository : UserMain{
         return userRemote.signupUser(userSignupModel)
     }
 
+    override suspend fun loginUser(password: String, email: String): LiveData<ResponseStdModel> {
+        return userRemote.loginUser(password , email)
+    }
+
 }

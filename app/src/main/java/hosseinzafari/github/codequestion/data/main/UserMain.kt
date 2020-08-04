@@ -17,4 +17,6 @@ interface UserMain {
     suspend fun getBestUser() : LiveData<List<UserModel>>
 
     suspend fun signupUser(userSignupModel: UserSignupModel): LiveData<ResponseStdModel>
+
+    suspend fun loginUser(password: String , email: String): LiveData<ResponseStdModel>
 }

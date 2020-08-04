@@ -21,15 +21,25 @@ class QuestionViewModel : ViewModel() {
 
     private val userRepository = UserRepository()
 
-    fun signupUser(userSignupModel: UserSignupModel): LiveData<Resource<ResponseStdModel>> = liveData {
-        emit(Resource.loading())
-        try {
-            val response = signupUserData(userSignupModel)
-            emit(Resource.success(response.value!!))
-        } catch (e: Exception) {
-            emit(Resource.error())
+    fun signupUser(userSignupModel: UserSignupModel): LiveData<Resource<ResponseStdModel?>> = liveData {
+            emit(Resource.loading())
+            try {
+                val response = io { userRepository.signupUser(userSignupModel) }
+                emit(Resource.success(response.value))
+            } catch (e: Exception) {
+                emit(Resource.error())
+            }
         }
-    }
 
-    private suspend fun signupUserData(userSignupModel: UserSignupModel) = io { userRepository.signupUser(userSignupModel) }
+    fun loginUser(email: String, password: String): LiveData<Resource<ResponseStdModel?>> = liveData {
+            emit(Resource.loading())
+            try {
+                val response = io { userRepository.loginUser(password, email) }
+                emit(Resource.success(response.value))
+            } catch (e: Exception) {
+                emit(Resource.error())
+            }
+        }
+
+
 }

@@ -50,7 +50,7 @@ class MainActivity : GAppCompatActivity() {
                     log("onItemClick itemIndex $itemIndex , itemName $itemName")
                     when(itemIndex){
                         3-> uiUtil.replaceFragment(FactoryFragment.HOME_FRAGMENT)
-                        2-> uiUtil.replaceFragment(FactoryFragment.LOGIN_FRAGMENT)
+                        2-> uiUtil.replaceFragment(FactoryFragment.SIGNUP_FRAGMENT)
                     }
                 }
             })

@@ -5,8 +5,20 @@
   <color name="colorDarkPrimary">#D81B60</color>
   <color name="colorDarkPrimary2">#D81B60</color>
   <color name="colorAccent">#FF418B</color>
+  <color name="colorPink">#FFADCD</color>
   <color name="colorYellow">#FFEB3B</color>
   <color name="colorBlue">#1832DA</color>
 
   <color name="colorGrayDark">#999</color>
+
+  <color name="colorGray1">#888</color>
+  <color name="colorGray2">#777</color>
+  <color name="colorGray3">#666</color>
+  <color name="colorGray4">#555</color>
+  <color name="colorGray5">#444</color>
+
+
+  <color name="colorDark1">#111</color>
+  <color name="colorDark2">#222</color>
+  <color name="colorDark3">#333</color>
 </resources>

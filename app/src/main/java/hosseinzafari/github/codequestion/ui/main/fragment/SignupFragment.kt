@@ -167,11 +167,20 @@ class SignupFragment : GFragment() {
             when(it.status){
                 Status.ERROR -> log("Signup Error ${it.message}")
                 Status.LOADING -> log("Signup Loading ${it.message}")
-                Status.SUCCEESS -> log("Signup Success ${it.data}")
+                Status.SUCCEESS -> {
+                    log("Signup Success ${it.data}")
+                    if(it.data == null || it.data.auth == null){
+                        return@Observer
+                    }
+
+                    // save token
+                    questionViewModel.setToken(it.data.auth)
+                }
             }
         })
         
     }
-    
+
+
     
 }

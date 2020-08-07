@@ -3,11 +3,14 @@ package hosseinzafari.github.codequestion.ui.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
+import androidx.lifecycle.viewModelScope
+import hosseinzafari.github.codequestion.data.repository.TokenRepository
 import hosseinzafari.github.codequestion.struct.ResponseStdModel
 import hosseinzafari.github.codequestion.struct.UserSignupModel
 import hosseinzafari.github.codequestion.ui.data.repository.UserRepository
 import hosseinzafari.github.codequestion.ui.helper.io
 import hosseinzafari.github.codequestion.ui.ui.util.Resource
+import kotlinx.coroutines.launch
 
 /*
 
@@ -20,6 +23,7 @@ import hosseinzafari.github.codequestion.ui.ui.util.Resource
 class QuestionViewModel : ViewModel() {
 
     private val userRepository = UserRepository()
+    private val tokenRepository = TokenRepository()
 
     fun signupUser(userSignupModel: UserSignupModel): LiveData<Resource<ResponseStdModel?>> = liveData {
             emit(Resource.loading())
@@ -41,5 +45,13 @@ class QuestionViewModel : ViewModel() {
             }
         }
 
+    suspend fun getToken() : LiveData<String?>   {
+        return tokenRepository.getToken()
+    }
 
+    fun setToken(token: String){
+        viewModelScope.launch {
+            tokenRepository.setToken(token)
+        }
+    }
 }

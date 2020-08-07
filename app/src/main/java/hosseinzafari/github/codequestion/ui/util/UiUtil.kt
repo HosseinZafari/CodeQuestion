@@ -26,7 +26,7 @@ class UiUtil(val activity: FragmentActivity) {
     }
 
     fun replaceFragmentWithBack(targetFragment: Byte, containerLayout: Int = R.id.framelayout, tag: String? = null) {
-        activity.supportFragmentManager.beginTransaction().addToBackStack(tag).replace(containerLayout , getFragment(targetFragment) , tag)?.commit()
+        activity.supportFragmentManager.beginTransaction().addToBackStack(tag).replace(containerLayout , getFragment(targetFragment) , tag).commit()
     }
 
 

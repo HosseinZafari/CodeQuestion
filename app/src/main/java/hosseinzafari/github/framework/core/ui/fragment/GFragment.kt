@@ -1,6 +1,8 @@
 package hosseinzafari.github.framework.core.ui.fragment
 
+import android.os.Bundle
 import androidx.fragment.app.Fragment
+import hosseinzafari.github.codequestion.ui.util.UiUtil
 import hosseinzafari.github.framework.core.app.G
 
 /*
@@ -12,6 +14,14 @@ import hosseinzafari.github.framework.core.app.G
 */
 
 open class GFragment : Fragment() {
+
+    protected lateinit var uiUtil: UiUtil
+
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        uiUtil = UiUtil(requireActivity())
+    }
 
     override fun onResume() {
         super.onResume()

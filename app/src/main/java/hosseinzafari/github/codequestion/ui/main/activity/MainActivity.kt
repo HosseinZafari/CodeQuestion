@@ -6,20 +6,16 @@ import com.luseen.spacenavigation.SpaceOnClickListener
 import hosseinzafari.github.codequestion.R
 import hosseinzafari.github.codequestion.ui.helper.log
 import hosseinzafari.github.codequestion.ui.ui.main.fragment.FactoryFragment
-import hosseinzafari.github.codequestion.ui.util.UiUtil
 import hosseinzafari.github.framework.core.ui.activity.GAppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : GAppCompatActivity() {
-
-    private lateinit var uiUtil: UiUtil
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         // init first fragment
-        uiUtil = UiUtil(this)
         uiUtil.addFragment(FactoryFragment.HOME_FRAGMENT)
 
         // Setup Navigation View
@@ -50,7 +46,7 @@ class MainActivity : GAppCompatActivity() {
                     log("onItemClick itemIndex $itemIndex , itemName $itemName")
                     when(itemIndex){
                         3-> uiUtil.replaceFragment(FactoryFragment.HOME_FRAGMENT)
-                        2-> uiUtil.replaceFragment(FactoryFragment.SIGNUP_FRAGMENT)
+                        2-> uiUtil.replaceFragment(FactoryFragment.QUESTION_FRAGMENT)
                     }
                 }
             })

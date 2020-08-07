@@ -3,7 +3,7 @@ package hosseinzafari.github.codequestion.ui.data.repository
 import androidx.lifecycle.LiveData
 import hosseinzafari.github.codequestion.data.main.CodeMain
 import hosseinzafari.github.codequestion.struct.CodeModel
-import hosseinzafari.github.codequestion.ui.data.datasource.CodeRemoteDataSource
+import hosseinzafari.github.codequestion.data.datasource.remote.CodeRemoteDataSource
 
 /*
     @created in 25/07/2020 - 12:23 PM

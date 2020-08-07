@@ -2,7 +2,7 @@ package hosseinzafari.github.codequestion.data.repository
 
 import androidx.lifecycle.LiveData
 import hosseinzafari.github.codequestion.struct.CourseModel
-import hosseinzafari.github.codequestion.ui.data.datasource.CourseRemoteDataSource
+import hosseinzafari.github.codequestion.data.datasource.remote.CourseRemoteDataSource
 import hosseinzafari.github.codequestion.ui.data.main.CourseMain
 
 /*

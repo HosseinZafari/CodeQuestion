@@ -1,4 +1,4 @@
-package hosseinzafari.github.codequestion.ui.data.datasource
+package hosseinzafari.github.codequestion.data.datasource.remote
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

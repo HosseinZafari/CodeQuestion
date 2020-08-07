@@ -10,5 +10,6 @@ data class UserModel(
     val role: String? = null,
     val gender: Byte? = 0,  // 0 or 1 == male or female
     val image: String? = null,  // https://ware.uncox.com/asset/profile/male/15.jpg
-    val point: String? = null  // 40
+    val point: String? = null ,  // 40
+    val token: String
 )

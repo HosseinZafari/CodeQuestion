@@ -133,4 +133,8 @@ dependencies {
     implementation 'com.facebook.fresco:webpsupport:2.3.0'
     // For animated GIF support
     implementation 'com.facebook.fresco:animated-gif:2.3.0'
+
+    // Add Lottie
+    implementation 'com.airbnb.android:lottie:3.4.1'
+
 }

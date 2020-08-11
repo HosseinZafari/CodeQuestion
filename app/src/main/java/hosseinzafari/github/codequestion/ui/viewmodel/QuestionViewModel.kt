@@ -57,10 +57,10 @@ class QuestionViewModel : ViewModel() {
         }
     }
 
-    suspend fun getRules(): LiveData<Resource<ResponseStdModel?>> = liveData {
+    fun getRules(): LiveData<Resource<ResponseStdModel?>> = liveData {
         emit(Resource.loading())
         try {
-            val rules = rulesRepository.getRules()
+            val rules = io { rulesRepository.getRules() }
             emit(Resource.success(rules.value))
         } catch (e: Exception) {
             emit(Resource.error(e.message.toString()))

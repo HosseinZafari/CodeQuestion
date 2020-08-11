@@ -36,4 +36,8 @@ interface Api {
         @Field("email") email: String,
         @Field("password") password: String
     ): ResponseStdModel
+
+
+    @GET("rules")
+    suspend fun getRules() : ResponseStdModel
 }

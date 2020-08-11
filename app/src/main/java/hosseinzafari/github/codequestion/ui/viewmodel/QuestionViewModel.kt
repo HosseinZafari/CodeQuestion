@@ -7,6 +7,7 @@ import androidx.lifecycle.viewModelScope
 import hosseinzafari.github.codequestion.data.repository.TokenRepository
 import hosseinzafari.github.codequestion.struct.ResponseStdModel
 import hosseinzafari.github.codequestion.struct.UserSignupModel
+import hosseinzafari.github.codequestion.ui.data.repository.RulesRepository
 import hosseinzafari.github.codequestion.ui.data.repository.UserRepository
 import hosseinzafari.github.codequestion.ui.helper.io
 import hosseinzafari.github.codequestion.ui.ui.util.Resource
@@ -22,8 +23,9 @@ import kotlinx.coroutines.launch
 
 class QuestionViewModel : ViewModel() {
 
-    private val userRepository = UserRepository()
+    private val userRepository  = UserRepository()
     private val tokenRepository = TokenRepository()
+    private val rulesRepository = RulesRepository()
 
     fun signupUser(userSignupModel: UserSignupModel): LiveData<Resource<ResponseStdModel?>> = liveData {
             emit(Resource.loading())
@@ -52,6 +54,16 @@ class QuestionViewModel : ViewModel() {
     fun setToken(token: String){
         viewModelScope.launch {
             tokenRepository.setToken(token)
+        }
+    }
+
+    suspend fun getRules(): LiveData<Resource<ResponseStdModel?>> = liveData {
+        emit(Resource.loading())
+        try {
+            val rules = rulesRepository.getRules()
+            emit(Resource.success(rules.value))
+        } catch (e: Exception) {
+            emit(Resource.error(e.message.toString()))
         }
     }
 }

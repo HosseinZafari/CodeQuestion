@@ -1,44 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:theme="@style/AppTheme">
 
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/lottie_no_internet_woman"
-        android:layout_width="300dp"
-        android:layout_height="300dp"
+        android:layout_width="350dp"
+        android:layout_height="350dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         app:lottie_autoPlay="true"
-        app:lottie_loop="true"
-        app:lottie_fileName="no_internet_woman.json" />
+        app:lottie_fileName="no_internet_woman.json"
+        app:lottie_loop="true" />
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/cv_show_rules"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/lottie_no_internet_woman"
         android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
+        android:layout_marginBottom="8dp"
         app:cardBackgroundColor="@color/colorAccent"
-        app:contentPadding="8dp"
-        app:rippleColor="@color/space_white"
         app:cardCornerRadius="4dp"
         app:cardElevation="4dp"
-        android:layout_below="@+id/lottie_no_internet_woman"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        app:contentPadding="8dp"
+        app:rippleColor="@color/space_white">
 
         <com.google.android.material.textview.MaterialTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:drawableRight="@drawable/ic_baseline_link_24"
+            android:drawablePadding="12dp"
             android:gravity="center"
             android:text="مشاهده قوانین پرسش و پاسخ"
-            android:textColor="@color/space_white"
-            android:drawablePadding="12dp"
-            android:drawableRight="@drawable/ic_baseline_link_24"/>
+            android:textColor="@color/space_white" />
 
 
     </com.google.android.material.card.MaterialCardView>
@@ -48,27 +49,29 @@
         android:id="@+id/chk_agree_rules"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/cv_show_rules"
+        android:layout_centerHorizontal="true"
+        android:gravity="right|center_vertical"
+        android:layoutDirection="rtl"
+        android:padding="8dp"
         android:text="من با قوانین موافق هستم"
         android:textColor="@color/colorGray3"
-        android:layoutDirection="rtl"
         app:buttonTint="@color/colorAccent"
-        android:padding="8dp"
-        app:useMaterialThemeColors="true"
-        android:gravity="right|center_vertical"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@+id/cv_show_rules" />
+        app:useMaterialThemeColors="true" />
 
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab_new_question"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
         android:layout_marginRight="16dp"
         android:layout_marginBottom="8dp"
-        app:rippleColor="@color/space_white"
-        app:elevation="12dp"
+        android:theme="@style/Widget.MaterialComponents.FloatingActionButton"
         app:backgroundTint="@color/colorAccent"
-        app:srcCompat="@drawable/ic_add_24"/>
+        app:tint="@color/space_white"
+        app:rippleColor="@color/space_white"
+        app:srcCompat="@drawable/ic_add_24" />
+
 </RelativeLayout>

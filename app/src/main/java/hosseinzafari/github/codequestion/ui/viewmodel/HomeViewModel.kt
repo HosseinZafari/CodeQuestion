@@ -54,7 +54,7 @@ class HomeViewModel : ViewModel() {
 
 
 
-    private suspend fun getCoursesData() = io { repositoryCourse.getCourses() }
+    private suspend fun getCoursesData() = io { repositoryCourse.getBestCourses() }
 
     fun getCodes(): LiveData<Resource<List<CodeModel>?>> = liveData {
         emit(Resource.loading())

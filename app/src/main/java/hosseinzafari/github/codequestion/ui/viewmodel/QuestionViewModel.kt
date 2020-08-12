@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
 import androidx.lifecycle.viewModelScope
+import hosseinzafari.github.codequestion.data.repository.CourseRepository
 import hosseinzafari.github.codequestion.data.repository.TokenRepository
 import hosseinzafari.github.codequestion.struct.ResponseStdModel
 import hosseinzafari.github.codequestion.struct.UserSignupModel
@@ -23,9 +24,10 @@ import kotlinx.coroutines.launch
 
 class QuestionViewModel : ViewModel() {
 
-    private val userRepository  = UserRepository()
-    private val tokenRepository = TokenRepository()
-    private val rulesRepository = RulesRepository()
+    private val userRepository    by lazy { UserRepository()  }
+    private val tokenRepository  by lazy { TokenRepository() }
+    private val rulesRepository   by lazy { RulesRepository() }
+    private val courseRepository by lazy { CourseRepository() }
 
     fun signupUser(userSignupModel: UserSignupModel): LiveData<Resource<ResponseStdModel?>> = liveData {
             emit(Resource.loading())
@@ -63,6 +65,16 @@ class QuestionViewModel : ViewModel() {
             val rules = io { rulesRepository.getRules() }
             emit(Resource.success(rules.value))
         } catch (e: Exception) {
+            emit(Resource.error(e.message.toString()))
+        }
+    }
+
+    fun getAllCourses(): LiveData<Resource<ResponseStdModel?>> = liveData {
+        emit(Resource.loading())
+        try {
+            val courses = io { courseRepository.getAllCourses() }
+            emit(Resource.success(courses.value))
+        } catch(e: Exception) {
             emit(Resource.error(e.message.toString()))
         }
     }

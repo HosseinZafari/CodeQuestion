@@ -1,7 +1,7 @@
 package hosseinzafari.github.codequestion.ui.data.main
 
 import androidx.lifecycle.LiveData
-import hosseinzafari.github.codequestion.struct.CourseModel
+import hosseinzafari.github.codequestion.struct.ResponseStdModel
 
 /*
 
@@ -13,6 +13,7 @@ import hosseinzafari.github.codequestion.struct.CourseModel
 
 interface CourseMain {
 
-    suspend fun getCourses(): LiveData<List<CourseModel>>
+    suspend fun getBestCourses(): LiveData<ResponseStdModel>
 
+    suspend fun getAllCourses(): LiveData<ResponseStdModel>
 }

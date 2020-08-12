@@ -1,8 +1,8 @@
 package hosseinzafari.github.codequestion.data.repository
 
 import androidx.lifecycle.LiveData
-import hosseinzafari.github.codequestion.struct.CourseModel
 import hosseinzafari.github.codequestion.data.datasource.remote.CourseRemoteDataSource
+import hosseinzafari.github.codequestion.struct.ResponseStdModel
 import hosseinzafari.github.codequestion.ui.data.main.CourseMain
 
 /*
@@ -16,7 +16,11 @@ import hosseinzafari.github.codequestion.ui.data.main.CourseMain
 class CourseRepository : CourseMain{
     private val courseRemoteDataSource = CourseRemoteDataSource()
 
-    override suspend fun getCourses(): LiveData<List<CourseModel>> {
-        return courseRemoteDataSource.getCourses()
+    override suspend fun getBestCourses(): LiveData<ResponseStdModel> {
+        return courseRemoteDataSource.getBestCourses()
+    }
+
+    override suspend fun getAllCourses(): LiveData<ResponseStdModel> {
+        return courseRemoteDataSource.getAllCourses()
     }
 }

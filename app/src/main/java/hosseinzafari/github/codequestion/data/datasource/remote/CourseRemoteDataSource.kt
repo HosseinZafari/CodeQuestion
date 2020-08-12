@@ -2,9 +2,8 @@ package hosseinzafari.github.codequestion.data.datasource.remote
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import hosseinzafari.github.codequestion.struct.CourseModel
+import hosseinzafari.github.codequestion.struct.ResponseStdModel
 import hosseinzafari.github.codequestion.ui.data.main.CourseMain
-import hosseinzafari.github.codequestion.ui.helper.log
 import hosseinzafari.github.codequestion.ui.network.api
 
 /*
@@ -16,12 +15,17 @@ import hosseinzafari.github.codequestion.ui.network.api
 
 class CourseRemoteDataSource : CourseMain {
 
-    private var _courseRemoteDataSource = MutableLiveData<List<CourseModel>>()
+    private var _courseRemoteDataSource     = MutableLiveData<ResponseStdModel>()
+    private var _allCourseRemoteDataSource  = MutableLiveData<ResponseStdModel>()
 
-     override suspend fun getCourses(): LiveData<List<CourseModel>>  {
-         log("getCourses remoteDataSource thread : " + Thread.currentThread().name )
-        _courseRemoteDataSource.postValue(api.getCourses())
+     override suspend fun getBestCourses(): LiveData<ResponseStdModel>  {
+        _courseRemoteDataSource.postValue(api.getBestCourses())
         return _courseRemoteDataSource
+    }
+
+    override suspend fun getAllCourses(): LiveData<ResponseStdModel> {
+        _allCourseRemoteDataSource.postValue(api.getAllCourses())
+        return _allCourseRemoteDataSource
     }
 
 }

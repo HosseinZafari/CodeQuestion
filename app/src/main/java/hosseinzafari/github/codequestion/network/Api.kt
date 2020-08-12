@@ -1,7 +1,6 @@
 package hosseinzafari.github.codequestion.ui.network
 
 import hosseinzafari.github.codequestion.struct.CodeModel
-import hosseinzafari.github.codequestion.struct.CourseModel
 import hosseinzafari.github.codequestion.struct.ResponseStdModel
 import hosseinzafari.github.codequestion.struct.UserSignupModel
 import hosseinzafari.github.codequestion.ui.struct.UserModel
@@ -20,8 +19,11 @@ interface Api {
     @GET("best-user")
     suspend fun getBestUser(): List<UserModel>
 
-    @GET("course")
-    suspend fun getCourses(): List<CourseModel>
+    @GET("best-course")
+    suspend fun getBestCourses(): ResponseStdModel
+
+    @GET("all-course")
+    suspend fun getAllCourses(): ResponseStdModel
 
     @GET("best-code")
     suspend fun getBestCode(): List<CodeModel>

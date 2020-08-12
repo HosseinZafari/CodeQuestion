@@ -9,5 +9,6 @@ data class ResponseStdModel(
     val status: String,
     val user: UserModel? = null,
     val auth: String? = null,
-    val rules: List<RulesModel>? = null
+    val rules: List<RulesModel>? = null,
+    val courses: List<CourseModel>? = null
 )

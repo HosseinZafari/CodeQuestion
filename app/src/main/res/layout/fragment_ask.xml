@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:theme="@style/AppTheme">
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/edt_title_ask"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:layoutDirection="rtl"
+            android:textColorHint="#aaa"
+            app:boxCornerRadiusTopEnd="8dp"
+            app:boxCornerRadiusTopStart="8dp"
+            app:boxStrokeColor="@color/colorPrimary"
+            app:counterEnabled="true"
+            app:endIconMode="clear_text">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/iran_light"
+                android:hint="موضوع"
+                android:textColor="@color/colorGray4"
+                android:textSize="14sp" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/edt_text_ask"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:gravity="right"
+            android:layoutDirection="rtl"
+            android:textColorHint="#aaa"
+            app:boxCornerRadiusTopEnd="8dp"
+            app:boxCornerRadiusTopStart="8dp"
+            app:boxStrokeColor="@color/colorPrimary"
+            app:counterEnabled="true"
+            app:endIconMode="clear_text">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:fontFamily="@font/iran_light"
+                android:gravity="top|right"
+                android:hint="سوال شما"
+                android:inputType="textMultiLine"
+                android:textColor="@color/colorGray5"
+                android:textSize="14sp"
+                tools:text="این یک تست است این هم یک تست است و باز هم این یک تست است خب همش انگار تست است اشکال نداره که همش این یک تست باشه نه اصلا ایرادی نداره که این همش یک تست باشه پس باشه این هم یک تست است" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:gravity="right"
+            android:orientation="vertical"
+            app:useMaterialThemeColors="true">
+
+            <com.google.android.material.radiobutton.MaterialRadioButton
+                android:id="@+id/radio_ask_free"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="سوالات مشاوره ای (درباره دوره های سایت و بازار کار)"
+                android:textColor="@color/colorGray3"
+                app:useMaterialThemeColors="true" />
+
+            <com.google.android.material.radiobutton.MaterialRadioButton
+                android:id="@+id/radio_ask_pay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="سوالات فنی (سورس کد یا اشکال در برنامه نویسی)"
+                android:textColor="@color/colorGray3"
+                app:useMaterialThemeColors="true" />
+
+        </RadioGroup>
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/chipgroup_ask"
+            android:layout_marginTop="28dp"
+            android:layout_marginBottom="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        </com.google.android.material.chip.ChipGroup>
+
+        <com.google.android.material.button.MaterialButton
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginTop="22dp"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:text="ارسال"
+            app:strokeColor="@color/colorPrimary"
+            app:iconGravity="textEnd"
+            app:icon="@drawable/ic_baseline_send_24"
+            app:elevation="6dp"
+            app:rippleColor="@color/colorPrimary"
+            />
+    </androidx.appcompat.widget.LinearLayoutCompat>
+</ScrollView>

@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
 import hosseinzafari.github.codequestion.data.repository.CourseRepository
 import hosseinzafari.github.codequestion.struct.CodeModel
-import hosseinzafari.github.codequestion.struct.CourseModel
+import hosseinzafari.github.codequestion.struct.ResponseStdModel
 import hosseinzafari.github.codequestion.ui.data.repository.CodeRepository
 import hosseinzafari.github.codequestion.ui.data.repository.UserRepository
 import hosseinzafari.github.codequestion.ui.helper.io
@@ -42,13 +42,13 @@ class HomeViewModel : ViewModel() {
 
     private suspend fun getBestUserData() =  io { repositoryUser.getBestUser() }
 
-    fun getCourses(): LiveData<Resource<List<CourseModel>?>> = liveData {
+    fun getCourses(): LiveData<Resource<ResponseStdModel?>> = liveData {
         emit(Resource.loading())
         try {
             val courses = getCoursesData()
             emit(Resource.success(courses.value))
         } catch(e: Exception) {
-            emit(Resource.error<List<CourseModel>>("" + e.message))
+            emit(Resource.error("" + e.message))
         }
     }
 

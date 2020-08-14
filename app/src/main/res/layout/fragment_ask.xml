@@ -72,6 +72,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
+            android:id="@+id/radiogroup_ask"
             android:gravity="right"
             android:orientation="vertical"
             app:useMaterialThemeColors="true">
@@ -80,6 +81,7 @@
                 android:id="@+id/radio_ask_free"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:checked="true"
                 android:text="سوالات مشاوره ای (درباره دوره های سایت و بازار کار)"
                 android:textColor="@color/colorGray3"
                 app:useMaterialThemeColors="true" />
@@ -95,18 +97,19 @@
 
         </RadioGroup>
 
-        <com.google.android.material.chip.ChipGroup
-            android:id="@+id/chipgroup_ask"
-            android:layout_marginTop="28dp"
-            android:layout_marginBottom="16dp"
+        <org.angmarch.views.NiceSpinner
+            android:id="@+id/spinner_ask"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-        </com.google.android.material.chip.ChipGroup>
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="16dp"
+            app:arrowTint="@color/colorPrimary"
+            app:fontFamily="@font/iran_light" />
 
         <com.google.android.material.button.MaterialButton
             android:layout_width="match_parent"
-            android:layout_height="60dp"
+            android:id="@+id/btn_send_ask"
+            android:layout_height="70dp"
             android:layout_marginTop="22dp"
             style="@style/Widget.MaterialComponents.Button.OutlinedButton"
             android:text="ارسال"

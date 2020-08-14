@@ -22,13 +22,13 @@ import hosseinzafari.github.framework.core.ui.fragment.GFragment
 class HomeFragment : GFragment() {
 
     private val homeViewModel: HomeViewModel by viewModels()
-    private lateinit var bestUserAdapter : BestUserRVAdapter
-    private lateinit var courseAdapter   : CourseRVAdapter
-    private lateinit var bestCodeAdapter : CodeRVAdapter
+    private lateinit var bestUserAdapter: BestUserRVAdapter
+    private lateinit var courseAdapter: CourseRVAdapter
+    private lateinit var bestCodeAdapter: CodeRVAdapter
 
-    private lateinit var rv_home_bestuser   : RecyclerView;
-    private lateinit var rv_home_bestcourse : RecyclerView;
-    private lateinit var rv_home_bestcode   : RecyclerView;
+    private lateinit var rv_home_bestuser: RecyclerView;
+    private lateinit var rv_home_bestcourse: RecyclerView;
+    private lateinit var rv_home_bestcode: RecyclerView;
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -43,8 +43,8 @@ class HomeFragment : GFragment() {
         setupAdapters()
         setupViews(view)
 
-        homeViewModel.getBestUser().observe(viewLifecycleOwner , Observer {
-            when(it.status){
+        homeViewModel.getBestUser().observe(viewLifecycleOwner, Observer {
+            when (it.status) {
                 Status.ERROR -> log("Error ${it.message}")
                 Status.LOADING -> log("Loading ${it.message}")
                 Status.SUCCEESS -> {
@@ -54,55 +54,57 @@ class HomeFragment : GFragment() {
             }
         })
 
-        homeViewModel.getCourses().observe(viewLifecycleOwner , Observer {
-            when(it.status){
+        homeViewModel.getCourses().observe(viewLifecycleOwner, Observer {
+            when (it.status) {
                 Status.ERROR -> log("getCourses Error ${it.message}")
                 Status.LOADING -> log("getCourses Loading ${it.message}")
                 Status.SUCCEESS -> {
                     log("getCourses Success ${it.data}")
                     // adapter this here
-                    courseAdapter.updateData(it.data)
+                    courseAdapter.updateData(it.data?.courses)
                 }
             }
         })
-
-        homeViewModel.getCodes().observe(viewLifecycleOwner , Observer {
-            when(it.status){
+        homeViewModel.getCodes().observe(viewLifecycleOwner, Observer {
+            when (it.status) {
                 Status.ERROR -> log("getCodes Error")
                 Status.LOADING -> log("getCodes is Loading")
                 Status.SUCCEESS -> {
-                    log("getCodes Success ${it.data}" )
+                    log("getCodes Success ${it.data}")
                     bestCodeAdapter.updateData(it.data)
                 }
             }
         })
     }
 
-    private fun setupAdapters(){
+    private fun setupAdapters() {
         bestUserAdapter = BestUserRVAdapter { debugOnClick(it) }
-        courseAdapter   = CourseRVAdapter { debugOnClick(it) }
-        bestCodeAdapter   = CodeRVAdapter { debugOnClick(it) }
+        courseAdapter = CourseRVAdapter { debugOnClick(it) }
+        bestCodeAdapter = CodeRVAdapter { debugOnClick(it) }
     }
 
-    private fun setupViews(view: View){
+    private fun setupViews(view: View) {
         // setup best user recyclerview
         rv_home_bestuser = view.findViewById(R.id.rv_home_bestuser)
-        rv_home_bestuser.layoutManager = LinearLayoutManager(activity , LinearLayoutManager.HORIZONTAL , true)
+        rv_home_bestuser.layoutManager =
+            LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, true)
         rv_home_bestuser.adapter = bestUserAdapter
 
         // setup courses recyclerview
         rv_home_bestcourse = view.findViewById(R.id.rv_home_bestcourse)
-        rv_home_bestcourse.layoutManager = LinearLayoutManager(activity , LinearLayoutManager.HORIZONTAL , true)
+        rv_home_bestcourse.layoutManager =
+            LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, true)
         rv_home_bestcourse.adapter = courseAdapter
 
         // setup best codes recyclerview
         rv_home_bestcode = view.findViewById(R.id.rv_home_bestcode)
-        rv_home_bestcode.layoutManager = LinearLayoutManager(activity , LinearLayoutManager.HORIZONTAL , true)
+        rv_home_bestcode.layoutManager =
+            LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, true)
         rv_home_bestcode.adapter = bestCodeAdapter
     }
 
 
-    private fun debugOnClick(id: String){
+    private fun debugOnClick(id: String) {
         Toast.makeText(activity, "clicked id is $id", Toast.LENGTH_SHORT).show()
     }
 }

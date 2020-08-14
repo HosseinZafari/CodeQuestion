@@ -11,13 +11,14 @@ import androidx.core.util.PatternsCompat
 import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import com.daimajia.androidanimations.library.Techniques
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.textfield.TextInputLayout
 import hosseinzafari.github.codequestion.R
+import hosseinzafari.github.codequestion.ui.helper.anim
 import hosseinzafari.github.codequestion.ui.helper.log
 import hosseinzafari.github.codequestion.ui.ui.main.fragment.FactoryFragment
 import hosseinzafari.github.codequestion.ui.ui.util.Status
-import hosseinzafari.github.codequestion.ui.util.UiUtil
 import hosseinzafari.github.codequestion.ui.viewmodel.QuestionViewModel
 import hosseinzafari.github.framework.core.app.G
 import hosseinzafari.github.framework.core.ui.fragment.GFragment
@@ -47,7 +48,6 @@ class LoginFragment : GFragment(), View.OnClickListener{
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         setupViews(view)
-        
     }
     
     private fun setupViews(view: View){
@@ -70,7 +70,10 @@ class LoginFragment : GFragment(), View.OnClickListener{
         }
 
         img_back_login.setOnClickListener { activity?.onBackPressed() }
-        btn_gosignup.setOnClickListener { UiUtil(requireActivity()).replaceFragmentWithBack(FactoryFragment.SIGNUP_FRAGMENT) }
+        btn_gosignup.setOnClickListener {
+            uiUtil.getContainerFragment().anim(Techniques.SlideInRight)
+            ContainerFragment.replaceFragmentWithBack(requireActivity() , FactoryFragment.SIGNUP_FRAGMENT)
+        }
         btn_login_enter.setOnClickListener(this)
     }
 
@@ -123,7 +126,12 @@ class LoginFragment : GFragment(), View.OnClickListener{
                         log("401 code")
                         setError(it.data.msg , edt_login_password)
                     } else if(it.data.code == 200) {
-                        Toast.makeText(G.getContext(), "${it.data.user?.name} خوش آمدید.", Toast.LENGTH_SHORT).show()
+                        // clear and show fragments
+                        ContainerFragment.clearFragment(FactoryFragment.LOGIN_FRAGMENT)
+                        ContainerFragment.clearFragment(FactoryFragment.SIGNUP_FRAGMENT)
+//                        ContainerFragment.clearFragment(FactoryFragment.QUESTION_FRAGMENT)
+                        ContainerFragment.replaceFragment(requireActivity() , FactoryFragment.QUESTION_FRAGMENT)
+                        Toast.makeText(G.getContext(), "${it.data.user?.name} خوش آمدید.", Toast.LENGTH_LONG).show()
                         log("succeess code 200 " + it.data.user)
                     }
 

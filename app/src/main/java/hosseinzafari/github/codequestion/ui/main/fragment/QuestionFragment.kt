@@ -7,11 +7,13 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
+import com.daimajia.androidanimations.library.Techniques
 import com.google.android.material.card.MaterialCardView
 import com.google.android.material.checkbox.MaterialCheckBox
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import hosseinzafari.github.codequestion.R
-import hosseinzafari.github.codequestion.ui.helper.log
+import hosseinzafari.github.codequestion.ui.helper.anim
+import hosseinzafari.github.codequestion.ui.main.fragment.ContainerFragment
 import hosseinzafari.github.codequestion.ui.viewmodel.QuestionViewModel
 import hosseinzafari.github.framework.core.ui.fragment.GFragment
 import kotlinx.coroutines.launch
@@ -22,21 +24,22 @@ class QuestionFragment : GFragment() {
     private val questionViewModel: QuestionViewModel by viewModels()
 
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_question, container, false)
-    }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-
         // Check Enter To Account
         lifecycleScope.launch {
             isLogin()
         }
+        return inflater.inflate(R.layout.fragment_question, container, false)
     }
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val fab_new_question = view.findViewById<FloatingActionButton>(R.id.fab_new_question)
@@ -46,19 +49,24 @@ class QuestionFragment : GFragment() {
         fab_new_question.hide()
 
         cv_show_rules.setOnClickListener {
-            uiUtil.replaceFragmentWithBack(FactoryFragment.RULES_FRAGMENT)
+            uiUtil.getContainerFragment().anim(Techniques.SlideInRight)
+            ContainerFragment.replaceFragmentWithBack(requireActivity() , FactoryFragment.RULES_FRAGMENT , tag = "Rules")
         }
 
         chk_agree_rules.setOnCheckedChangeListener { _, isChecked ->
             if(isChecked){
-               fab_new_question.show()
+                chk_agree_rules.anim(Techniques.FadeOut)
+                fab_new_question.anim(Techniques.SlideInRight)
+                fab_new_question.show()
             } else {
                 fab_new_question.hide()
             }
         }
 
         fab_new_question.setOnClickListener {
-            log("Fab Clicked!!!") // TODO ADD A QUESTION
+            ContainerFragment.replaceFragmentWithBack(requireActivity() , FactoryFragment.ASK_FRAGMENT , tag = "Ask")
+            uiUtil.getContainerFragment().anim(Techniques.SlideInRight , 800)
+
         }
     }
 
@@ -66,7 +74,8 @@ class QuestionFragment : GFragment() {
     private suspend fun isLogin() {
         questionViewModel.getToken().observe(viewLifecycleOwner, Observer {
             if (it == null) { // invalid - block user to question
-                uiUtil.replaceFragment(FactoryFragment.LOGIN_FRAGMENT)
+                uiUtil.getContainerFragment().anim(Techniques.SlideInRight , 500)
+                ContainerFragment.replaceFragment(requireActivity() , FactoryFragment.LOGIN_FRAGMENT)
             }
         })
     }

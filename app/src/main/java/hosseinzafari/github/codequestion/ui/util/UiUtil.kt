@@ -1,8 +1,8 @@
 package hosseinzafari.github.codequestion.ui.util
 
+import android.widget.FrameLayout
 import androidx.fragment.app.FragmentActivity
 import hosseinzafari.github.codequestion.R
-import hosseinzafari.github.codequestion.ui.ui.main.fragment.FactoryFragment
 
 /*
 
@@ -14,20 +14,6 @@ import hosseinzafari.github.codequestion.ui.ui.main.fragment.FactoryFragment
 
 class UiUtil(val activity: FragmentActivity) {
 
-
-    fun getFragment(byte: Byte) = FactoryFragment.getFragment(byte)
-
-    fun addFragment(targetFragment: Byte , containerLayout: Int = R.id.framelayout , tag: String? = null) {
-        activity.supportFragmentManager.beginTransaction().add(containerLayout , getFragment(targetFragment) , tag).commit()
-    }
-
-    fun replaceFragment(targetFragment: Byte, containerLayout: Int = R.id.framelayout, tag: String? = null) {
-        activity.supportFragmentManager.beginTransaction().replace(containerLayout , getFragment(targetFragment) , tag).commit()
-    }
-
-    fun replaceFragmentWithBack(targetFragment: Byte, containerLayout: Int = R.id.framelayout, tag: String? = null) {
-        activity.supportFragmentManager.beginTransaction().addToBackStack(tag).replace(containerLayout , getFragment(targetFragment) , tag).commit()
-    }
-
+    fun getContainerFragment() = activity.findViewById<FrameLayout>(R.id.framelayout)
 
 }

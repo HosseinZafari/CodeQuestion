@@ -33,7 +33,7 @@ suspend fun <T> uiReverse(block: suspend CoroutineScope.() -> T) = withContext(D
 
 // YoYo
 fun View.anim(techniques: Techniques, duration: Long = 300, repeat: Long = 0){
-    YoYo.with(Techniques.SlideInLeft)
+    YoYo.with(techniques)
         .duration(300)
         .repeat(0)
         .playOn(this)

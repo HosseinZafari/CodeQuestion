@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.RadioGroup
+import android.widget.Toast
 import androidx.core.util.PatternsCompat
 import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.viewModels
@@ -14,8 +15,11 @@ import com.google.android.material.textfield.TextInputLayout
 import hosseinzafari.github.codequestion.R
 import hosseinzafari.github.codequestion.struct.UserSignupModel
 import hosseinzafari.github.codequestion.ui.helper.log
+import hosseinzafari.github.codequestion.ui.ui.main.activity.MainActivity
+import hosseinzafari.github.codequestion.ui.ui.main.fragment.FactoryFragment
 import hosseinzafari.github.codequestion.ui.ui.util.Status
 import hosseinzafari.github.codequestion.ui.viewmodel.QuestionViewModel
+import hosseinzafari.github.framework.core.app.G
 import hosseinzafari.github.framework.core.ui.fragment.GFragment
 
 /*
@@ -175,6 +179,13 @@ class SignupFragment : GFragment() {
 
                     // save token
                     questionViewModel.setToken(it.data.auth)
+
+                    Toast.makeText(G.getContext(), "${it.data.user?.name} خوش آمدید.", Toast.LENGTH_LONG).show()
+                    // clear and show fragment
+//                    ContainerFragment.clearFragment(FactoryFragment.LOGIN_FRAGMENT)
+//                    ContainerFragment.clearFragment(FactoryFragment.SIGNUP_FRAGMENT)
+                    ContainerFragment.clearFragment(FactoryFragment.QUESTION_FRAGMENT)
+                    ContainerFragment.replaceFragment(requireActivity() , FactoryFragment.QUESTION_FRAGMENT)
                 }
             }
         })

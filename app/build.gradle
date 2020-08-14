@@ -144,4 +144,8 @@ dependencies {
     implementation 'com.daimajia.easing:library:2.0@aar'
     implementation 'com.daimajia.androidanimations:library:2.3@aar'
 
+    // Nic Spinner
+    implementation 'com.github.arcadefire:nice-spinner:1.4.4'
+
+
 }

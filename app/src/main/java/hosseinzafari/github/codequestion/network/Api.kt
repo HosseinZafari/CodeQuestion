@@ -42,4 +42,12 @@ interface Api {
 
     @GET("rules")
     suspend fun getRules() : ResponseStdModel
+
+    @FormUrlEncoded
+    @POST("ask")
+    suspend fun ask(
+        @Field("title")  title: String ,
+        @Field("text")   text: String ,
+        @Field("type")   type: Int ,
+        @Field("course") course: String): ResponseStdModel
 }

@@ -16,7 +16,7 @@ import hosseinzafari.github.codequestion.local.SharedPref
 class TokenLocalDataSource : TokenMain {
     private val _mutableLiveData = MutableLiveData<String?>()
     
-    override suspend fun getToken(): LiveData<String?> {
+    override fun getToken(): LiveData<String?> {
         _mutableLiveData.postValue(SharedPref.getToken())
         return _mutableLiveData
     }    

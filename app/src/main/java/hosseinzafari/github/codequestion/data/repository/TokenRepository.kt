@@ -1,6 +1,7 @@
 package hosseinzafari.github.codequestion.data.repository
 
 import hosseinzafari.github.codequestion.data.datasource.local.TokenLocalDataSource
+import hosseinzafari.github.codequestion.data.memory.SaveInMemory
 import hosseinzafari.github.codequestion.data.main.TokenMain
 
 /*
@@ -15,7 +16,10 @@ class TokenRepository : TokenMain {
 
     private val tokenLocal = TokenLocalDataSource()
 
-    override suspend fun getToken() = tokenLocal.getToken()
+    override fun getToken() = tokenLocal.getToken()
 
-    override suspend fun setToken(token: String) = tokenLocal.setToken(token)
+    override suspend fun setToken(token: String)  {
+        SaveInMemory.token = token
+        tokenLocal.setToken(token)
+    }
 }

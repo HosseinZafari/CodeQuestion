@@ -13,7 +13,7 @@ import androidx.lifecycle.LiveData
 interface TokenMain {
     
     
-    suspend fun getToken(): LiveData<String?>
+    fun getToken(): LiveData<String?>
     
     suspend fun setToken(token: String)
     

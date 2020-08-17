@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import androidx.lifecycle.lifecycleScope
 import com.daimajia.androidanimations.library.Techniques
 import com.google.android.material.card.MaterialCardView
 import com.google.android.material.checkbox.MaterialCheckBox
@@ -16,7 +15,6 @@ import hosseinzafari.github.codequestion.ui.helper.anim
 import hosseinzafari.github.codequestion.ui.main.fragment.ContainerFragment
 import hosseinzafari.github.codequestion.ui.viewmodel.QuestionViewModel
 import hosseinzafari.github.framework.core.ui.fragment.GFragment
-import kotlinx.coroutines.launch
 
 
 class QuestionFragment : GFragment() {
@@ -34,9 +32,8 @@ class QuestionFragment : GFragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Check Enter To Account
-        lifecycleScope.launch {
-            isLogin()
-        }
+        isLogin()
+
         return inflater.inflate(R.layout.fragment_question, container, false)
     }
 
@@ -65,13 +62,11 @@ class QuestionFragment : GFragment() {
 
         fab_new_question.setOnClickListener {
             ContainerFragment.replaceFragmentWithBack(requireActivity() , FactoryFragment.ASK_FRAGMENT , tag = "Ask")
-            uiUtil.getContainerFragment().anim(Techniques.SlideInRight , 800)
-
         }
     }
 
 
-    private suspend fun isLogin() {
+    private fun isLogin() {
         questionViewModel.getToken().observe(viewLifecycleOwner, Observer {
             if (it == null) { // invalid - block user to question
                 uiUtil.getContainerFragment().anim(Techniques.SlideInRight , 500)

@@ -18,10 +18,13 @@ open class GAppCompatActivity : AppCompatActivity() {
 
     protected var uiUtil = UiUtil(this)
 
+    init {
+        G.currentActivity = this
+    }
+
     override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
         super.onCreate(savedInstanceState, persistentState)
 
-        G.currentActivity = this
     }
 
 

@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
 import androidx.lifecycle.viewModelScope
+import hosseinzafari.github.codequestion.data.repository.AskRepository
 import hosseinzafari.github.codequestion.data.repository.CourseRepository
 import hosseinzafari.github.codequestion.data.repository.TokenRepository
 import hosseinzafari.github.codequestion.struct.ResponseStdModel
@@ -28,6 +29,7 @@ class QuestionViewModel : ViewModel() {
     private val tokenRepository  by lazy { TokenRepository() }
     private val rulesRepository   by lazy { RulesRepository() }
     private val courseRepository by lazy { CourseRepository() }
+    private val askRepository by lazy { AskRepository() }
 
     fun signupUser(userSignupModel: UserSignupModel): LiveData<Resource<ResponseStdModel?>> = liveData {
             emit(Resource.loading())
@@ -49,7 +51,7 @@ class QuestionViewModel : ViewModel() {
             }
         }
 
-    suspend fun getToken() : LiveData<String?>   {
+    fun getToken() : LiveData<String?>   {
         return tokenRepository.getToken()
     }
 
@@ -74,6 +76,16 @@ class QuestionViewModel : ViewModel() {
         try {
             val courses = io { courseRepository.getAllCourses() }
             emit(Resource.success(courses.value))
+        } catch(e: Exception) {
+            emit(Resource.error(e.message.toString()))
+        }
+    }
+
+    fun ask(title: String , text: String , type: Int , course: String) = liveData {
+        emit(Resource.loading())
+        try {
+            val result = io { askRepository.ask(title , text , type , course) }
+            emit(Resource.success(result.value))
         } catch(e: Exception) {
             emit(Resource.error(e.message.toString()))
         }

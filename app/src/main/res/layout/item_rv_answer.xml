@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    app:cardBackgroundColor="@color/space_white"
+    app:cardElevation="12dp"
+    app:rippleColor="@color/colorPrimary">
+
+    <View
+        android:layout_width="4dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="right"
+        android:layout_marginLeft="4dp"
+        android:background="@color/colorOrragne" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:padding="12dp">
+
+        <LinearLayout
+            android:id="@+id/linearLayout_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/img_item_answer"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:adjustViewBounds="true"
+                android:scaleType="centerCrop"
+                app:srcCompat="@drawable/ic_question_answer_24" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/txt_title_item_answer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical|right"
+                tools:text="عنوان پاسخ مدیر" />
+
+        </LinearLayout>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/txt_text_item_answer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/linearLayout_title"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:gravity="center_vertical|right"
+            tools:text="تن پاسخ مدیر ، متن پاسخ مدیر متن پاسخ مدیر ، متن پاسخ مدیر ، متن پاسخ مدیر متن پاسخ مدیر ، متن پاسخ مدیر متن پاسخ مدیر ، متن پاسخ مدیر ، متن پاسخ مدیرتن پاسخ مدیر ، متن پاسخ مدیر متن پاسخ مدیر ، متن پاسخ مدیر ، متن دیر ، متن  ر ، متن پاسخ مدیر" />
+
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/txt_item_answer_coursetype"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txt_text_item_answer"
+            android:layout_alignParentLeft="true"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/shape_bg_txt_round"
+            android:backgroundTint=""
+            android:ellipsize="end"
+            android:gravity="right"
+            android:maxLines="1"
+            android:paddingLeft="8dp"
+            android:paddingTop="4dp"
+            android:paddingRight="14dp"
+            android:paddingBottom="4dp"
+            android:textColor="@color/space_white"
+            app:fontFamily="@font/iran_light"
+            tools:text="ساخت اپلیکیشن خبری  با پنل مدیریت" />
+
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/txt_item_answer_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txt_item_answer_coursetype"
+            android:layout_marginLeft="4dp"
+            android:layout_marginTop="8dp"
+            android:layout_toRightOf="@id/txt_item_answer_date"
+            android:background="@drawable/shape_bg_txt_round"
+            android:gravity="center"
+            android:paddingStart="12dp"
+            android:paddingTop="4dp"
+            android:paddingEnd="12dp"
+            android:paddingBottom="4dp"
+            android:textColor="@color/space_white"
+            app:fontFamily="@font/iran_light"
+            tools:text="مشاوره" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/txt_item_answer_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txt_item_answer_coursetype"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/shape_bg_txt_round"
+            android:gravity="center"
+            android:paddingStart="14dp"
+            android:paddingTop="4dp"
+            android:paddingEnd="14dp"
+            android:paddingBottom="4dp"
+            android:textColor="@color/space_white"
+            app:fontFamily="@font/iran_light"
+            tools:text="1396/10/14 3:40" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/txt_item_answer_state"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/txt_item_answer_coursetype"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/shape_bg_price"
+            android:gravity="center"
+            android:paddingStart="14dp"
+            android:paddingTop="4dp"
+            android:paddingEnd="14dp"
+            android:paddingBottom="4dp"
+            android:textColor="@color/space_white"
+            app:fontFamily="@font/iran_light"
+            tools:text="@string/question_from_user" />
+
+    </RelativeLayout>
+
+</com.google.android.material.card.MaterialCardView>

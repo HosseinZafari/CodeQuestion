@@ -48,7 +48,7 @@ class HomeViewModel : ViewModel() {
             val courses = getCoursesData()
             emit(Resource.success(courses.value))
         } catch(e: Exception) {
-            emit(Resource.error("" + e.message))
+            emit(Resource.error<ResponseStdModel>("" + e.message))
         }
     }
 

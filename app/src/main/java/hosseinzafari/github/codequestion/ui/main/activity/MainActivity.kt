@@ -9,6 +9,7 @@ import com.luseen.spacenavigation.SpaceOnClickListener
 import hosseinzafari.github.codequestion.R
 import hosseinzafari.github.codequestion.ui.helper.anim
 import hosseinzafari.github.codequestion.ui.helper.log
+import hosseinzafari.github.codequestion.ui.main.fragment.AnswerFragment
 import hosseinzafari.github.codequestion.ui.main.fragment.ContainerFragment
 import hosseinzafari.github.codequestion.ui.ui.main.fragment.FactoryFragment
 import hosseinzafari.github.codequestion.ui.viewmodel.MainViewModel
@@ -86,6 +87,15 @@ class MainActivity : GAppCompatActivity() {
             framelayout.anim(Techniques.SlideInLeft)
         }
 
+        if(getFragmentByTag("Answer") != null){
+            framelayout.anim(Techniques.SlideInLeft)
+        }
+
+        if(getFragmentByTag("QuestionInAnswerFragment") != null){
+            framelayout.anim(Techniques.SlideInLeft)
+            val answer = ContainerFragment.getFragment(FactoryFragment.ANSWER_FRAGMENT) as AnswerFragment
+            answer.isShowAnimation = false
+        }
         super.onBackPressed()
     }
 }

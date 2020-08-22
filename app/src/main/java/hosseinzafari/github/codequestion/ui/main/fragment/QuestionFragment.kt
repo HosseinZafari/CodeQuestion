@@ -41,13 +41,17 @@ class QuestionFragment : GFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val fab_new_question = view.findViewById<FloatingActionButton>(R.id.fab_new_question)
         val cv_show_rules       = view.findViewById<MaterialCardView>(R.id.cv_show_rules)
+        val cv_list_rules       = view.findViewById<MaterialCardView>(R.id.cv_list_rules)
         val chk_agree_rules    = view.findViewById<MaterialCheckBox>(R.id.chk_agree_rules)
 
         fab_new_question.hide()
 
         cv_show_rules.setOnClickListener {
-            uiUtil.getContainerFragment().anim(Techniques.SlideInRight)
             ContainerFragment.replaceFragmentWithBack(requireActivity() , FactoryFragment.RULES_FRAGMENT , tag = "Rules")
+        }
+
+        cv_list_rules.setOnClickListener {
+            ContainerFragment.replaceFragmentWithBack(requireActivity() , FactoryFragment.ANSWER_FRAGMENT , tag = "Answer")
         }
 
         chk_agree_rules.setOnCheckedChangeListener { _, isChecked ->

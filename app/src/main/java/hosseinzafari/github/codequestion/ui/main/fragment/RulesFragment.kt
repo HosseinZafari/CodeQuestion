@@ -5,10 +5,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.RecyclerView
+import com.daimajia.androidanimations.library.Techniques
 import hosseinzafari.github.codequestion.R
 import hosseinzafari.github.codequestion.adapter.RulesRVAdapter
+import hosseinzafari.github.codequestion.ui.helper.anim
 import hosseinzafari.github.codequestion.ui.helper.log
 import hosseinzafari.github.codequestion.ui.ui.util.Status
 import hosseinzafari.github.codequestion.ui.viewmodel.QuestionViewModel
@@ -40,16 +41,24 @@ class RulesFragment : GFragment() {
         val rv_rules = view.findViewById<RecyclerView>(R.id.rv_rules)
         rv_rules.adapter = adapter
 
-        questionViewModel.getRules().observe(viewLifecycleOwner , Observer {
+        questionViewModel.getRules().observe(viewLifecycleOwner) {
             when(it.status) {
                 Status.ERROR -> { log("Error in Getting Rules ..." + it.data?.msg) }
                 Status.LOADING -> { log("Loading in Getting Rules ..." + it.data?.msg) }
                 Status.SUCCEESS -> {
                     log("Successfully question .. " + it.data)
+                    rv_rules.anim(Techniques.SlideInDown)
                     adapter.updateData(it.data?.rules)
                 }
             }
-        })
+        }
+    }
 
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+
+        // Show Animation When Initialized UiUitl in GFragment And ActvityCreated
+        uiUtil.getContainerFragment().anim(Techniques.SlideInRight)
     }
 }

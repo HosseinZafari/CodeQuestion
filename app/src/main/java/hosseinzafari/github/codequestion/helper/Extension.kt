@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Intent
 import android.util.Log
 import android.view.View
+import android.widget.Toast
 import com.daimajia.androidanimations.library.Techniques
 import com.daimajia.androidanimations.library.YoYo
 import hosseinzafari.github.framework.core.app.G
@@ -22,6 +23,7 @@ import org.jetbrains.annotations.NotNull
 */
 
 fun log(msg: Any) = Log.i("Test", "$msg")
+fun toast(msg: Any) = Toast.makeText(G.getContext() , msg.toString() , Toast.LENGTH_LONG).show()
 
 
 // Helper for Coroutine Kotiln

@@ -28,6 +28,8 @@ interface Api {
     @GET("best-code")
     suspend fun getBestCode(): List<CodeModel>
 
+    @GET("answers")
+    suspend fun getAnswers(): ResponseStdModel
 
     @POST("signup")
     suspend fun signupUser(@Body userSignup: UserSignupModel): ResponseStdModel

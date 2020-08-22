@@ -21,4 +21,5 @@ interface AskMain {
         course: String
     ): LiveData<ResponseStdModel>
 
+    suspend fun answers(): LiveData<ResponseStdModel>
 }

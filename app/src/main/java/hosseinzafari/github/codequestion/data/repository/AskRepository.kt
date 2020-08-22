@@ -22,4 +22,6 @@ class AskRepository : AskMain {
         course: String
     ) = askDataSource.ask(title , text , type , course)
 
+    override suspend fun answers() = askDataSource.answers()
+
 }

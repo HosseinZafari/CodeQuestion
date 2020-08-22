@@ -37,7 +37,7 @@ class QuestionViewModel : ViewModel() {
                 val response = io { userRepository.signupUser(userSignupModel) }
                 emit(Resource.success(response.value))
             } catch (e: Exception) {
-                emit(Resource.error())
+                emit(Resource.error<ResponseStdModel>())
             }
         }
 
@@ -47,7 +47,7 @@ class QuestionViewModel : ViewModel() {
                 val response = io { userRepository.loginUser(password, email) }
                 emit(Resource.success(response.value))
             } catch (e: Exception) {
-                emit(Resource.error())
+                emit(Resource.error<ResponseStdModel>())
             }
         }
 
@@ -67,7 +67,7 @@ class QuestionViewModel : ViewModel() {
             val rules = io { rulesRepository.getRules() }
             emit(Resource.success(rules.value))
         } catch (e: Exception) {
-            emit(Resource.error(e.message.toString()))
+            emit(Resource.error<ResponseStdModel>(e.message.toString()))
         }
     }
 
@@ -77,7 +77,7 @@ class QuestionViewModel : ViewModel() {
             val courses = io { courseRepository.getAllCourses() }
             emit(Resource.success(courses.value))
         } catch(e: Exception) {
-            emit(Resource.error(e.message.toString()))
+            emit(Resource.error<ResponseStdModel>(e.message.toString()))
         }
     }
 
@@ -88,6 +88,16 @@ class QuestionViewModel : ViewModel() {
             emit(Resource.success(result.value))
         } catch(e: Exception) {
             emit(Resource.error(e.message.toString()))
+        }
+    }
+
+    fun answers() = liveData {
+        emit(Resource.loading())
+        try {
+            val answers = io { askRepository.answers() }
+            emit(Resource.success(answers.value))
+        } catch (e: Exception) {
+            emit(Resource.error())
         }
     }
 }

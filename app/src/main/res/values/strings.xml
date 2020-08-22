@@ -2,7 +2,9 @@
     <string name="app_name">Code Question</string>
 
     // Using in item_rv_answer
-    <string name="answer_from_admin" >پاسخ از طرف مدیر</string>
+    <string name="answer_from_admin" >از طرف مدیر</string>
     <string name="question_from_user" >سوال شما</string>
+    <string name="answer_type_free">مشاوره ای (رایگان)</string>
+    <string name="answer_type_pay">فنی (هزینه)</string>
 
 </resources>

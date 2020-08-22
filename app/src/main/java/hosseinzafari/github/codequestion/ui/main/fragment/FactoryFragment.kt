@@ -1,9 +1,6 @@
 package hosseinzafari.github.codequestion.ui.ui.main.fragment
 
-import hosseinzafari.github.codequestion.ui.main.fragment.AskFragment
-import hosseinzafari.github.codequestion.ui.main.fragment.LoginFragment
-import hosseinzafari.github.codequestion.ui.main.fragment.RulesFragment
-import hosseinzafari.github.codequestion.ui.main.fragment.SignupFragment
+import hosseinzafari.github.codequestion.ui.main.fragment.*
 import hosseinzafari.github.framework.core.ui.fragment.GFragment
 
 /*
@@ -24,6 +21,7 @@ object FactoryFragment {
     const val SIGNUP_FRAGMENT: Byte = 7
     const val RULES_FRAGMENT: Byte = 8
     const val ASK_FRAGMENT: Byte = 9
+    const val ANSWER_FRAGMENT: Byte = 10
 
     fun getFragment(type: Byte): GFragment =
         when (type) {
@@ -36,6 +34,7 @@ object FactoryFragment {
             SIGNUP_FRAGMENT -> SignupFragment()
             RULES_FRAGMENT -> RulesFragment()
             ASK_FRAGMENT -> AskFragment()
+            ANSWER_FRAGMENT -> AnswerFragment()
             else -> throw IllegalArgumentException("Not Found Type Fragment For You")
         }
 

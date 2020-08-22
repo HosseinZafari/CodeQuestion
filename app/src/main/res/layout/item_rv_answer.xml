@@ -64,7 +64,6 @@
             android:layout_alignParentLeft="true"
             android:layout_marginTop="16dp"
             android:background="@drawable/shape_bg_txt_round"
-            android:backgroundTint=""
             android:ellipsize="end"
             android:gravity="right"
             android:maxLines="1"

@@ -1,15 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_margin="8dp"
-    android:padding="8dp">
+    app:cardBackgroundColor="@color/colorAccent"
+    app:cardElevation="8dp"
+    app:rippleColor="@color/space_white">
 
-    <TextView
+    <View
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_gravity="bottom|left"
+        android:background="@drawable/shape_shadow" />
+
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/txt_rule_item_rules"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="right"
-        tools:text="TextView" />
-</FrameLayout>
+        android:layout_height="match_parent"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginRight="4dp"
+        android:layout_marginBottom="12dp"
+        android:drawableRight="@drawable/ic_arrow_back_24"
+        android:drawablePadding="8dp"
+        android:gravity="right|center_vertical"
+        android:layout_gravity="center_vertical"
+        android:textColor="@color/space_white"
+        tools:text="این یک تست است"/>
+
+</com.google.android.material.card.MaterialCardView>

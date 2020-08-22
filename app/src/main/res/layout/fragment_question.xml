@@ -1,77 +1,141 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:theme="@style/AppTheme">
 
-
-    <com.airbnb.lottie.LottieAnimationView
-        android:id="@+id/lottie_no_internet_woman"
-        android:layout_width="350dp"
-        android:layout_height="350dp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        app:lottie_autoPlay="true"
-        app:lottie_fileName="no_internet_woman.json"
-        app:lottie_loop="true" />
-
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/cv_show_rules"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/lottie_no_internet_woman"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="8dp"
-        app:cardBackgroundColor="@color/colorAccent"
-        app:cardCornerRadius="4dp"
-        app:cardElevation="4dp"
-        app:contentPadding="8dp"
-        app:rippleColor="@color/space_white">
+        android:orientation="vertical">
 
-        <com.google.android.material.textview.MaterialTextView
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cv_banner_info_rules"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardBackgroundColor="@color/colorPrimary"
+                app:cardCornerRadius="0dp"
+                app:cardElevation="12dp"
+                app:contentPadding="10dp">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:gravity="center"
+                    android:text=" سوالات برنامه نویسی را از ما بپرسید . \n قبل از سوال کردن قوانین پرسش و پاسخ را مطالعه بفرمایید ."
+                    android:textColor="@color/space_white"
+                    android:textSize="14sp"
+                    app:fontFamily="@font/iran"
+                    app:lineHeight="30dp" />
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/lottie_no_internet_woman"
+                android:layout_width="350dp"
+                android:layout_height="350dp"
+                android:layout_below="@+id/cv_banner_info_rules"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"
+                app:lottie_autoPlay="true"
+                app:lottie_fileName="question.json"
+                app:lottie_loop="true" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cv_show_rules"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/lottie_no_internet_woman"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="8dp"
+                app:cardBackgroundColor="@color/colorAccent"
+                app:cardCornerRadius="8dp"
+                app:cardElevation="6dp"
+                app:contentPadding="8dp"
+                app:rippleColor="@color/space_white">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:drawableRight="@drawable/ic_baseline_link_24"
+                    android:drawablePadding="12dp"
+                    android:gravity="center"
+                    android:text="مشاهده قوانین پرسش و پاسخ"
+                    android:textColor="@color/space_white" />
+
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cv_list_rules"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/cv_show_rules"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="8dp"
+                app:cardBackgroundColor="@color/colorOrragne"
+                app:cardCornerRadius="8dp"
+                app:cardElevation="6dp"
+                app:contentPadding="8dp"
+                app:rippleColor="@color/space_white">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:drawableRight="@drawable/ic_baseline_list_24"
+                    android:drawablePadding="12dp"
+                    android:gravity="center"
+                    android:text="مشاهده لیست پرسش و پاسخ"
+                    android:textColor="@color/space_white" />
+
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.checkbox.MaterialCheckBox
+                android:id="@+id/chk_agree_rules"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/cv_list_rules"
+                android:layout_centerHorizontal="true"
+                android:gravity="right|center_vertical"
+                android:layoutDirection="rtl"
+                android:padding="8dp"
+                android:text="من با قوانین موافق هستم"
+                android:textColor="@color/colorGray3"
+                app:buttonTint="@color/colorAccent"
+                app:useMaterialThemeColors="true" />
+
+        </RelativeLayout>
+
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab_new_question"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:drawableRight="@drawable/ic_baseline_link_24"
-            android:drawablePadding="12dp"
-            android:gravity="center"
-            android:text="مشاهده قوانین پرسش و پاسخ"
-            android:textColor="@color/space_white" />
+            android:layout_gravity="bottom|right"
+            android:layout_marginTop="30dp"
+            android:layout_marginRight="16dp"
+            android:theme="@style/Widget.MaterialComponents.FloatingActionButton"
+            app:backgroundTint="@color/colorAccent"
+            app:rippleColor="@color/space_white"
+            app:srcCompat="@drawable/ic_add_24"
+            app:tint="@color/space_white" />
+
+    </LinearLayout>
 
 
-    </com.google.android.material.card.MaterialCardView>
-
-
-    <com.google.android.material.checkbox.MaterialCheckBox
-        android:id="@+id/chk_agree_rules"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/cv_show_rules"
-        android:layout_centerHorizontal="true"
-        android:gravity="right|center_vertical"
-        android:layoutDirection="rtl"
-        android:padding="8dp"
-        android:text="من با قوانین موافق هستم"
-        android:textColor="@color/colorGray3"
-        app:buttonTint="@color/colorAccent"
-        app:useMaterialThemeColors="true" />
-
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab_new_question"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginRight="16dp"
-        android:layout_marginBottom="8dp"
-        android:theme="@style/Widget.MaterialComponents.FloatingActionButton"
-        app:backgroundTint="@color/colorAccent"
-        app:tint="@color/space_white"
-        app:rippleColor="@color/space_white"
-        app:srcCompat="@drawable/ic_add_24" />
-
-</RelativeLayout>
+</ScrollView>

@@ -17,7 +17,7 @@ import hosseinzafari.github.framework.core.app.G
 @email  hosseinzafari2000@gmail.com 
 */
 
-class CodeRVAdapter(val block:(String)-> Unit) : RecyclerView.Adapter<CodeRVAdapter.CodeViewHolder>() {
+class BestCodeRVAdapter(val block:(String)-> Unit) : RecyclerView.Adapter<BestCodeRVAdapter.CodeViewHolder>() {
 
     var data : MutableList<CodeModel> = mutableListOf()
         private set
@@ -28,14 +28,14 @@ class CodeRVAdapter(val block:(String)-> Unit) : RecyclerView.Adapter<CodeRVAdap
         notifyDataSetChanged()
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) : CodeRVAdapter.CodeViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) : BestCodeRVAdapter.CodeViewHolder {
         val view = LayoutInflater.from(G.getContext()).inflate(R.layout.item_rv_bestcode , parent , false)
         return CodeViewHolder(view)
     }
 
     override fun getItemCount() = data.size
 
-    override fun onBindViewHolder(holder: CodeRVAdapter.CodeViewHolder , position: Int)  =
+    override fun onBindViewHolder(holder: BestCodeRVAdapter.CodeViewHolder, position: Int)  =
         data[position].let { code ->
             holder.onBind(code)
             holder.root.setOnClickListener { block(code.codeId) }

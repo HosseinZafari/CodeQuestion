@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/space_white"
+    android:layout_marginTop="8dp"
+    android:layout_marginBottom="8dp"
+    android:layout_marginStart="16dp"
+    android:layout_marginEnd="16dp"
+    app:rippleColor="@color/colorPrimary"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layoutDirection="rtl"
+        android:padding="8dp">
+
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/img_item_code_profile"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            app:backgroundImage="@color/space_white"
+            app:fadeDuration="200"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:placeholderImage="@drawable/placeholder2"
+            app:placeholderImageScaleType="centerCrop"
+            app:roundAsCircle="true"
+            app:roundingBorderColor="@color/colorPrimary"
+            app:roundingBorderWidth="4dp" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/txt_item_code_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="8dp"
+            android:layout_toLeftOf="@+id/img_item_code_profile"
+            android:ellipsize="end"
+            android:maxLines="1"
+            app:layout_constraintEnd_toStartOf="@+id/img_item_code_profile"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="این یک تست است" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/txt_item_code_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="8dp"
+            android:layout_toLeftOf="@+id/img_item_code_profile"
+            android:layout_marginBottom="8dp"
+            android:ellipsize="end"
+            android:maxLines="3"
+            app:fontFamily="@font/iran_light"
+            app:layout_constraintBottom_toTopOf="@+id/img_item_code_star"
+            app:layout_constraintEnd_toStartOf="@+id/img_item_code_profile"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txt_item_code_title"
+            tools:text="این یک تست است" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/img_item_code_star"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:scaleType="centerCrop"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:srcCompat="@drawable/ic_star24dp"
+            app:tint="@color/colorPrimary" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/txt_item_code_star"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginLeft="4dp"
+            android:layout_toLeftOf="@+id/img_item_code_profile"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:gravity="center"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/img_item_code_star"
+            app:layout_constraintTop_toTopOf="@+id/img_item_code_star"
+            tools:text="22" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>

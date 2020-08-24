@@ -31,6 +31,11 @@ interface Api {
     @GET("answers")
     suspend fun getAnswers(): ResponseStdModel
 
+    @GET("all-code")
+    suspend fun getAllCodes(
+        @Query("category") category: Int
+    ): ResponseStdModel
+
     @POST("signup")
     suspend fun signupUser(@Body userSignup: UserSignupModel): ResponseStdModel
 

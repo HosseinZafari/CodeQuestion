@@ -11,5 +11,7 @@ data class ResponseStdModel(
     val auth: String? = null,
     val rules: List<RulesModel>? = null,
     val courses: List<CourseModel>? = null ,
-    val answers: List<AnswerModel>? = null
+    val answers: List<AnswerModel>? = null ,
+    val codes: List<CodeModel>? = null ,
+
 )

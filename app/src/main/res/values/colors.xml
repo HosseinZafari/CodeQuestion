@@ -13,11 +13,18 @@
 
   <color name="colorGrayDark">#999</color>
 
-  <color name="colorGray1">#888</color>
-  <color name="colorGray2">#777</color>
-  <color name="colorGray3">#666</color>
-  <color name="colorGray4">#555</color>
-  <color name="colorGray5">#444</color>
+  <color name="colorWhite">#FFFFFF</color>
+  <color name="colorWhite1">#EEEEEE</color>
+  <color name="colorWhite2">#DDDDDD</color>
+  <color name="colorWhite3">#CCCCCC</color>
+  <color name="colorWhite4">#BBBBBB</color>
+  <color name="colorWhite5">#AAAAAA</color>
+  <color name="colorWhite6">#999999</color>
+  <color name="colorGray1">#888888</color>
+  <color name="colorGray2">#777777</color>
+  <color name="colorGray3">#666666</color>
+  <color name="colorGray4">#555555</color>
+  <color name="colorGray5">#444444</color>
 
 
   <color name="colorDark1">#111</color>

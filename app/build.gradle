@@ -147,5 +147,7 @@ dependencies {
     // Nic Spinner
     implementation 'com.github.arcadefire:nice-spinner:1.4.4'
 
+    // CodeView
+    implementation 'com.github.kbiakov:CodeView-Android:1.3.2'
 
 }

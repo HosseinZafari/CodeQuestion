@@ -1,5 +1,6 @@
 package hosseinzafari.github.codequestion.ui.main.fragment
 
+import android.os.Bundle
 import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.FragmentTransaction
 import hosseinzafari.github.codequestion.R
@@ -23,6 +24,7 @@ object ContainerFragment {
         target: Byte,
         backStack: Boolean,
         name: String? = null,
+        argument: Bundle? = null ,
         block: (FragmentTransaction, GFragment) -> Unit
     ) {
         val beginTransaction = getTransaction(activity)
@@ -30,7 +32,12 @@ object ContainerFragment {
             beginTransaction.addToBackStack(name)
         }
 
-        block(beginTransaction , getFragment(target))
+        val targetFragment = getFragment(target)
+        if(argument != null){
+            targetFragment.arguments = argument
+        }
+
+        block(beginTransaction , targetFragment)
     }
 
 
@@ -38,8 +45,9 @@ object ContainerFragment {
         activity: FragmentActivity,
         targetFragment: Byte,
         containerLayout: Int = R.id.framelayout,
-        tag: String? = null
-    ) = showFragment(activity, targetFragment, false) { transaction, fragment ->
+        tag: String? = null ,
+        argument: Bundle? = null
+    ) = showFragment(activity, targetFragment, false , argument = argument) { transaction, fragment ->
         transaction.add(containerLayout, fragment, tag).commit()
     }
 
@@ -47,8 +55,9 @@ object ContainerFragment {
         activity: FragmentActivity,
         targetFragment: Byte,
         containerLayout: Int = R.id.framelayout,
-        tag: String? = null
-    ) = showFragment(activity, targetFragment, false) { transaction, fragment ->
+        tag: String? = null ,
+        argument: Bundle? = null
+    ) = showFragment(activity, targetFragment, false , argument = argument) { transaction, fragment ->
         transaction.replace(containerLayout, fragment, tag).commit()
     }
 
@@ -57,8 +66,9 @@ object ContainerFragment {
         activity: FragmentActivity,
         targetFragment: Byte,
         containerLayout: Int = R.id.framelayout,
-        tag: String? = null
-    ) = showFragment(activity, targetFragment, true , name = tag) { transaction, fragment ->
+        tag: String? = null ,
+        argument: Bundle? = null
+    ) = showFragment(activity, targetFragment, true , name = tag , argument = argument) { transaction, fragment ->
         transaction.replace(containerLayout, fragment, tag).commit()
     }
 

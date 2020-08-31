@@ -36,6 +36,12 @@ interface Api {
         @Query("category") category: Int
     ): ResponseStdModel
 
+    @GET("code-point")
+    suspend fun changeScore(
+        @Query("score") score: Int ,
+        @Query("codeId") codeId: Int
+    ): ResponseStdModel
+
     @POST("signup")
     suspend fun signupUser(@Body userSignup: UserSignupModel): ResponseStdModel
 

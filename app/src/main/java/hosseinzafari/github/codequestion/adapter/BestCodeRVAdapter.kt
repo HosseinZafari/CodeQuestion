@@ -38,7 +38,7 @@ class BestCodeRVAdapter(val block:(String)-> Unit) : RecyclerView.Adapter<BestCo
     override fun onBindViewHolder(holder: BestCodeRVAdapter.CodeViewHolder, position: Int)  =
         data[position].let { code ->
             holder.onBind(code)
-            holder.root.setOnClickListener { block(code.codeId) }
+            holder.root.setOnClickListener { block(code.codeId!!) }
         }
 
     class CodeViewHolder(

@@ -8,6 +8,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.facebook.drawee.view.SimpleDraweeView
 import hosseinzafari.github.codequestion.R
+import hosseinzafari.github.codequestion.data.memory.SaveInMemory
 import hosseinzafari.github.codequestion.struct.CodeModel
 import hosseinzafari.github.framework.core.app.G
 
@@ -37,7 +38,7 @@ class AllCodeRVAdapter(val block:(String)-> Unit) : RecyclerView.Adapter<AllCode
     override fun onBindViewHolder(holder: AllCodeRVAdapter.CodeViewHolder, position: Int)  =
         data[position].let { code ->
             holder.onBind(code)
-            holder.root.setOnClickListener { block(code.codeId) }
+            holder.root.setOnClickListener { block(code.codeId!!) }
         }
 
     class CodeViewHolder(
@@ -48,17 +49,12 @@ class AllCodeRVAdapter(val block:(String)-> Unit) : RecyclerView.Adapter<AllCode
         val img_item_code_profile: SimpleDraweeView = root.findViewById(R.id.img_item_code_profile) ,
     ) : RecyclerView.ViewHolder(root) {
 
-        private val genderResource = mapOf(
-            "0" to R.drawable.user_man ,
-            "1" to R.drawable.user_famale ,
-        )
-
         fun onBind(codeModel: CodeModel){
             txt_item_code_title.text = codeModel.title
             txt_item_code_text.text = codeModel.source
             txt_item_code_star.text = codeModel.codePoint
             if(codeModel.image == null){
-                val imgResource = genderResource[codeModel.gender] ?: 0
+                val imgResource = SaveInMemory.Resource.genderResource[codeModel.gender] ?: 0
                 img_item_code_profile.setActualImageResource(imgResource)
             } else {
                 val imgUrl = Uri.parse(codeModel.image.toString())

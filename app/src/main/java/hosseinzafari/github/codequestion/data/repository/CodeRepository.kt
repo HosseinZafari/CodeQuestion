@@ -1,9 +1,7 @@
 package hosseinzafari.github.codequestion.ui.data.repository
 
-import androidx.lifecycle.LiveData
-import hosseinzafari.github.codequestion.data.main.CodeMain
-import hosseinzafari.github.codequestion.struct.CodeModel
 import hosseinzafari.github.codequestion.data.datasource.remote.CodeRemoteDataSource
+import hosseinzafari.github.codequestion.data.main.CodeMain
 
 /*
     @created in 25/07/2020 - 12:23 PM
@@ -15,8 +13,16 @@ import hosseinzafari.github.codequestion.data.datasource.remote.CodeRemoteDataSo
 class CodeRepository : CodeMain{
     private val codeRemote = CodeRemoteDataSource()
 
-    override suspend fun getBestCode(): LiveData<List<CodeModel>> {
-        return codeRemote.getBestCode()
-    }
+    override suspend fun getBestCode()= codeRemote.getBestCode()
+
+    override suspend fun getAllCode(category: Int) = codeRemote.getAllCode(category)
+
+    override suspend fun changeScore(isAdd: Boolean, codeId: Int) = codeRemote.changeScore(isAdd , codeId)
+
+    override suspend fun addCode(
+        title: String,
+        text: String,
+        source: String
+    ) = codeRemote.addCode(title, text , source)
 
 }

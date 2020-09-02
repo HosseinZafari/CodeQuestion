@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:theme="@style/AppTheme">
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/edt_title_code"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:layoutDirection="rtl"
+            android:textColorHint="#aaa"
+            app:boxCornerRadiusTopEnd="8dp"
+            app:boxCornerRadiusTopStart="8dp"
+            app:boxStrokeColor="@color/colorPrimary"
+            app:counterEnabled="true"
+            app:endIconMode="clear_text">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/iran_light"
+                android:hint="عنوان"
+                android:textColor="@color/colorGray4"
+                android:textSize="14sp" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/edt_text_code"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:gravity="right"
+            android:layoutDirection="rtl"
+            android:textColorHint="#aaa"
+            app:boxCornerRadiusTopEnd="8dp"
+            app:boxCornerRadiusTopStart="8dp"
+            app:boxStrokeColor="@color/colorPrimary"
+            app:counterEnabled="true"
+            app:endIconMode="clear_text">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/iran_light"
+                android:gravity="top|right"
+                android:hint="توضیحات"
+                android:inputType="textMultiLine"
+                android:minHeight="150dp"
+                android:textColor="@color/colorGray5"
+                android:textSize="14sp" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/edt_source_code"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:gravity="right"
+            android:layoutDirection="rtl"
+            android:textColorHint="#aaa"
+            app:boxCornerRadiusTopEnd="8dp"
+            app:boxCornerRadiusTopStart="8dp"
+            app:boxStrokeColor="@color/colorPrimary"
+            app:counterEnabled="true"
+            app:endIconMode="clear_text">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/iran_light"
+                android:gravity="top|right"
+                android:hint="سورس کد"
+                android:inputType="textMultiLine"
+                android:minHeight="250dp"
+                android:textColor="@color/colorGray5"
+                android:textSize="14sp" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_send_code"
+            style="@style/Widget.MaterialComponents.Button"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:layout_marginTop="22dp"
+            android:text="ارسال"
+            app:elevation="6dp"
+            app:icon="@drawable/ic_arrow_back_24"
+            app:iconGravity="textStart"
+            app:rippleColor="@color/colorWhite1"
+            app:strokeColor="@color/colorPrimary" />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+</ScrollView>

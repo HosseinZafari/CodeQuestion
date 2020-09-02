@@ -70,6 +70,16 @@ class MainActivity : GAppCompatActivity() {
                             framelayout.anim(Techniques.FadeIn , 400)
                             ContainerFragment.replaceFragment(this@MainActivity , FactoryFragment.QUESTION_FRAGMENT)
                         }
+
+                        1-> {
+                            framelayout.anim(Techniques.FadeIn , 400)
+                            ContainerFragment.replaceFragment(this@MainActivity , FactoryFragment.CODE_FRAGMENT)
+                        }
+
+                        0-> {
+                            framelayout.anim(Techniques.FadeIn , 400)
+                            ContainerFragment.replaceFragment(this@MainActivity , FactoryFragment.PROFILE_FRAGMENT)
+                        }
                     }
                 }
             })
@@ -96,6 +106,11 @@ class MainActivity : GAppCompatActivity() {
             val answer = ContainerFragment.getFragment(FactoryFragment.ANSWER_FRAGMENT) as AnswerFragment
             answer.isShowAnimation = false
         }
+
+        if(getFragmentByTag("AddCode") != null){
+            framelayout.anim(Techniques.SlideInLeft)
+        }
+
         super.onBackPressed()
     }
 }

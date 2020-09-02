@@ -10,8 +10,8 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import hosseinzafari.github.codequestion.R
+import hosseinzafari.github.codequestion.adapter.BestCodeRVAdapter
 import hosseinzafari.github.codequestion.adapter.BestUserRVAdapter
-import hosseinzafari.github.codequestion.adapter.CodeRVAdapter
 import hosseinzafari.github.codequestion.adapter.CourseRVAdapter
 import hosseinzafari.github.codequestion.ui.helper.log
 import hosseinzafari.github.codequestion.ui.ui.util.Status
@@ -24,7 +24,7 @@ class HomeFragment : GFragment() {
     private val homeViewModel: HomeViewModel by viewModels()
     private lateinit var bestUserAdapter: BestUserRVAdapter
     private lateinit var courseAdapter: CourseRVAdapter
-    private lateinit var bestCodeAdapter: CodeRVAdapter
+    private lateinit var bestCodeAdapter: BestCodeRVAdapter
 
     private lateinit var rv_home_bestuser: RecyclerView;
     private lateinit var rv_home_bestcourse: RecyclerView;
@@ -80,7 +80,7 @@ class HomeFragment : GFragment() {
     private fun setupAdapters() {
         bestUserAdapter = BestUserRVAdapter { debugOnClick(it) }
         courseAdapter = CourseRVAdapter { debugOnClick(it) }
-        bestCodeAdapter = CodeRVAdapter { debugOnClick(it) }
+        bestCodeAdapter = BestCodeRVAdapter { debugOnClick(it) }
     }
 
     private fun setupViews(view: View) {

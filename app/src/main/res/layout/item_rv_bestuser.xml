@@ -32,13 +32,12 @@
             android:layout_width="85dp"
             android:layout_height="85dp"
             app:placeholderImage="@drawable/user_man"
-            app:fadeDuration="500"
+            app:fadeDuration="200"
             app:roundingBorderWidth="4dp"
             app:placeholderImageScaleType="centerCrop"
             app:roundAsCircle="true"
             app:roundingBorderColor="@color/colorPrimaryDark"
             app:backgroundImage="@color/colorPrimaryDark"
-            android:src="@drawable/user_famale"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 

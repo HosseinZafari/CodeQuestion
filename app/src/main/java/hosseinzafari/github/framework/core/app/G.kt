@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.facebook.drawee.backends.pipeline.Fresco
+import io.github.kbiakov.codeview.classifier.CodeProcessor
 
 /*
 
@@ -23,6 +24,7 @@ open class G : Application() {
 
         _context = applicationContext
         Fresco.initialize(applicationContext)
+        CodeProcessor.init(this);
     }
 
     companion object {

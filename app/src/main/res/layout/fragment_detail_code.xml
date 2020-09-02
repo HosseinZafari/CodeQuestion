@@ -36,11 +36,10 @@
                     android:id="@+id/appCompatImageView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="16dp"
+                    android:layout_marginLeft="8dp"
                     app:layout_constraintBottom_toTopOf="@+id/guideline"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="1.0"
+                    app:layout_constraintStart_toEndOf="@+id/linearLayoutCompat3"
+                    app:layout_constraintTop_toTopOf="@+id/guideline"
                     app:srcCompat="@drawable/ic_star24dp"
                     app:tint="@color/colorPrimary" />
 
@@ -56,6 +55,49 @@
                     app:layout_constraintStart_toEndOf="@+id/appCompatImageView"
                     app:layout_constraintTop_toTopOf="@+id/appCompatImageView" />
 
+                <ProgressBar
+                    android:id="@+id/prg_change_point"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    style="@style/Widget.AppCompat.ProgressBar"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginTop="2dp"
+                    android:gravity="center"
+                    app:layout_constraintBottom_toBottomOf="@+id/appCompatImageView"
+                    app:layout_constraintStart_toEndOf="@+id/appCompatImageView"
+                    app:layout_constraintTop_toTopOf="@+id/appCompatImageView"
+                    android:visibility="gone" />
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:id="@+id/linearLayoutCompat3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintBottom_toTopOf="@+id/guideline"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/guideline">
+
+
+                    <androidx.appcompat.widget.AppCompatImageButton
+                        android:id="@+id/btn_add_score"
+                        android:layout_width="28dp"
+                        android:layout_height="28dp"
+                        android:layout_marginBottom="8dp"
+                        android:background="?attr/actionBarItemBackground"
+                        android:scaleType="center"
+                        android:tint="@color/colorPrimary"
+                        app:srcCompat="@drawable/ic_arrow_up_24" />
+
+                    <androidx.appcompat.widget.AppCompatImageButton
+                        android:id="@+id/btn_minus_score"
+                        android:layout_width="28dp"
+                        android:layout_height="28dp"
+                        android:background="?attr/actionBarItemBackground"
+                        android:scaleType="center"
+                        android:tint="@color/colorPrimary"
+                        app:srcCompat="@drawable/ic_arrow_down_24" />
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
 
                 <com.facebook.drawee.view.SimpleDraweeView
                     android:id="@+id/img_detail_code_profile"
@@ -86,7 +128,7 @@
                     app:layout_constraintEnd_toStartOf="@+id/img_detail_code_profile"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/guideline"
+                    app:layout_constraintTop_toBottomOf="@+id/linearLayoutCompat3"
                     app:layout_constraintVertical_bias="0.0"
                     tools:text="این یک تست است" />
 

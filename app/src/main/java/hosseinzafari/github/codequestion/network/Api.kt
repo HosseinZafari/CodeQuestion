@@ -46,6 +46,14 @@ interface Api {
     suspend fun signupUser(@Body userSignup: UserSignupModel): ResponseStdModel
 
     @FormUrlEncoded
+    @POST("add-code")
+    suspend fun addCode(
+        @Field("title") title: String ,
+        @Field("text") text: String ,
+        @Field("source") source: String
+    ): ResponseStdModel
+
+    @FormUrlEncoded
     @POST("login")
     suspend fun loginUser(
         @Field("email") email: String,

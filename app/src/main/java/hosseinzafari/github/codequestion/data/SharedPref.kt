@@ -1,15 +1,7 @@
-package hosseinzafari.github.codequestion.local
+package hosseinzafari.github.codequestion.data
 
 import android.content.Context
 import hosseinzafari.github.framework.core.app.G
-
-/*
-
-@created in 07/08/2020 - 10:10 AM
-@project Code Question
-@author Hossein Zafari 
-@email  hosseinzafari2000@gmail.com 
-*/
 
 object SharedPref {
 
@@ -19,14 +11,21 @@ object SharedPref {
 
 
     enum class Key(value: String) {
-        au("au")
+        AU("AU") ,
+        USER("USER")
     }
 
     fun setToken(token: String){
-        editor.putString(Key.au.name , token)
+        editor.putString(Key.AU.name , token)
         editor.apply()
     }
 
+    fun getToken() = shared_pref.getString(Key.AU.name , null)
 
-    fun getToken() = shared_pref.getString(Key.au.name , null)
+    fun setUserJson(userJson: String){
+        editor.putString(Key.USER.name , userJson)
+        editor.apply()
+    }
+
+    fun getUserJson() = shared_pref.getString(Key.USER.name , null)
 }

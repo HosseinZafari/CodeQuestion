@@ -10,11 +10,14 @@ import androidx.lifecycle.LiveData
 @email  hosseinzafari2000@gmail.com 
 */
 
-interface TokenMain {
-    
+interface SharedPrefMain {
     
     fun getToken(): LiveData<String?>
     
+    fun getUserJson(): LiveData<String?>
+
     suspend fun setToken(token: String)
+
+    suspend fun setUserJson(userJson: String)
     
 }

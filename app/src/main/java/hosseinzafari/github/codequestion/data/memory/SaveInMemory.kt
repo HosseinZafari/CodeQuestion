@@ -1,6 +1,7 @@
 package hosseinzafari.github.codequestion.data.memory
 
 import hosseinzafari.github.codequestion.R
+import hosseinzafari.github.codequestion.ui.main.fragment.FragmentHelper
 
 /*
 
@@ -12,7 +13,9 @@ import hosseinzafari.github.codequestion.R
 
 object SaveInMemory {
 
-    var token = String()
+    var token: String? = null
+    var destination: FragmentHelper.Destination = FragmentHelper.Destination.QUESTION
+    var userJsonInfo: String? = null
 
     object Resource {
 

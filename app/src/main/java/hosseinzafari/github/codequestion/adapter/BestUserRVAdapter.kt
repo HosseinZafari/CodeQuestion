@@ -19,7 +19,7 @@ import hosseinzafari.github.framework.core.app.G
 @email  hosseinzafari2000@gmail.com 
 */
 
-class BestUserRVAdapter(val block:(String)-> Unit) : RecyclerView.Adapter<BestUserRVAdapter.BestUserViewHolder>() {
+class BestUserRVAdapter(val block:(String?)-> Unit) : RecyclerView.Adapter<BestUserRVAdapter.BestUserViewHolder>() {
 
     var data : MutableList<UserModel> = mutableListOf()
         private set

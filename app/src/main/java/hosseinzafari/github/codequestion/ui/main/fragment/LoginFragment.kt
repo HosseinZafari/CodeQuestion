@@ -14,6 +14,7 @@ import androidx.lifecycle.Observer
 import com.daimajia.androidanimations.library.Techniques
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.textfield.TextInputLayout
+import com.google.gson.Gson
 import hosseinzafari.github.codequestion.R
 import hosseinzafari.github.codequestion.ui.helper.anim
 import hosseinzafari.github.codequestion.ui.helper.log
@@ -126,13 +127,17 @@ class LoginFragment : GFragment(), View.OnClickListener{
                         log("401 code")
                         setError(it.data.msg , edt_login_password)
                     } else if(it.data.code == 200) {
-                        // clear and show fragments
-                        ContainerFragment.clearFragment(FactoryFragment.LOGIN_FRAGMENT)
-                        ContainerFragment.clearFragment(FactoryFragment.SIGNUP_FRAGMENT)
-//                        ContainerFragment.clearFragment(FactoryFragment.QUESTION_FRAGMENT)
-                        ContainerFragment.replaceFragment(requireActivity() , FactoryFragment.QUESTION_FRAGMENT)
-                        Toast.makeText(G.getContext(), "${it.data.user?.name} خوش آمدید.", Toast.LENGTH_LONG).show()
-                        log("succeess code 200 " + it.data.user)
+
+                        // Save Token
+                        questionViewModel.setToken(it.data.user!!.token!!)
+
+                        // Contvert DataModel To Json For Saving in SharedPref
+                        val userJson = Gson().toJson(it.data.user)
+                        questionViewModel.setUserJsonInShared(userJson)
+
+                        // Go To Destination Fragment
+                        FragmentHelper.handleDestinationState(requireActivity())
+                        Toast.makeText(G.getContext(), "${it.data.user.name} خوش آمدید.", Toast.LENGTH_LONG).show()
                     }
 
                 }

@@ -6,13 +6,14 @@ import androidx.lifecycle.liveData
 import androidx.lifecycle.viewModelScope
 import hosseinzafari.github.codequestion.data.repository.AskRepository
 import hosseinzafari.github.codequestion.data.repository.CourseRepository
-import hosseinzafari.github.codequestion.data.repository.TokenRepository
+import hosseinzafari.github.codequestion.data.repository.SharedPrefRepository
 import hosseinzafari.github.codequestion.struct.ResponseStdModel
 import hosseinzafari.github.codequestion.struct.UserSignupModel
 import hosseinzafari.github.codequestion.ui.data.repository.RulesRepository
 import hosseinzafari.github.codequestion.ui.data.repository.UserRepository
 import hosseinzafari.github.codequestion.ui.helper.io
 import hosseinzafari.github.codequestion.ui.ui.util.Resource
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 /*
@@ -26,7 +27,7 @@ import kotlinx.coroutines.launch
 class QuestionViewModel : ViewModel() {
 
     private val userRepository    by lazy { UserRepository()  }
-    private val tokenRepository  by lazy { TokenRepository() }
+    private val sharedRepository  by lazy { SharedPrefRepository() }
     private val rulesRepository   by lazy { RulesRepository() }
     private val courseRepository by lazy { CourseRepository() }
     private val askRepository by lazy { AskRepository() }
@@ -52,12 +53,12 @@ class QuestionViewModel : ViewModel() {
         }
 
     fun getToken() : LiveData<String?>   {
-        return tokenRepository.getToken()
+        return sharedRepository.getToken()
     }
 
     fun setToken(token: String){
         viewModelScope.launch {
-            tokenRepository.setToken(token)
+            sharedRepository.setToken(token)
         }
     }
 
@@ -98,6 +99,12 @@ class QuestionViewModel : ViewModel() {
             emit(Resource.success(answers.value))
         } catch (e: Exception) {
             emit(Resource.error())
+        }
+    }
+
+    fun setUserJsonInShared(json: String){
+        viewModelScope.launch(Dispatchers.IO) {
+            sharedRepository.setUserJson(json)
         }
     }
 }

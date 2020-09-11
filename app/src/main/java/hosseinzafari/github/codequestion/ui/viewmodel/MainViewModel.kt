@@ -1,10 +1,9 @@
 package hosseinzafari.github.codequestion.ui.viewmodel
 
-import androidx.lifecycle.Observer
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import hosseinzafari.github.codequestion.data.memory.SaveInMemory
-import hosseinzafari.github.codequestion.data.repository.TokenRepository
+import hosseinzafari.github.codequestion.data.repository.SharedPrefRepository
 import hosseinzafari.github.codequestion.ui.helper.log
 import hosseinzafari.github.framework.core.app.G
 
@@ -18,15 +17,24 @@ import hosseinzafari.github.framework.core.app.G
 
 class MainViewModel(val savedStateHandle: SavedStateHandle) : ViewModel() {
 
-    val tokenRepository = TokenRepository()
+    val sharedPrefRepository = SharedPrefRepository()
 
 
     fun prepareTokenInMemory() {
-        tokenRepository.getToken().observe(G.currentActivity!! , Observer {
+        sharedPrefRepository.getToken().observe(G.currentActivity!!) {
             log("TOKEN #1 " + it + "")
-            SaveInMemory.token = it + ""
+            SaveInMemory.token = it
             log("TOKEN #2 " + SaveInMemory.token + "")
-        })
+        }
     }
 
+    fun prepareUserJsonInfo(){
+        sharedPrefRepository.getUserJson().observe(G.currentActivity!!) {
+            log("USERINFO #1 " + it + "")
+            if(it != null) {
+                SaveInMemory.userJsonInfo = it
+            }
+            log("USERINFO #2 " + SaveInMemory.userJsonInfo + "")
+        }
+    }
 }

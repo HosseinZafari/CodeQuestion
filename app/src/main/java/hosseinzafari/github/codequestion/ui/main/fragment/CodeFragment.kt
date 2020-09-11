@@ -13,10 +13,12 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.textfield.TextInputLayout
 import hosseinzafari.github.codequestion.R
 import hosseinzafari.github.codequestion.adapter.AllCodeRVAdapter
+import hosseinzafari.github.codequestion.data.memory.SaveInMemory
 import hosseinzafari.github.codequestion.ui.helper.anim
 import hosseinzafari.github.codequestion.ui.helper.log
 import hosseinzafari.github.codequestion.ui.helper.toast
 import hosseinzafari.github.codequestion.ui.main.fragment.ContainerFragment
+import hosseinzafari.github.codequestion.ui.main.fragment.FragmentHelper
 import hosseinzafari.github.codequestion.ui.ui.util.Status
 import hosseinzafari.github.codequestion.ui.viewmodel.CodeViewModel
 import hosseinzafari.github.framework.core.app.G
@@ -80,6 +82,9 @@ class CodeFragment : GFragment() {
         fab_new_code.setOnClickListener {
             _codeViewModle.getToken().observe(viewLifecycleOwner) { token ->
                 if(token == null) {
+                    // Set Destination State
+                    SaveInMemory.destination = FragmentHelper.Destination.CODE
+
                     uiUtil.getContainerFragment().anim(Techniques.SlideInRight)
                     ContainerFragment.replaceFragment(requireActivity() , FactoryFragment.LOGIN_FRAGMENT)
                 } else {

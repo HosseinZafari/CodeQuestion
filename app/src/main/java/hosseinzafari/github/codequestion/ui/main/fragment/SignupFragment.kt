@@ -12,7 +12,9 @@ import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import com.google.android.material.textfield.TextInputLayout
+import com.google.gson.Gson
 import hosseinzafari.github.codequestion.R
+import hosseinzafari.github.codequestion.data.memory.SaveInMemory
 import hosseinzafari.github.codequestion.struct.UserSignupModel
 import hosseinzafari.github.codequestion.ui.helper.log
 import hosseinzafari.github.codequestion.ui.ui.main.activity.MainActivity
@@ -33,7 +35,8 @@ import hosseinzafari.github.framework.core.ui.fragment.GFragment
 class SignupFragment : GFragment() {
 
     private val questionViewModel: QuestionViewModel by viewModels()
-    
+
+
     private lateinit var  edt_layout_name: TextInputLayout
     private lateinit var  edt_layout_family: TextInputLayout 
     private lateinit var  edt_layout_email : TextInputLayout
@@ -173,19 +176,20 @@ class SignupFragment : GFragment() {
                 Status.LOADING -> log("Signup Loading ${it.message}")
                 Status.SUCCEESS -> {
                     log("Signup Success ${it.data}")
-                    if(it.data == null || it.data.auth == null){
+                    if(it.data == null || it.data.user == null){
                         return@Observer
                     }
 
                     // save token
-                    questionViewModel.setToken(it.data.auth)
+                    questionViewModel.setToken(it.data.user.token!!)
 
-                    Toast.makeText(G.getContext(), "${it.data.user?.name} خوش آمدید.", Toast.LENGTH_LONG).show()
-                    // clear and show fragment
-//                    ContainerFragment.clearFragment(FactoryFragment.LOGIN_FRAGMENT)
-//                    ContainerFragment.clearFragment(FactoryFragment.SIGNUP_FRAGMENT)
-                    ContainerFragment.clearFragment(FactoryFragment.QUESTION_FRAGMENT)
-                    ContainerFragment.replaceFragment(requireActivity() , FactoryFragment.QUESTION_FRAGMENT)
+                    // Convert And save UserJson
+                    val userJson = Gson().toJson(it.data.user)
+                    questionViewModel.setUserJsonInShared(userJson)
+
+                    // Go To Destination Fragment
+                    FragmentHelper.handleDestinationState(requireActivity())
+                    Toast.makeText(G.getContext(), "${it.data.user.name} خوش آمدید.", Toast.LENGTH_LONG).show()
                 }
             }
         })

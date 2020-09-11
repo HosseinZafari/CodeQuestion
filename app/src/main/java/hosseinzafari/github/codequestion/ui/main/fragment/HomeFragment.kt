@@ -104,7 +104,7 @@ class HomeFragment : GFragment() {
     }
 
 
-    private fun debugOnClick(id: String) {
+    private fun debugOnClick(id: String?) {
         Toast.makeText(activity, "clicked id is $id", Toast.LENGTH_SHORT).show()
     }
 }

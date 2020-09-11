@@ -4,8 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
 import com.daimajia.androidanimations.library.Techniques
 import com.google.android.material.card.MaterialCardView
 import com.google.android.material.checkbox.MaterialCheckBox
@@ -13,13 +11,10 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import hosseinzafari.github.codequestion.R
 import hosseinzafari.github.codequestion.ui.helper.anim
 import hosseinzafari.github.codequestion.ui.main.fragment.ContainerFragment
-import hosseinzafari.github.codequestion.ui.viewmodel.QuestionViewModel
 import hosseinzafari.github.framework.core.ui.fragment.GFragment
 
 
 class QuestionFragment : GFragment() {
-
-    private val questionViewModel: QuestionViewModel by viewModels()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,9 +26,6 @@ class QuestionFragment : GFragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Check Enter To Account
-        isLogin()
-
         return inflater.inflate(R.layout.fragment_question, container, false)
     }
 
@@ -69,13 +61,4 @@ class QuestionFragment : GFragment() {
         }
     }
 
-
-    private fun isLogin() {
-        questionViewModel.getToken().observe(viewLifecycleOwner, Observer {
-            if (it == null) { // invalid - block user to question
-                uiUtil.getContainerFragment().anim(Techniques.SlideInRight , 500)
-                ContainerFragment.replaceFragment(requireActivity() , FactoryFragment.LOGIN_FRAGMENT)
-            }
-        })
-    }
 }

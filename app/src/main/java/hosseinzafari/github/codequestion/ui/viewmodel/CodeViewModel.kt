@@ -2,7 +2,7 @@ package hosseinzafari.github.codequestion.ui.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
-import hosseinzafari.github.codequestion.data.repository.TokenRepository
+import hosseinzafari.github.codequestion.data.repository.SharedPrefRepository
 import hosseinzafari.github.codequestion.ui.data.repository.CodeRepository
 import hosseinzafari.github.codequestion.ui.helper.io
 import hosseinzafari.github.codequestion.ui.ui.util.Resource
@@ -18,7 +18,7 @@ import hosseinzafari.github.codequestion.ui.ui.util.Resource
 class CodeViewModel : ViewModel(){
 
     private val codeRepository  = CodeRepository()
-    private val tokenRepository = TokenRepository()
+    private val tokenRepository = SharedPrefRepository()
 
     fun getAllCodes(category: Int) = liveData {
         emit(Resource.loading())

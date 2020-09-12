@@ -26,6 +26,7 @@ object FactoryFragment {
     const val ADD_CODE_FRAGMENT: Byte = 12
     const val ABOUT_FRAGMENT: Byte = 13
     const val ACCOUNT_FRAGMENT: Byte = 14
+    const val DETAIL_COURES_FRAGMENT: Byte = 15
 
     fun getFragment(type: Byte): GFragment =
         when (type) {
@@ -43,6 +44,7 @@ object FactoryFragment {
             ADD_CODE_FRAGMENT -> AddCodeFragment()
             ABOUT_FRAGMENT   -> AboutFragment()
             ACCOUNT_FRAGMENT -> AccountFragment()
+            DETAIL_COURES_FRAGMENT-> DetailCourseFragment()
             else -> throw IllegalArgumentException("Not Found Type Fragment For You")
         }
 

@@ -111,6 +111,11 @@ class MainActivity : GAppCompatActivity() {
             framelayout.anim(Techniques.SlideInLeft)
         }
 
+        if(getFragmentByTag("DetailCourse") != null){
+            ContainerFragment.deleteFragment(this , FactoryFragment.DETAIL_COURES_FRAGMENT)
+            framelayout.anim(Techniques.SlideInLeft)
+        }
+
         super.onBackPressed()
     }
 }

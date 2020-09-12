@@ -14,6 +14,8 @@ import hosseinzafari.github.codequestion.adapter.BestCodeRVAdapter
 import hosseinzafari.github.codequestion.adapter.BestUserRVAdapter
 import hosseinzafari.github.codequestion.adapter.CourseRVAdapter
 import hosseinzafari.github.codequestion.ui.helper.log
+import hosseinzafari.github.codequestion.ui.main.fragment.ContainerFragment
+import hosseinzafari.github.codequestion.ui.main.fragment.DetailCourseFragment
 import hosseinzafari.github.codequestion.ui.ui.util.Status
 import hosseinzafari.github.codequestion.ui.ui.viewmodel.HomeViewModel
 import hosseinzafari.github.framework.core.ui.fragment.GFragment
@@ -35,6 +37,23 @@ class HomeFragment : GFragment() {
         savedInstanceState: Bundle?
     ): View? {
         return inflater.inflate(R.layout.fragment_home, container, false)
+    }
+
+
+    private fun setupAdapters() {
+        bestUserAdapter = BestUserRVAdapter { debugOnClick(it) }
+        courseAdapter = CourseRVAdapter {
+            val arg = Bundle()
+            arg.putParcelable(DetailCourseFragment.KEY_DETAIL_COURSE , arg)
+            ContainerFragment.addFragmentWithBack(
+                requireActivity() ,
+                FactoryFragment.DETAIL_CODE_FRAGMENT ,
+                tag = "DetailCourse",
+                argument = arg
+            )
+        }
+
+        bestCodeAdapter = BestCodeRVAdapter { debugOnClick(it) }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -65,6 +84,7 @@ class HomeFragment : GFragment() {
                 }
             }
         })
+
         homeViewModel.getCodes().observe(viewLifecycleOwner, Observer {
             when (it.status) {
                 Status.ERROR -> log("getCodes Error")
@@ -77,11 +97,6 @@ class HomeFragment : GFragment() {
         })
     }
 
-    private fun setupAdapters() {
-        bestUserAdapter = BestUserRVAdapter { debugOnClick(it) }
-        courseAdapter = CourseRVAdapter { debugOnClick(it) }
-        bestCodeAdapter = BestCodeRVAdapter { debugOnClick(it) }
-    }
 
     private fun setupViews(view: View) {
         // setup best user recyclerview

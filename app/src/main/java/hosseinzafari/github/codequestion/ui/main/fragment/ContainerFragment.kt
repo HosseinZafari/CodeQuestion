@@ -51,6 +51,16 @@ object ContainerFragment {
         transaction.add(containerLayout, fragment, tag).commit()
     }
 
+    fun addFragmentWithBack(
+        activity: FragmentActivity,
+        targetFragment: Byte,
+        containerLayout: Int = R.id.framelayout,
+        tag: String? = null ,
+        argument: Bundle? = null
+    ) = showFragment(activity, targetFragment, true , argument = argument) { transaction, fragment ->
+        transaction.add(containerLayout, fragment, tag).commit()
+    }
+
     fun replaceFragment(
         activity: FragmentActivity,
         targetFragment: Byte,
@@ -80,6 +90,15 @@ object ContainerFragment {
         }
         log("getFragment() Size is : ${fragments.size}")
         return fragments[target]!!
+    }
+
+
+    fun deleteFragment(
+        activity: FragmentActivity,
+        targetFragment: Byte,
+    ) {
+        getTransaction(activity).remove(getFragment(targetFragment)).commit()
+        clearFragment(targetFragment)
     }
 
 

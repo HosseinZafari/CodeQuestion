@@ -50,3 +50,4 @@ fun goActivityWithFinish(@NotNull clazz: Class<out Activity>?) {
     goActivity(clazz)
     G.currentActivity!!.finish()
 }
+

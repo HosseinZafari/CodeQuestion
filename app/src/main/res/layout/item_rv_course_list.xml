@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView android:id="@+id/card_bookmark_root"
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  app:cardBackgroundColor="@color/colorWhite"
+  app:cardElevation="@dimen/cardview_default_elevation"
+  app:cardCornerRadius="@dimen/cardview_default_radius"
+  android:layout_marginTop="2dp"
+  app:rippleColor="@color/colorLightGray"
+  android:layout_width="match_parent"
+  android:layout_height="wrap_content"
+  android:orientation="horizontal"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools">
+
+  <RelativeLayout
+    android:padding="4dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+
+    <com.facebook.drawee.view.SimpleDraweeView
+      android:id="@+id/img_item_course"
+      android:layout_width="80dp"
+      android:layout_height="80dp"
+      android:layout_alignParentRight="true"
+      app:roundingBorderColor="@color/colorPrimary"
+      app:roundingBorderWidth="2dp"
+      app:fadeDuration="200"
+      app:placeholderImageScaleType="centerCrop"
+      app:roundAsCircle="true"/>
+
+    <com.google.android.material.textview.MaterialTextView
+      android:id="@+id/txt_title_item_course"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginRight="8dp"
+      android:textSize="12sp"
+      android:ellipsize="end"
+      android:maxLines="1"
+      android:gravity="center|right"
+      android:layout_alignTop="@id/img_item_course"
+      android:layout_alignBottom="@id/img_item_course"
+      android:layout_toStartOf="@+id/img_item_course"
+      tools:text="آموزش برنامه نویسی اندروید" />
+
+  </RelativeLayout>
+
+</com.google.android.material.card.MaterialCardView>

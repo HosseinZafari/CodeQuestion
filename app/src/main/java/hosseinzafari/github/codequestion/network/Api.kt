@@ -16,37 +16,37 @@ import retrofit2.http.*
 
 interface Api {
 
-    @GET("best-user")
+    @GET("best-user.php")
     suspend fun getBestUser(): List<UserModel>
 
-    @GET("best-course")
+    @GET("best-course.php")
     suspend fun getBestCourses(): ResponseStdModel
 
-    @GET("all-course")
+    @GET("all-course.php")
     suspend fun getAllCourses(): ResponseStdModel
 
-    @GET("best-code")
+    @GET("best-code.php")
     suspend fun getBestCode(): List<CodeModel>
 
-    @GET("answers")
+    @GET("answers.php")
     suspend fun getAnswers(): ResponseStdModel
 
-    @GET("all-code")
+    @GET("all-code.php")
     suspend fun getAllCodes(
         @Query("category") category: Int
     ): ResponseStdModel
 
-    @GET("code-point")
+    @GET("code-point.php")
     suspend fun changeScore(
         @Query("score") score: Int ,
         @Query("codeId") codeId: Int
     ): ResponseStdModel
 
-    @POST("signup")
+    @POST("signup.php")
     suspend fun signupUser(@Body userSignup: UserSignupModel): ResponseStdModel
 
     @FormUrlEncoded
-    @POST("add-code")
+    @POST("add-code.php")
     suspend fun addCode(
         @Field("title") title: String ,
         @Field("text") text: String ,
@@ -54,21 +54,28 @@ interface Api {
     ): ResponseStdModel
 
     @FormUrlEncoded
-    @POST("login")
+    @POST("login.php")
     suspend fun loginUser(
         @Field("email") email: String,
         @Field("password") password: String
     ): ResponseStdModel
 
 
-    @GET("rules")
+    @GET("rules.php")
     suspend fun getRules() : ResponseStdModel
 
     @FormUrlEncoded
-    @POST("ask")
+    @POST("ask.php")
     suspend fun ask(
         @Field("title")  title: String ,
         @Field("text")   text: String ,
         @Field("type")   type: Int ,
         @Field("course") course: String): ResponseStdModel
+    
+    @FormUrlEncoded
+    @POST("returned.php")
+    suspend fun returned(
+        @Field("returnedType") returnedType: Int ,
+        @Field("questionId")   questionId: Int
+    ): ResponseStdModel
 }

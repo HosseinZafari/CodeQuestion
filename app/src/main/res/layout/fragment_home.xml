@@ -48,7 +48,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:layout_marginRight="16dp"
+            android:layout_marginRight="4dp"
             android:layout_marginBottom="8dp" />
 
         <androidx.appcompat.widget.AppCompatTextView
@@ -65,10 +65,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:layout_marginRight="16dp"
+            android:layout_marginRight="4dp"
             android:layout_marginBottom="8dp" />
 
         <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardview_show_all_course"
             android:layout_marginBottom="16dp"
             android:layout_marginTop="4dp"
             android:layout_width="match_parent"
@@ -76,6 +77,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
             app:cardBackgroundColor="@color/colorAccent"
+            app:rippleColor="@color/colorLightGray"
             app:cardCornerRadius="5dp">
 
             <LinearLayout
@@ -111,6 +113,7 @@
             android:orientation="horizontal">
 
             <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txt_show_codes"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.5"
@@ -136,7 +139,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
-            android:layout_marginRight="16dp"
+            android:layout_marginRight="4dp"
             android:layout_marginBottom="8dp" />
 
 

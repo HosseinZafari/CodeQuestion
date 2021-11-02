@@ -13,11 +13,13 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="false"
+        android:largeHeap="true"
         tools:replace="android:supportsRtl"
         android:theme="@style/AppTheme">
         <activity android:name="hosseinzafari.github.framework.core.ui.activity.GAppCompatActivity"/>
 
-        <activity android:name=".ui.ui.main.activity.MainActivity">
+        <activity android:name=".ui.ui.main.activity.MainActivity"
+          android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -16,6 +16,7 @@ import com.google.android.material.button.MaterialButton
 import com.google.android.material.textfield.TextInputLayout
 import com.google.gson.Gson
 import hosseinzafari.github.codequestion.R
+import hosseinzafari.github.codequestion.data.memory.SaveInMemory
 import hosseinzafari.github.codequestion.ui.helper.anim
 import hosseinzafari.github.codequestion.ui.helper.log
 import hosseinzafari.github.codequestion.ui.ui.main.fragment.FactoryFragment
@@ -72,7 +73,7 @@ class LoginFragment : GFragment(), View.OnClickListener{
 
         img_back_login.setOnClickListener { activity?.onBackPressed() }
         btn_gosignup.setOnClickListener {
-            uiUtil.getContainerFragment().anim(Techniques.SlideInRight)
+            uiUtil.getLayoutRootFragment().anim(Techniques.SlideInRight)
             ContainerFragment.replaceFragmentWithBack(requireActivity() , FactoryFragment.SIGNUP_FRAGMENT)
         }
         btn_login_enter.setOnClickListener(this)
@@ -126,15 +127,22 @@ class LoginFragment : GFragment(), View.OnClickListener{
                     } else if(it.data.code == 401){
                         log("401 code")
                         setError(it.data.msg , edt_login_password)
-                    } else if(it.data.code == 200) {
+                    } else  {
 
-                        // Save Token
+
+                        // Save Tokens
                         questionViewModel.setToken(it.data.user!!.token!!)
+
+                        // save roll
+                        questionViewModel.setRole(it.data.user.role!!)
 
                         // Contvert DataModel To Json For Saving in SharedPref
                         val userJson = Gson().toJson(it.data.user)
                         questionViewModel.setUserJsonInShared(userJson)
 
+                        log("token " + SaveInMemory.token)
+                        log("user " + SaveInMemory.userJsonInfo)
+                        log("dest " + SaveInMemory.destination)
                         // Go To Destination Fragment
                         FragmentHelper.handleDestinationState(requireActivity())
                         Toast.makeText(G.getContext(), "${it.data.user.name} خوش آمدید.", Toast.LENGTH_LONG).show()

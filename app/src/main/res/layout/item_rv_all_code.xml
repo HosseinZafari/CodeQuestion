@@ -28,7 +28,6 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:placeholderImage="@drawable/placeholder2"
             app:placeholderImageScaleType="centerCrop"
             app:roundAsCircle="true"
             app:roundingBorderColor="@color/colorPrimary"

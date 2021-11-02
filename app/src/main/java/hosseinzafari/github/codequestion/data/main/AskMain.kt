@@ -14,12 +14,9 @@ import hosseinzafari.github.codequestion.struct.ResponseStdModel
 interface AskMain {
 
 
-    suspend fun ask(
-        title: String ,
-        text: String ,
-        type: Int ,
-        course: String
-    ): LiveData<ResponseStdModel>
+    suspend fun ask(title: String , text: String , type: Int , course: String): LiveData<ResponseStdModel>
 
     suspend fun answers(): LiveData<ResponseStdModel>
+    
+    suspend fun returned(questionId: Int , returnedType: Int): LiveData<ResponseStdModel>
 }

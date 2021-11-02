@@ -4,7 +4,9 @@ import android.os.Bundle
 import androidx.lifecycle.SavedStateViewModelFactory
 import androidx.lifecycle.ViewModelProvider
 import com.daimajia.androidanimations.library.Techniques
+import com.google.android.material.navigation.NavigationView
 import com.luseen.spacenavigation.SpaceItem
+import com.luseen.spacenavigation.SpaceNavigationView
 import com.luseen.spacenavigation.SpaceOnClickListener
 import hosseinzafari.github.codequestion.R
 import hosseinzafari.github.codequestion.ui.helper.anim
@@ -12,6 +14,7 @@ import hosseinzafari.github.codequestion.ui.helper.log
 import hosseinzafari.github.codequestion.ui.main.fragment.AnswerFragment
 import hosseinzafari.github.codequestion.ui.main.fragment.ContainerFragment
 import hosseinzafari.github.codequestion.ui.ui.main.fragment.FactoryFragment
+import hosseinzafari.github.codequestion.ui.ui.main.fragment.HomeFragment
 import hosseinzafari.github.codequestion.ui.viewmodel.MainViewModel
 import hosseinzafari.github.framework.core.ui.activity.GAppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
@@ -19,6 +22,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 class MainActivity : GAppCompatActivity() {
 
     private lateinit var mainViewModel: MainViewModel
+    private lateinit var navigationView: SpaceNavigationView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,9 +34,13 @@ class MainActivity : GAppCompatActivity() {
         // init first fragment
         framelayout.anim(Techniques.FadeIn , 400)
         ContainerFragment.addFragment(this , FactoryFragment.HOME_FRAGMENT)
+        (ContainerFragment.getFragment(FactoryFragment.HOME_FRAGMENT) as HomeFragment).onClickShowCodes = {
+            navigationView.changeCurrentItem(1)
+        }
 
         // Setup Navigation View
-        navigation_view.initWithSaveInstanceState(savedInstanceState)
+        navigationView = findViewById(R.id.navigation_view)
+        navigationView.initWithSaveInstanceState(savedInstanceState)
         initNavigationView()
     }
 
@@ -42,7 +50,7 @@ class MainActivity : GAppCompatActivity() {
 
     // Prepare And Customize Navigation View
     private fun initNavigationView(){
-        navigation_view.apply {
+        navigationView.apply {
             addSpaceItem(SpaceItem("پروفایل" , R.drawable.ic_people_white_24dp))
             addSpaceItem(SpaceItem("کد ها" , R.drawable.ic_code_white_24dp))
             addSpaceItem(SpaceItem("سوالات" , R.drawable.ic_question_white_24dp))
@@ -64,6 +72,9 @@ class MainActivity : GAppCompatActivity() {
                         3-> {
                             framelayout.anim(Techniques.FadeIn , 400)
                             ContainerFragment.replaceFragment(this@MainActivity , FactoryFragment.HOME_FRAGMENT)
+                            (ContainerFragment.getFragment(FactoryFragment.HOME_FRAGMENT) as HomeFragment).onClickShowCodes = {
+                                navigationView.changeCurrentItem(1)
+                            }
                         }
 
                         2-> {
@@ -107,14 +118,36 @@ class MainActivity : GAppCompatActivity() {
             answer.isShowAnimation = false
         }
 
+        if(getFragmentByTag("Bookmark") != null){
+            log("Bookmark must delete")
+//            ContainerFragment.deleteFragment(this , FactoryFragment.BOOKMARK_FRAGMENT)
+            framelayout.anim(Techniques.SlideInLeft)
+        }
+
         if(getFragmentByTag("AddCode") != null){
             framelayout.anim(Techniques.SlideInLeft)
         }
 
         if(getFragmentByTag("DetailCourse") != null){
-            ContainerFragment.deleteFragment(this , FactoryFragment.DETAIL_COURES_FRAGMENT)
+            ContainerFragment.deleteFragment(this , FactoryFragment.DETAIL_COURSE_FRAGMENT)
             framelayout.anim(Techniques.SlideInLeft)
         }
+
+        if(getFragmentByTag("BookmarkCourseToDetailCourse") != null){
+            log("BookmarkCourseToDetailCourse must delete")
+            ContainerFragment.deleteFragment(this , FactoryFragment.DETAIL_COURSE_FRAGMENT)
+//            ContainerFragment.addFragment(this , FactoryFragment.BOOKMARK_FRAGMENT , tag = "Bookmark")
+            framelayout.anim(Techniques.SlideInLeft)
+        }
+
+        if(getFragmentByTag("AllCourseToDetailCourse") != null){
+            framelayout.anim(Techniques.FadeOut , 350)
+        }
+
+        if(getFragmentByTag("HomeFragmentToAllCourseFragment") != null){
+            framelayout.anim(Techniques.SlideInLeft)
+        }
+
 
         super.onBackPressed()
     }

@@ -4,8 +4,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.FragmentFactory
 import hosseinzafari.github.codequestion.R
+import hosseinzafari.github.codequestion.ui.ui.main.fragment.FactoryFragment
+import hosseinzafari.github.framework.core.app.G
 import hosseinzafari.github.framework.core.ui.fragment.GFragment
+import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.fragment_account.*
 
 /*
 
@@ -35,10 +40,17 @@ class AccountFragment : GFragment() {
 //        val txt_name = view.findViewById<TextView>(R.id.txt_profile_name)
 //        val tabLayout = view.findViewById<TabLayout>(R.id.tablayout_profile)
 
+        card_bookmarks.setOnClickListener { bookmarks() }
+
+    }
+
+    private fun bookmarks(){
+        ContainerFragment.addFragmentWithBack(requireActivity() , FactoryFragment.BOOKMARK_FRAGMENT , tag = "Bookmark")
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+
 
     }
 }

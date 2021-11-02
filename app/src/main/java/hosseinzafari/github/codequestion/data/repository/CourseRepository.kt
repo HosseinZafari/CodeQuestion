@@ -1,7 +1,10 @@
 package hosseinzafari.github.codequestion.data.repository
 
 import androidx.lifecycle.LiveData
+import hosseinzafari.github.codequestion.data.Room.entity.BookmarkCourseEntity
+import hosseinzafari.github.codequestion.data.datasource.local.db.BookmarkCourseDataSource
 import hosseinzafari.github.codequestion.data.datasource.remote.CourseRemoteDataSource
+import hosseinzafari.github.codequestion.data.main.BookmarkCourseMain
 import hosseinzafari.github.codequestion.struct.ResponseStdModel
 import hosseinzafari.github.codequestion.ui.data.main.CourseMain
 
@@ -13,9 +16,10 @@ import hosseinzafari.github.codequestion.ui.data.main.CourseMain
 @email  hosseinzafari2000@gmail.com 
 */
 
-class CourseRepository : CourseMain{
-    private val courseRemoteDataSource = CourseRemoteDataSource()
-
+class CourseRepository : CourseMain , BookmarkCourseMain{
+    private val courseRemoteDataSource by lazy { CourseRemoteDataSource() }
+    private val bookmarkCourseDataSource by lazy { BookmarkCourseDataSource() }
+    
     override suspend fun getBestCourses(): LiveData<ResponseStdModel> {
         return courseRemoteDataSource.getBestCourses()
     }
@@ -23,4 +27,12 @@ class CourseRepository : CourseMain{
     override suspend fun getAllCourses(): LiveData<ResponseStdModel> {
         return courseRemoteDataSource.getAllCourses()
     }
+
+    override suspend fun addBookmarkCourse(entity: BookmarkCourseEntity) = bookmarkCourseDataSource.addBookmarkCourse(entity)
+
+    override suspend fun deleteBookmarkCourse(entity: BookmarkCourseEntity) = bookmarkCourseDataSource.deleteBookmarkCourse(entity)
+
+    override fun getAllBookmarkedCourse(): LiveData<List<BookmarkCourseEntity>?> = bookmarkCourseDataSource.getAllBookmarkedCourse()
+
+    override fun getBookmarkCourseById(id: Int): LiveData<BookmarkCourseEntity?> = bookmarkCourseDataSource.getBookmarkCourseById(id)
 }

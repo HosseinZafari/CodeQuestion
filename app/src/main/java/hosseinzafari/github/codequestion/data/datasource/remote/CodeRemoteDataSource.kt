@@ -1,5 +1,6 @@
 package hosseinzafari.github.codequestion.data.datasource.remote
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import hosseinzafari.github.codequestion.data.main.CodeMain
@@ -7,8 +8,11 @@ import hosseinzafari.github.codequestion.struct.CodeModel
 import hosseinzafari.github.codequestion.struct.ResponseStdModel
 import hosseinzafari.github.codequestion.ui.data.main.UserMain
 import hosseinzafari.github.codequestion.ui.helper.log
+import hosseinzafari.github.codequestion.ui.network.Api
 import hosseinzafari.github.codequestion.ui.network.api
+import hosseinzafari.github.codequestion.ui.network.retrofit
 import hosseinzafari.github.codequestion.ui.struct.UserModel
+import network.core.getApi
 
 /*
 
@@ -39,12 +43,15 @@ class CodeRemoteDataSource : CodeMain {
 
     override suspend fun changeScore(isAdd: Boolean, codeId: Int): LiveData<ResponseStdModel> {
         val score = if(isAdd) 1 else 0
-        _changeScore.postValue(api.changeScore(score , codeId))
+        val result = api.changeScore(score , codeId)
+        _changeScore.postValue(result)
         return _changeScore
     }
 
     override suspend fun addCode(title: String , text: String , source: String): LiveData<ResponseStdModel> {
-        _addCode.postValue(api.addCode(title , text , source))
+        val result = api.addCode(title , text , source)
+        Log.i("TEHRAN" , "" + result)
+        _addCode.postValue(result)
         return _addCode
     }
 

@@ -9,7 +9,7 @@
 
     <item name="android:fontFamily">@font/font_std</item>
     <item name="android:textSize">14sp</item>
-    <item name="colorControlHighlight">@color/colorPink</item>
+    <item name="colorControlHighlight">@color/colorAccent</item>
   </style>
 
 </resources>

@@ -14,6 +14,6 @@ import hosseinzafari.github.codequestion.R
 
 class UiUtil(val activity: FragmentActivity) {
 
-    fun getContainerFragment() = activity.findViewById<FrameLayout>(R.id.framelayout)
+    fun getLayoutRootFragment() = activity.findViewById<FrameLayout>(R.id.framelayout)
 
 }

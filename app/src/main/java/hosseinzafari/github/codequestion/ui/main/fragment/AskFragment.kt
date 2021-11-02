@@ -54,7 +54,7 @@ class AskFragment : GFragment(){
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        uiUtil.getContainerFragment().anim(Techniques.SlideInRight , 200)
+        uiUtil.getLayoutRootFragment().anim(Techniques.SlideInRight , 200)
     }
 
     private fun setupViews(view: View){
@@ -90,7 +90,7 @@ class AskFragment : GFragment(){
                         return@Observer
                     }
 
-                    it.data.courses.forEach { spinnerData.add(it.title) }
+                    it.data.courses.forEach { spinnerData.add(it.title!!) }
                     spinner.attachDataSource(spinnerData)
                 }
             }

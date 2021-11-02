@@ -1,7 +1,9 @@
 package hosseinzafari.github.codequestion.data.repository
 
+import androidx.lifecycle.LiveData
 import hosseinzafari.github.codequestion.data.datasource.remote.AskRemoteDataSource
 import hosseinzafari.github.codequestion.data.main.AskMain
+import hosseinzafari.github.codequestion.struct.ResponseStdModel
 
 /*
 
@@ -23,5 +25,6 @@ class AskRepository : AskMain {
     ) = askDataSource.ask(title , text , type , course)
 
     override suspend fun answers() = askDataSource.answers()
-
+    
+    override suspend fun returned(questionId: Int, returnedType: Int) = askDataSource.returned(questionId , returnedType)
 }

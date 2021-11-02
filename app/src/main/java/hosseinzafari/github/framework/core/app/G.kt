@@ -6,6 +6,8 @@ import android.view.LayoutInflater
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.facebook.drawee.backends.pipeline.Fresco
+import hosseinzafari.github.codequestion.data.Room.AppDb
+import hosseinzafari.github.codequestion.data.Room.AppDbBuilder
 import io.github.kbiakov.codeview.classifier.CodeProcessor
 
 /*
@@ -22,22 +24,28 @@ open class G : Application() {
     override fun onCreate() {
         super.onCreate()
 
-        _context = applicationContext
+        __context = applicationContext
+        __database = AppDbBuilder.getInstance(getContext())
         Fresco.initialize(applicationContext)
         CodeProcessor.init(this);
     }
 
     companion object {
-        private lateinit var _context: Context
+        private lateinit var __context: Context
         var currentActivity: AppCompatActivity? = null
         var currentFragment: Fragment? = null
         val layoutInflater: LayoutInflater by lazy {
             LayoutInflater.from(getContext())
         }
 
+        // Database
+        private var __database: AppDb? = null
+        val database: AppDb get() = __database!!
 
-        fun getContext(): Context = if (currentActivity != null) currentActivity!! else _context
+        const val DB_NAME = "db_codequesion"
 
+
+        fun getContext(): Context = if (currentActivity != null) currentActivity!! else __context
     }
 
 }

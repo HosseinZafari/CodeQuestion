@@ -1,4 +1,4 @@
-package hosseinzafari.github.codequestion.data
+package hosseinzafari.github.codequestion.data.datasource.local.sharedpref
 
 import android.content.Context
 import hosseinzafari.github.framework.core.app.G
@@ -12,7 +12,8 @@ object SharedPref {
 
     enum class Key(value: String) {
         AU("AU") ,
-        USER("USER")
+        USER("USER") ,
+        ROLE("ROLE") ,
     }
 
     fun setToken(token: String){
@@ -26,6 +27,15 @@ object SharedPref {
         editor.putString(Key.USER.name , userJson)
         editor.apply()
     }
+    
+    fun getRole(): String {
+        return shared_pref.getString(Key.ROLE.name , "user")!!
+    }
 
+    fun setRole(role: String) {
+        editor.putString(Key.ROLE.name , role)
+        editor.apply()
+    }
+    
     fun getUserJson() = shared_pref.getString(Key.USER.name , null)
 }

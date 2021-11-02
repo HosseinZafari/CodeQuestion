@@ -11,22 +11,23 @@ package hosseinzafari.github.codequestion.helper
 
 abstract class SingletonHelper<A, B>() {
 
-    @Volatile private var INSTANCE: B? = null
+    @Volatile
+    private var INSTANCE: B? = null
 
     abstract protected fun creator(arg: A): B
 
     fun getInstance(arg: A): B {
         val temporaryInstance1 = INSTANCE
-        if(temporaryInstance1 != null){
+        if(temporaryInstance1 != null) {
             return temporaryInstance1
         }
 
-        return synchronized(this){
+        return synchronized(this) {
             val temporaryInstance2 = INSTANCE
             if(temporaryInstance2 != null){
                 INSTANCE!!
             } else {
-                val createdInstance=  creator(arg)
+                val createdInstance = creator(arg)
                 INSTANCE = createdInstance
                 INSTANCE!!
             }

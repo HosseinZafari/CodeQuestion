@@ -59,6 +59,6 @@ class RulesFragment : GFragment() {
         super.onActivityCreated(savedInstanceState)
 
         // Show Animation When Initialized UiUitl in GFragment And ActvityCreated
-        uiUtil.getContainerFragment().anim(Techniques.SlideInRight)
+        uiUtil.getLayoutRootFragment().anim(Techniques.SlideInRight)
     }
 }

@@ -119,7 +119,7 @@ class AddCodeFragment : GFragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        uiUtil.getContainerFragment().anim(Techniques.SlideInRight)
+        uiUtil.getLayoutRootFragment().anim(Techniques.SlideInRight)
     }
 
 }

@@ -1,14 +1,16 @@
+
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
 apply plugin: "androidx.navigation.safeargs.kotlin"
 apply plugin: 'kotlin-kapt'
+//apply plugin: 'kotlin-parcelize'
+apply plugin: 'kotlin-android-extensions'
 
 android {
-    compileSdkVersion 29
-    buildToolsVersion "29.0.2"
+    compileSdkVersion 31
+  //  buildToolsVersion '30.0.2'
 
-//    kapt { arguments { arg("micronaut.processing.incremental", true) } }
+    kapt { arguments { arg("micronaut.processing.incremental", true) } }
     if(project.hasProperty('devBuild')){
         splits.abi.enable = false
         splits.density.enable = false
@@ -22,19 +24,20 @@ android {
     defaultConfig {
         applicationId "hosseinzafari.github.codequestion"
         minSdkVersion 19
-        targetSdkVersion 29
+        targetSdkVersion 31
         versionCode 1
         versionName "1.0"
         vectorDrawables.useSupportLibrary = true
+        multiDexEnabled true
 
-//        javaCompileOptions {
-//            annotationProcessorOptions {
-//                arguments += [
-//                        "room.schemaLocation":"$projectDir/schemas".toString(),
-//                        "room.incremental":"true",
-//                        "room.expandProjection":"true"]
-//            }
-//        }
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments += [
+                        "room.schemaLocation":"$projectDir/schemas".toString(),
+                        "room.incremental":"true",
+                        "room.expandProjection":"true"]
+            }
+        }
     }
 
     buildTypes {
@@ -47,6 +50,7 @@ android {
         debug {
             crunchPngs false
             ext.alwaysUpdateBuildId = false
+            ext.enableCrashlytics = false
         }
     }
 
@@ -64,89 +68,83 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation 'androidx.appcompat:appcompat:1.1.0'
-    implementation 'androidx.core:core-ktx:1.3.1'
-    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.5.31"
+    implementation 'androidx.appcompat:appcompat:1.3.1'
+    implementation 'androidx.core:core-ktx:1.6.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.0'
+    implementation 'androidx.multidex:multidex:2.0.1'
+    implementation 'com.google.android.material:material:1.4.0'
 
-    // LifeCycle
+
+
+    // -------------------- LifeCycle
     def lifecycle_version = "2.2.0"
-    // ViewModel
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
-    // LiveData
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version"
-    // optional - ReactiveStreams support for LiveData
     implementation "androidx.lifecycle:lifecycle-reactivestreams-ktx:$lifecycle_version"
-    // Saved State Module
     implementation "androidx.lifecycle:lifecycle-viewmodel-savedstate:$lifecycle_version"
-
-    // Annotation processor
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation "androidx.lifecycle:lifecycle-common-java8:$lifecycle_version"
 
 
-    // Room
+
+    // -------------------- Room library
     def room_version = "2.2.5"
     implementation "androidx.room:room-runtime:$room_version"
-    // For Kotlin use kapt instead of annotationProcessor
-    kapt "androidx.room:room-compiler:$room_version"
-    // optional - Kotlin Extensions and Coroutines support for Room
     implementation "androidx.room:room-ktx:$room_version"
+    kapt "androidx.room:room-compiler:$room_version"
 
-    // Fragment Navigaiton
+
+
+    // **************************** Fragments
     def nav_version = "2.3.0"
+    // -------------------- Fragment ktx for kotlin extensions
     implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
     implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
 
 
-    // navigaiton view
-    implementation 'com.github.armcha:SpaceNavigationView:1.6.0'
 
-    // Retrofit
+    // --------------------  kotlin coroutine
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.9'
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.9"
+
+
+
+    // *************************** Networks ***************************
+    // -------------------- Retrofit
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
-
-    // okhttp3 version 3.12 is soppurt in api less lolipop
+    // -------------------- okhttp3 version 3.12 is soppurt in api less lolipop
     implementation 'com.squareup.okhttp3:logging-interceptor:3.12.2'
     implementation 'com.squareup.okhttp3:okhttp:3.14.9'
-
-
-    // gson and converter for retrofit 
+    // -------------------- gson and converter for retrofit
     implementation 'com.google.code.gson:gson:2.8.6'
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
 
-    // kotlin coroutine
-    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.8'
-
-    // Material Design
-    implementation 'com.google.android.material:material:1.2.0-alpha01'
-
-    // Circular ImageView
-    implementation 'de.hdodenhof:circleimageview:3.1.0'
 
 
-    // Glide
+    // ********************************  Image And Views And Aimations ********************************
+    // ------------------- Glide
     implementation 'com.github.bumptech.glide:glide:4.9.0'
-
-
-    // fresco
+    // ------------------- Circular ImageView
+    implementation 'de.hdodenhof:circleimageview:3.1.0'
+    // ------------------- fresco
     implementation('com.facebook.fresco:fresco:2.3.0')
     // For WebP support, including animated WebP
     implementation 'com.facebook.fresco:animated-webp:2.3.0'
     implementation 'com.facebook.fresco:webpsupport:2.3.0'
     // For animated GIF support
     implementation 'com.facebook.fresco:animated-gif:2.3.0'
-
-    // Add Lottie
+    // ------------------- Add Lottie
     implementation 'com.airbnb.android:lottie:3.4.1'
-
-    // YOYO
+    // ------------------- YOYO
     implementation 'com.daimajia.easing:library:2.0@aar'
     implementation 'com.daimajia.androidanimations:library:2.3@aar'
-
-    // Nic Spinner
+    // ------------------- Nic Spinner
     implementation 'com.github.arcadefire:nice-spinner:1.4.4'
-
-    // CodeView
+    // ------------------- CodeView
     implementation 'com.github.kbiakov:CodeView-Android:1.3.2'
+    // --------------------  navigaiton view
+    implementation 'com.github.armcha:SpaceNavigationView:1.6.0'
+
 
 }

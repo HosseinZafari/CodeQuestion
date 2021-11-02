@@ -2,6 +2,7 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/colorLight"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -17,7 +18,6 @@
             android:id="@+id/materialCardView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-
             app:cardBackgroundColor="@color/colorWhite"
             app:cardCornerRadius="8dp"
             app:contentPadding="4dp"
@@ -108,11 +108,10 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:placeholderImage="@drawable/placeholder2"
                     app:placeholderImageScaleType="centerCrop"
                     app:roundAsCircle="true"
                     app:roundingBorderColor="@color/colorPrimary"
-                    app:roundingBorderWidth="4dp" />
+                    />
 
 
                 <com.google.android.material.textview.MaterialTextView

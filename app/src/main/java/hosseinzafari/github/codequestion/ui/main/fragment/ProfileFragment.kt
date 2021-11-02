@@ -43,12 +43,9 @@ class ProfileFragment : GFragment() {
         viewpager.adapter = adapter
         tablayout.setupWithViewPager(viewpager)
 
-        val userJson = SaveInMemory.userJsonInfo
-        Gson().fromJson(userJson , UserModel::class.java)
-
         profileViewModel.getUser().observe(viewLifecycleOwner) {
             if (it == null) {
-                txt_name.text = "شما وارد نشدید"
+                txt_name.text = "لطفا وارد حساب کاربری خود شوید"
             } else {
                 txt_name.text = it.name + " " + it.family
             }

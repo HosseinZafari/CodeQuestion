@@ -19,7 +19,7 @@ import hosseinzafari.github.framework.core.app.G
 @email  hosseinzafari2000@gmail.com 
 */
 
-class CourseRVAdapter(val block:(String)-> Unit) : RecyclerView.Adapter<CourseRVAdapter.CourseViewHolder>() {
+class CourseRVAdapter(val onItemClick:(CourseModel)-> Unit) : RecyclerView.Adapter<CourseRVAdapter.CourseViewHolder>() {
 
     var data : MutableList<CourseModel> = mutableListOf()
         private set
@@ -40,7 +40,7 @@ class CourseRVAdapter(val block:(String)-> Unit) : RecyclerView.Adapter<CourseRV
     override fun onBindViewHolder(holder: CourseViewHolder, position: Int)  =
         data[position].let { course ->
             holder.onBind(course)
-            holder.root.setOnClickListener { block(course.courseId) }
+            holder.root.setOnClickListener { onItemClick(course) }
         }
 
     class CourseViewHolder(

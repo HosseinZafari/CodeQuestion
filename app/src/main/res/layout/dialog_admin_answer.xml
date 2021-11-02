@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  android:layout_width="match_parent"
+  android:layout_height="wrap_content">
+
+  <androidx.appcompat.widget.LinearLayoutCompat
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="fill_parent">
+
+    <com.google.android.material.textview.MaterialTextView
+      android:id="@+id/txt_answer_dialog_caption"
+      android:layout_width="match_parent"
+      android:layout_height="40dp"
+      android:gravity="center"
+      android:background="@color/colorPrimary"
+      android:textColor="@color/space_white"
+      android:text="پاسخ به پرسش"
+      android:textStyle="bold" />
+
+
+
+    <com.google.android.material.card.MaterialCardView
+      app:cardCornerRadius="8dp"
+      android:layout_margin="8dp"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content">
+
+      <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/txt_answer_dialog_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="right"
+        android:padding="4dp"
+        android:background="@color/colorGray3"
+        android:textColor="@color/space_white"
+        android:text="چگونه به اینترنت متصل شودیم در جاوا ؟"
+        />
+    </com.google.android.material.card.MaterialCardView>
+
+
+    <com.google.android.material.textfield.TextInputLayout
+      android:id="@+id/edt_answer_admin_asnwered"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_margin="8dp"
+      android:gravity="right"
+      android:layoutDirection="rtl"
+      android:textColorHint="#aaa"
+      app:boxCornerRadiusTopEnd="8dp"
+      app:boxCornerRadiusTopStart="8dp"
+      app:boxStrokeColor="@color/colorPrimary"
+      app:counterEnabled="true"
+      style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+      app:endIconMode="clear_text">
+
+      <com.google.android.material.textfield.TextInputEditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/iran_light"
+        android:gravity="top|right"
+        android:hint="توضیحات"
+        android:inputType="textMultiLine"
+        android:minHeight="150dp"
+        android:textColor="@color/colorGray5"
+        android:textSize="10sp" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <com.google.android.material.button.MaterialButton
+      android:id="@+id/btn_answer_admin_send"
+      style="@style/Widget.MaterialComponents.Button"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_margin="8dp"
+      app:cornerRadius="8dp"
+      android:text="ثبت پاسخ"
+      app:elevation="6dp"
+      app:icon="@drawable/ic_arrow_back_24"
+      app:iconGravity="textStart"
+      app:rippleColor="@color/colorWhite1"
+      app:strokeColor="@color/colorPrimary" />
+
+  </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+</com.google.android.material.card.MaterialCardView>

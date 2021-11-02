@@ -17,7 +17,7 @@ import hosseinzafari.github.framework.core.app.G
 @email  hosseinzafari2000@gmail.com 
 */
 
-class BestCodeRVAdapter(val block:(String)-> Unit) : RecyclerView.Adapter<BestCodeRVAdapter.CodeViewHolder>() {
+class BestCodeRVAdapter(val block:(CodeModel)-> Unit) : RecyclerView.Adapter<BestCodeRVAdapter.CodeViewHolder>() {
 
     var data : MutableList<CodeModel> = mutableListOf()
         private set
@@ -38,7 +38,9 @@ class BestCodeRVAdapter(val block:(String)-> Unit) : RecyclerView.Adapter<BestCo
     override fun onBindViewHolder(holder: BestCodeRVAdapter.CodeViewHolder, position: Int)  =
         data[position].let { code ->
             holder.onBind(code)
-            holder.root.setOnClickListener { block(code.codeId!!) }
+            holder.root.setOnClickListener {
+                block(code)
+            }
         }
 
     class CodeViewHolder(

@@ -20,4 +20,7 @@ interface SharedPrefMain {
 
     suspend fun setUserJson(userJson: String)
     
+    suspend fun setRole(role: String)
+    
+    fun getRole(): LiveData<String>
 }

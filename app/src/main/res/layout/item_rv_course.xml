@@ -8,11 +8,11 @@
     android:layout_marginBottom="8dp"
     android:layout_marginLeft="12dp"
     android:theme="@style/AppTheme"
-    app:cardBackgroundColor="@color/colorPrimaryDark"
+    app:cardBackgroundColor="@color/colorWhite"
     app:cardCornerRadius="10dp"
-    app:cardElevation="5dp"
+    app:cardElevation="2dp"
     app:contentPadding="4dp"
-    app:rippleColor="@color/space_white">
+    app:rippleColor="@color/colorPrimary">
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -28,18 +28,16 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:placeholderImage="@drawable/placeholder2"
             app:placeholderImageScaleType="centerCrop"
             app:roundAsCircle="true"
             app:roundingBorderColor="@color/colorAccent"
-            app:roundingBorderWidth="4dp" />
+             />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/txt_title_course"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginRight="8dp"
-            android:textColor="@color/space_white"
             android:textSize="14sp"
             app:layout_constraintEnd_toStartOf="@+id/img_course"
             app:layout_constraintStart_toStartOf="parent"
@@ -93,7 +91,6 @@
                 android:gravity="center_vertical"
                 android:text="اولویت زمانی برای این دوره :"
                 android:textAppearance="@style/TextAppearance.AppCompat.Caption"
-                android:textColor="@color/space_white"
                 android:textSize="12sp"
                 app:fontFamily="@font/iran_light" />
         </androidx.appcompat.widget.LinearLayoutCompat>

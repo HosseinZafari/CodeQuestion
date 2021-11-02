@@ -2,7 +2,7 @@ package hosseinzafari.github.codequestion.data.repository
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import hosseinzafari.github.codequestion.data.datasource.local.SharedPrefLocalDataSource
+import hosseinzafari.github.codequestion.data.datasource.local.sharedpref.SharedPrefLocalDataSource
 import hosseinzafari.github.codequestion.data.main.SharedPrefMain
 import hosseinzafari.github.codequestion.data.memory.SaveInMemory
 
@@ -38,5 +38,13 @@ class SharedPrefRepository : SharedPrefMain {
         SaveInMemory.userJsonInfo = userJson
         local.setUserJson(userJson)
     }
-
+    
+    override suspend fun setRole(role: String) {
+        local.setRole(role)
+    }
+    
+    override fun getRole(): LiveData<String> {
+        return local.getRole()
+    }
+    
 }

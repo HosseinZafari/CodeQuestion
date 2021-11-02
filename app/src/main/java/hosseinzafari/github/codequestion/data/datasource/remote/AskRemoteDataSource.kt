@@ -17,7 +17,8 @@ import hosseinzafari.github.codequestion.ui.network.api
 class AskRemoteDataSource : AskMain {
     private val _askMutableLiveData = MutableLiveData<ResponseStdModel>()
     private val _answersMutableLiveData = MutableLiveData<ResponseStdModel>()
-
+    private val _returnedMutableLiveData = MutableLiveData<ResponseStdModel>()
+    
     override suspend fun ask(
         title: String,
         text: String,
@@ -31,5 +32,10 @@ class AskRemoteDataSource : AskMain {
     override suspend fun answers(): LiveData<ResponseStdModel> {
         _answersMutableLiveData.postValue(api.getAnswers())
         return _answersMutableLiveData
+    }
+    
+    override suspend fun returned(questionId: Int, returnedType: Int): LiveData<ResponseStdModel> {
+        _returnedMutableLiveData.postValue(api.returned(returnedType , questionId))
+        return _returnedMutableLiveData
     }
 }

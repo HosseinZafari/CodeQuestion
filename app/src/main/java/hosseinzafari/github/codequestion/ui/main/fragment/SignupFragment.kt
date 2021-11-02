@@ -14,11 +14,8 @@ import androidx.lifecycle.Observer
 import com.google.android.material.textfield.TextInputLayout
 import com.google.gson.Gson
 import hosseinzafari.github.codequestion.R
-import hosseinzafari.github.codequestion.data.memory.SaveInMemory
 import hosseinzafari.github.codequestion.struct.UserSignupModel
 import hosseinzafari.github.codequestion.ui.helper.log
-import hosseinzafari.github.codequestion.ui.ui.main.activity.MainActivity
-import hosseinzafari.github.codequestion.ui.ui.main.fragment.FactoryFragment
 import hosseinzafari.github.codequestion.ui.ui.util.Status
 import hosseinzafari.github.codequestion.ui.viewmodel.QuestionViewModel
 import hosseinzafari.github.framework.core.app.G
@@ -182,7 +179,10 @@ class SignupFragment : GFragment() {
 
                     // save token
                     questionViewModel.setToken(it.data.user.token!!)
-
+                    
+                    // save roll
+                    questionViewModel.setRole(it.data.user.role!!)
+                    
                     // Convert And save UserJson
                     val userJson = Gson().toJson(it.data.user)
                     questionViewModel.setUserJsonInShared(userJson)

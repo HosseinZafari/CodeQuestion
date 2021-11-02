@@ -48,10 +48,24 @@ class AnswerRVAdapter : RecyclerView.Adapter<AnswerRVAdapter.AnswerViewHolder>()
                 txt_type_question.text = G.getContext().resources.getText(R.string.answer_type_free)
             }
 
+            
             if(answer.isAdmin == ADMIN) { // from admin
                 txt_item_answer_state.text = G.getContext().resources.getText(R.string.answer_from_admin)
             } else { // from user
                 txt_item_answer_state.text = G.getContext().resources.getText(R.string.question_from_user)
+            }
+            
+            // Probably be problem between returend and answered if will be 1
+            if(answer.returned!!) {
+                txt_answer_wrong.visibility = View.VISIBLE
+            } else {
+                txt_answer_wrong.visibility = View.GONE
+            }
+            
+            if(answer.answered!!) {
+                txt_answer_answered.visibility = View.VISIBLE
+            } else {
+                txt_answer_answered.visibility = View.GONE
             }
         }
     }
@@ -66,5 +80,7 @@ class AnswerRVAdapter : RecyclerView.Adapter<AnswerRVAdapter.AnswerViewHolder>()
         val txt_type_question: TextView = view.findViewById(R.id.txt_item_answer_type),
         val txt_answer_date: TextView = view.findViewById(R.id.txt_item_answer_date),
         val txt_item_answer_state: TextView = view.findViewById(R.id.txt_item_answer_state) ,
+        val txt_answer_wrong: TextView = view.findViewById(R.id.txt_answer_wrong) ,
+        val txt_answer_answered: TextView = view.findViewById(R.id.txt_answer_answered) ,
     ) : RecyclerView.ViewHolder(view)
 }

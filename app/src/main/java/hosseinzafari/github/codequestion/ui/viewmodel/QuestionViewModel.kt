@@ -29,8 +29,9 @@ class QuestionViewModel : ViewModel() {
     private val userRepository    by lazy { UserRepository()  }
     private val sharedRepository  by lazy { SharedPrefRepository() }
     private val rulesRepository   by lazy { RulesRepository() }
-    private val courseRepository by lazy { CourseRepository() }
-    private val askRepository by lazy { AskRepository() }
+    private val courseRepository  by lazy { CourseRepository() }
+    private val askRepository     by lazy { AskRepository() }
+    
 
     fun signupUser(userSignupModel: UserSignupModel): LiveData<Resource<ResponseStdModel?>> = liveData {
             emit(Resource.loading())
@@ -62,6 +63,16 @@ class QuestionViewModel : ViewModel() {
         }
     }
 
+    fun setRole(role: String){
+        viewModelScope.launch {
+            sharedRepository.setRole(role)
+        }
+    }
+    
+    fun getRole(): LiveData<String> {
+        return sharedRepository.getRole()
+    }
+    
     fun getRules(): LiveData<Resource<ResponseStdModel?>> = liveData {
         emit(Resource.loading())
         try {
@@ -88,7 +99,7 @@ class QuestionViewModel : ViewModel() {
             val result = io { askRepository.ask(title , text , type , course) }
             emit(Resource.success(result.value))
         } catch(e: Exception) {
-            emit(Resource.error(e.message.toString()))
+            emit(Resource.error<ResponseStdModel>(e.message.toString()))
         }
     }
 
@@ -98,13 +109,23 @@ class QuestionViewModel : ViewModel() {
             val answers = io { askRepository.answers() }
             emit(Resource.success(answers.value))
         } catch (e: Exception) {
-            emit(Resource.error())
+            emit(Resource.error<ResponseStdModel>(e.message.toString()))
         }
     }
 
     fun setUserJsonInShared(json: String){
         viewModelScope.launch(Dispatchers.IO) {
             sharedRepository.setUserJson(json)
+        }
+    }
+    
+    fun returnedQuestion(returnedType: Int , questionId: Int) = liveData {
+        emit(Resource.loading())
+        try {
+            val result = io { askRepository.returned(questionId , returnedType) }
+            emit(Resource.success(result.value))
+        } catch (exception: Exception) {
+             emit(Resource.error<ResponseStdModel>(exception.message.toString()))
         }
     }
 }

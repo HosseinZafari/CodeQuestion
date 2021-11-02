@@ -6,7 +6,7 @@ import android.os.Parcelable
 
 data class CodeModel(
     val codeId: String?,
-    val codePoint: String?,
+    var codePoint: String?,
     val date: String?,
     val family: String?,
     val image: String?,

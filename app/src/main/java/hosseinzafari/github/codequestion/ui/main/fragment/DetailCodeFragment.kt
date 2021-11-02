@@ -43,6 +43,8 @@ class DetailCodeFragment : GFragment() {
     private lateinit var progressBar: ProgressBar
     private lateinit var txt_star: TextView
 
+    var onUpdatePointCode: (codeModel: CodeModel) -> Unit = {}
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -58,7 +60,7 @@ class DetailCodeFragment : GFragment() {
 
     private fun setupViews(view: View) {
         val txt_title = view.findViewById<TextView>(R.id.txt_detail_code_title)
-        val txt_text = view.findViewById<TextView>(R.id.txt_detail_code_text)
+        val txt_text  = view.findViewById<TextView>(R.id.txt_detail_code_text)
         val img_profile = view.findViewById<SimpleDraweeView>(R.id.img_detail_code_profile)
         val codeView = view.findViewById<CodeView>(R.id.codeview_detail_code)
         val btn_showsource = view.findViewById<Button>(R.id.btn_detail_code_showsource)
@@ -110,15 +112,22 @@ class DetailCodeFragment : GFragment() {
                     }
                     Status.LOADING -> log("Loading ${it.message}")
                     Status.SUCCEESS -> {
-                        if (it.data == null || it.data.code >= 300) {
+                        log("success " + it)
+                        if (it.data == null) {
                             displayProgress(false)
-                            toast(it.data!!.msg)
+                            toast("مشکلی در سرور رخ داده بعدا امتحان کنید")
                             return@observe
                         }
 
-                        displayProgress(false)
                         log("Success ${it.data}")
-                        txt_star.text = (txt_star.text.toString().toInt() + 1).toString()
+                        toast(it.data.msg)
+                        displayProgress(false)
+                        if(it.data.code != 404) {
+                            val point = txt_star.text.toString().toInt() + 1
+                            txt_star.text = point.toString()
+                            codeModelSelected!!.codePoint = point.toString()
+                            onUpdatePointCode(codeModelSelected!!)
+                        }
                     }
                 }
             }
@@ -134,15 +143,23 @@ class DetailCodeFragment : GFragment() {
                     }
                     Status.LOADING -> log("Loading ${it.message}")
                     Status.SUCCEESS -> {
-                        if (it.data == null || it.data.code >= 300) {
+                        log("success " + it)
+                        if (it.data == null ) {
                             displayProgress(false)
-                            toast(it.data!!.msg)
+                            toast("مشکلی در سرور رخ داده بعدا امتحان کنید")
                             return@observe
                         }
 
-                        displayProgress(false)
+                        log("Success ${it.data}")
                         toast(it.data.msg)
-                        txt_star.text = (txt_star.text.toString().toInt() - 1).toString()
+                        displayProgress(false)
+                        if(it.data.code != 404) {
+                            val point = txt_star.text.toString().toInt() - 1
+                            txt_star.text = point.toString()
+                            codeModelSelected!!.codePoint = point.toString()
+                            onUpdatePointCode(codeModelSelected!!)
+                        }
+
                     }
                 }
             }
@@ -160,7 +177,7 @@ class DetailCodeFragment : GFragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        uiUtil.getContainerFragment().anim(Techniques.SlideInRight)
+        uiUtil.getLayoutRootFragment().anim(Techniques.SlideInRight)
     }
 
 }

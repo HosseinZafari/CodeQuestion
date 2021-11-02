@@ -29,12 +29,13 @@
             app:endIconMode="clear_text">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/iran_light"
-                android:hint="موضوع"
-                android:textColor="@color/colorGray4"
-                android:textSize="14sp" />
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:fontFamily="@font/iran_light"
+              android:hint="موضوع"
+              app:hintTextColor="#546E7A"
+              android:textColor="@color/colorGray4"
+              android:textSize="14sp" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -63,7 +64,7 @@
                 android:inputType="textMultiLine"
                 android:textColor="@color/colorGray5"
                 android:textSize="14sp"
-                tools:text="این یک تست است این هم یک تست است و باز هم این یک تست است خب همش انگار تست است اشکال نداره که همش این یک تست باشه نه اصلا ایرادی نداره که این همش یک تست باشه پس باشه این هم یک تست است" />
+                tools:text="این یک تست است این هم یک تست است و باز هم این یک تست است خب همش انگار تست است اشکال نداره که همش این یک تست باشه نه اصلا ایرادی نداره که این همش یک تست باشه پس باشه  این هم یک تست است" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -78,46 +79,49 @@
             app:useMaterialThemeColors="true">
 
             <com.google.android.material.radiobutton.MaterialRadioButton
-                android:id="@+id/radio_ask_free"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:checked="true"
-                android:text="سوالات مشاوره ای (درباره دوره های سایت و بازار کار)"
-                android:textColor="@color/colorGray3"
-                app:useMaterialThemeColors="true" />
+              android:id="@+id/radio_ask_free"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:checked="true"
+              android:minHeight="48dp"
+              android:text="سوالات مشاوره ای (درباره دوره های سایت و بازار کار)"
+              android:textColor="@color/colorGray3"
+              app:useMaterialThemeColors="true" />
 
             <com.google.android.material.radiobutton.MaterialRadioButton
-                android:id="@+id/radio_ask_pay"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:text="سوالات فنی (سورس کد یا اشکال در برنامه نویسی)"
-                android:textColor="@color/colorGray3"
-                app:useMaterialThemeColors="true" />
+              android:id="@+id/radio_ask_pay"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_marginTop="8dp"
+              android:minHeight="48dp"
+              android:text="سوالات فنی (سورس کد یا اشکال در برنامه نویسی)"
+              android:textColor="@color/colorGray3"
+              app:useMaterialThemeColors="true" />
 
         </RadioGroup>
 
         <org.angmarch.views.NiceSpinner
-            android:id="@+id/spinner_ask"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:layout_marginBottom="16dp"
-            app:arrowTint="@color/colorPrimary"
-            app:fontFamily="@font/iran_light" />
+          android:id="@+id/spinner_ask"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="24dp"
+          android:layout_marginBottom="16dp"
+          app:arrowTint="@color/colorPrimary"
+          app:fontFamily="@font/iran_light"
+          tools:ignore="SpeakableTextPresentCheck" />
 
         <com.google.android.material.button.MaterialButton
-            android:layout_width="match_parent"
-            android:id="@+id/btn_send_ask"
-            android:layout_height="70dp"
-            android:layout_marginTop="22dp"
-            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-            android:text="ارسال"
-            app:strokeColor="@color/colorPrimary"
-            app:iconGravity="textEnd"
-            app:icon="@drawable/ic_baseline_send_24"
-            app:elevation="6dp"
-            app:rippleColor="@color/colorPrimary"
-            />
+          android:id="@+id/btn_send_ask"
+          style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+          android:layout_width="match_parent"
+          android:layout_height="70dp"
+          android:layout_marginTop="22dp"
+          android:text="ارسال"
+          android:textColor="#0277BD"
+          app:elevation="6dp"
+          app:icon="@drawable/ic_baseline_send_24"
+          app:iconGravity="textEnd"
+          app:rippleColor="@color/colorPrimary"
+          app:strokeColor="@color/colorPrimary" />
     </androidx.appcompat.widget.LinearLayoutCompat>
 </ScrollView>

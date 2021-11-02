@@ -4,7 +4,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import android.widget.Toast
+import androidx.cardview.widget.CardView
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -32,6 +34,8 @@ class HomeFragment : GFragment() {
     private lateinit var rv_home_bestcourse: RecyclerView;
     private lateinit var rv_home_bestcode: RecyclerView;
 
+    var onClickShowCodes: ()-> Unit = {}
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -42,18 +46,29 @@ class HomeFragment : GFragment() {
 
     private fun setupAdapters() {
         bestUserAdapter = BestUserRVAdapter { debugOnClick(it) }
-        courseAdapter = CourseRVAdapter {
+        courseAdapter = CourseRVAdapter { courseModel->
             val arg = Bundle()
-            arg.putParcelable(DetailCourseFragment.KEY_DETAIL_COURSE , arg)
+            arg.putParcelable(DetailCourseFragment.KEY_DETAIL_COURSE , courseModel)
+
             ContainerFragment.addFragmentWithBack(
                 requireActivity() ,
-                FactoryFragment.DETAIL_CODE_FRAGMENT ,
+                FactoryFragment.DETAIL_COURSE_FRAGMENT ,
                 tag = "DetailCourse",
                 argument = arg
             )
         }
 
-        bestCodeAdapter = BestCodeRVAdapter { debugOnClick(it) }
+        bestCodeAdapter = BestCodeRVAdapter {
+            val arg = Bundle()
+            arg.putParcelable(CodeFragment.KEY_CODE_MODEL , it)
+
+            ContainerFragment.addFragmentWithBack(
+                    requireActivity() ,
+                    FactoryFragment.DETAIL_CODE_FRAGMENT ,
+                    tag = "HomeFragmentToDetailFragment",
+                    argument = arg
+            )
+        }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -116,6 +131,17 @@ class HomeFragment : GFragment() {
         rv_home_bestcode.layoutManager =
             LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, true)
         rv_home_bestcode.adapter = bestCodeAdapter
+
+        val cardview_show_all_course = view.findViewById<CardView>(R.id.cardview_show_all_course)
+        cardview_show_all_course.setOnClickListener {
+            ContainerFragment.addFragmentWithBack(requireActivity() , FactoryFragment.ALL_COURSE_FRAGMNET , tag = "HomeFragmentToAllCourseFragment")
+        }
+
+        val txt_show_codes = view.findViewById<TextView>(R.id.txt_show_codes)
+        txt_show_codes.setOnClickListener {
+            ContainerFragment.addFragmentWithBack(requireActivity() , FactoryFragment.CODE_FRAGMENT , tag = "HomeFragmnetToCodes")
+            onClickShowCodes()
+        }
     }
 
 

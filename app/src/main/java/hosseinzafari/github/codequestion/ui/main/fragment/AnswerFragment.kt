@@ -100,7 +100,7 @@ class AnswerFragment : GFragment() {
         super.onActivityCreated(savedInstanceState)
 
         if(isShowAnimation)
-            uiUtil.getContainerFragment().anim(Techniques.SlideInRight)
+            uiUtil.getLayoutRootFragment().anim(Techniques.SlideInRight)
         else
             isShowAnimation = true
     }

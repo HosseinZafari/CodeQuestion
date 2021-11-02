@@ -7,4 +7,5 @@
     <string name="answer_type_free">مشاوره ای (رایگان)</string>
     <string name="answer_type_pay">فنی (هزینه)</string>
 
+    <string name="answered_admin">پاسخ شما</string>
 </resources>

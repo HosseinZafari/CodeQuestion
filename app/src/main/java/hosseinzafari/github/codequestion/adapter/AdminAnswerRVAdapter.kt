@@ -1,5 +1,6 @@
 package hosseinzafari.github.codequestion.adapter
 
+import android.annotation.SuppressLint
 import android.graphics.Color
 import android.view.View
 import android.view.ViewGroup
@@ -21,11 +22,19 @@ import hosseinzafari.github.framework.extensions.inflate
 class AdminAnswerRVAdapter(val onWrongItemClick: (AnswerModel , Int) -> Unit)
     : RecyclerView.Adapter<AdminAnswerRVAdapter.AdminAnswerViewHolder>() {
 
-    var data = listOf<AnswerModel>()
+    var data = mutableListOf<AnswerModel>()
+        @SuppressLint("NotifyDataSetChanged")
         set(value) {
             field = value
             notifyDataSetChanged()
         }
+
+    @SuppressLint("NotifyDataSetChanged")
+    fun putNewData(newData: List<AnswerModel>) {
+        data.addAll(newData)
+        notifyDataSetChanged()
+    }
+
 
     companion object {
         private const val ADMIN = 1
@@ -53,12 +62,14 @@ class AdminAnswerRVAdapter(val onWrongItemClick: (AnswerModel , Int) -> Unit)
             } else {
                 txt_type_question.text = G.getContext().resources.getText(R.string.answer_type_free)
             }
-            
-            
+
+
             if(answer.answered!!) {
                 txt_answer_answered.visibility = View.VISIBLE
+                btn_answer_send.visibility = View.GONE
             } else {
                 txt_answer_answered.visibility = View.GONE
+                btn_answer_send.visibility = View.VISIBLE
             }
             
             btn_answer_wrong.setOnClickListener {

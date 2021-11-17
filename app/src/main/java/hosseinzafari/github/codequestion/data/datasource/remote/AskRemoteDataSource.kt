@@ -29,8 +29,8 @@ class AskRemoteDataSource : AskMain {
         return _askMutableLiveData
     }
 
-    override suspend fun answers(): LiveData<ResponseStdModel> {
-        _answersMutableLiveData.postValue(api.getAnswers())
+    override suspend fun answers(page: Int): LiveData<ResponseStdModel> {
+        _answersMutableLiveData.postValue(api.getAnswers(page))
         return _answersMutableLiveData
     }
     

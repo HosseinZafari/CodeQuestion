@@ -24,7 +24,7 @@ class AskRepository : AskMain {
         course: String
     ) = askDataSource.ask(title , text , type , course)
 
-    override suspend fun answers() = askDataSource.answers()
+    override suspend fun answers(page: Int) = askDataSource.answers(page)
     
     override suspend fun returned(questionId: Int, returnedType: Int) = askDataSource.returned(questionId , returnedType)
 }

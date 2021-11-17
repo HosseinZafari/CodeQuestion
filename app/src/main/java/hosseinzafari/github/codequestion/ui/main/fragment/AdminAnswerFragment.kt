@@ -35,11 +35,13 @@ class AdminAnswerFragment : GFragment() {
 	
 	override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?)
 	= inflater.inflate(R.layout.fragment_admin_answer , container , false)
-	
+
+	private var currentPage = 1
 	var isShowAnimation = true
 	private lateinit var txt_state_question: TextView
 	private lateinit var linearLayout_empty: LinearLayoutCompat
 	private lateinit var rv_answer: RecyclerView
+	private var adminDialogAnswer: AdminAnswerDialog? = null
 	private val questionViewModel: QuestionViewModel by viewModels()
 	private val answerAdapter = AdminAnswerRVAdapter(::onWrongItemClickHandle)
 	
@@ -47,15 +49,35 @@ class AdminAnswerFragment : GFragment() {
 		if(type == AdminAnswerRVAdapter.TYPE_WRONG) {
 			questionViewModel.returnedQuestion(if(answer.returned!!) 0 else 1 , answer.questionId)
 		} else {
-			val dialog = AdminAnswerDialog(answer)
-			dialog.show(childFragmentManager , null)
+			adminDialogAnswer = AdminAnswerDialog(answer) { model ->
+				adminDialogAnswer?.dismiss()
+
+				questionViewModel.sendAnswer(model).observe(viewLifecycleOwner) {
+					when(it.status) {
+						Status.ERROR -> { log("Error in sending Answers ..." + it.data?.msg) }
+						Status.LOADING -> { log("Loading in sending Answers ..." + it.data?.msg) }
+						Status.SUCCEESS -> {
+							if (it.data?.code!! >= 300) {
+								toast("  مشکلی وجود دارد")
+								return@observe
+							}
+
+							toast("با موفقیت پاسخ داده شد")
+							fetchData()
+						}
+					}
+
+				}
+			}
+			adminDialogAnswer?.show(childFragmentManager , null)
 		}
 	}
 	
 	
 	override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 		super.onViewCreated(view, savedInstanceState)
-		
+
+		currentPage = 1
 		setupViews(view)
 		fetchData()
 	}
@@ -65,11 +87,18 @@ class AdminAnswerFragment : GFragment() {
 		linearLayout_empty   = view.findViewById(R.id.linearLayout_admin_empty)
 		rv_answer            = view.findViewById(R.id.rv_admin_answer)
 		rv_answer.adapter    = answerAdapter
+		rv_answer.addOnScrollListener(object : RecyclerView.OnScrollListener(){
+			override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+				if(!recyclerView.canScrollVertically(1)) {
+					fetchData(false) // reduce performance because call multiple request when user keep scroll to bottom
+				}
+			}
+		})
 	}
 	
 	
-	private fun fetchData() {
-		questionViewModel.answers().observe(viewLifecycleOwner) {
+	private fun fetchData(isFirstPage: Boolean = true ) {
+		questionViewModel.answers(currentPage).observe(viewLifecycleOwner) {
 			when(it.status) {
 				Status.ERROR -> { log("Error in Getting Answers ..." + it.data?.msg) }
 				Status.LOADING -> { log("Loading in Getting Answers ..." + it.data?.msg) }
@@ -78,14 +107,26 @@ class AdminAnswerFragment : GFragment() {
 						toast("  مشکلی در دریافت سوالات وجود دارد" + it.data)
 						return@observe
 					}
+
+					if(it.data.answers.size == 0) {
+						toast("سوال دیگری وجود ندارد" )
+						return@observe
+					}
 					
 					// set data to adapter and show Recyclerview
-					if(it.data.answers.size > 0) {
+					if(it.data.answers.size > 0 && isFirstPage) {
 						rv_answer.visibility = View.VISIBLE
 						linearLayout_empty.visibility = View.GONE
 					}
-					rv_answer.anim(Techniques.SlideInDown)
-					answerAdapter.data = it.data.answers
+
+					if (isFirstPage) {
+						rv_answer.anim(Techniques.SlideInDown)
+						answerAdapter.data = it.data.answers.toMutableList()
+					} else {
+						answerAdapter.putNewData(it.data.answers)
+					}
+
+					currentPage++
 				}
 			}
 		}

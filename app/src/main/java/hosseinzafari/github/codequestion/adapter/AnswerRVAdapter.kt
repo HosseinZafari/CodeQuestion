@@ -1,5 +1,6 @@
 package hosseinzafari.github.codequestion.adapter
 
+import android.annotation.SuppressLint
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
@@ -19,11 +20,18 @@ import hosseinzafari.github.framework.extensions.inflate
 
 class AnswerRVAdapter : RecyclerView.Adapter<AnswerRVAdapter.AnswerViewHolder>() {
 
-    var data = listOf<AnswerModel>()
+    var data = mutableListOf<AnswerModel>()
+        @SuppressLint("NotifyDataSetChanged")
         set(value) {
             field = value
             notifyDataSetChanged()
         }
+
+    @SuppressLint("NotifyDataSetChanged")
+    fun putNewData(newData: List<AnswerModel>) {
+        data.addAll(newData)
+        notifyDataSetChanged()
+    }
 
     companion object {
         private const val ADMIN = 1

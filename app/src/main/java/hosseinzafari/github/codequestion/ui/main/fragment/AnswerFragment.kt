@@ -38,6 +38,7 @@ class AnswerFragment : GFragment() {
     private lateinit var rv_answer: RecyclerView
     private val questionViewModel: QuestionViewModel by viewModels()
     private val answerAdapter = AnswerRVAdapter()
+    private var currentPage = 1
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -51,6 +52,7 @@ class AnswerFragment : GFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        currentPage = 1
         setupViews(view)
         fetchData()
     }
@@ -61,14 +63,21 @@ class AnswerFragment : GFragment() {
         linearLayout_empty = view.findViewById(R.id.linearLayout_empty)
         rv_answer = view.findViewById(R.id.rv_answer)
         rv_answer.adapter = answerAdapter
+        rv_answer.addOnScrollListener(object : RecyclerView.OnScrollListener(){
+            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+                if(!recyclerView.canScrollVertically(1)) {
+                    fetchData(false) // reduce performance because call multiple request when user keep scroll to bottom
+                }
+            }
+        })
         fab_new_question.setOnClickListener(::newQuestion)
         btn_new_question.setOnClickListener(::newQuestion)
 
     }
 
 
-    private fun fetchData() {
-        questionViewModel.answers().observe(viewLifecycleOwner) {
+    private fun fetchData(isFirstPage: Boolean = true ) {
+        questionViewModel.answers(currentPage).observe(viewLifecycleOwner) {
             log("fetch : "  + it)
             when(it.status) {
                 Status.ERROR -> { log("Error in Getting Answers ..." + it.data?.msg) }
@@ -79,13 +88,25 @@ class AnswerFragment : GFragment() {
                         return@observe
                     }
 
+                    if(it.data.answers.size == 0) {
+                        toast("سوال دیگری وجود ندارد" )
+                        return@observe
+                    }
+
                     // set data to adapter and show Recyclerview
-                    if(it.data.answers.size > 0) {
+                    if(it.data.answers.size > 0 && isFirstPage) {
                         rv_answer.visibility = View.VISIBLE
                         linearLayout_empty.visibility = View.GONE
                     }
-                    rv_answer.anim(Techniques.SlideInDown)
-                    answerAdapter.data = it.data.answers
+
+                    if (isFirstPage) {
+                        rv_answer.anim(Techniques.SlideInDown)
+                        answerAdapter.data = it.data.answers.toMutableList()
+                    } else {
+                        answerAdapter.putNewData(it.data.answers)
+                    }
+
+                    currentPage++
                 }
             }
 

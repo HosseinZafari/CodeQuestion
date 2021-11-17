@@ -2,15 +2,17 @@ package hosseinzafari.github.codequestion.struct
 
 
 data class AnswerModel (
-	val questionId: Int ,
-    val isAdmin: Int ,
-    val title: String,
-    val text: String,
-    val course: String,
-    val date: String,
-    val type: String ,
-    val returned: Boolean? ,
-    val answered: Boolean? ,
-    val name: String? ,
-    val family: String?
+	var questionId: Int ,
+    var toUser : Int ,
+    var fromUser: Int ,
+    var isAdmin: Int ,
+    var title: String,
+    var text: String,
+    var course: String,
+    var date: String,
+    var type: Int ,
+    var returned: Boolean? ,
+    var answered: Boolean? ,
+    var name: String? ,
+    var family: String?
 )

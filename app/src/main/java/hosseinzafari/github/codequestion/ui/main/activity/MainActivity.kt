@@ -17,12 +17,14 @@ import hosseinzafari.github.codequestion.ui.ui.main.fragment.FactoryFragment
 import hosseinzafari.github.codequestion.ui.ui.main.fragment.HomeFragment
 import hosseinzafari.github.codequestion.ui.viewmodel.MainViewModel
 import hosseinzafari.github.framework.core.ui.activity.GAppCompatActivity
+import io.ak1.BubbleTabBar
+import io.ak1.OnBubbleClickListener
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : GAppCompatActivity() {
 
     private lateinit var mainViewModel: MainViewModel
-    private lateinit var navigationView: SpaceNavigationView
+    private lateinit var navigationView: BubbleTabBar
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,12 +37,11 @@ class MainActivity : GAppCompatActivity() {
         framelayout.anim(Techniques.FadeIn , 400)
         ContainerFragment.addFragment(this , FactoryFragment.HOME_FRAGMENT)
         (ContainerFragment.getFragment(FactoryFragment.HOME_FRAGMENT) as HomeFragment).onClickShowCodes = {
-            navigationView.changeCurrentItem(1)
+            navigationView.setSelectedWithId(R.id.item_menu_code)
         }
 
         // Setup Navigation View
         navigationView = findViewById(R.id.navigation_view)
-        navigationView.initWithSaveInstanceState(savedInstanceState)
         initNavigationView()
     }
 
@@ -50,51 +51,36 @@ class MainActivity : GAppCompatActivity() {
 
     // Prepare And Customize Navigation View
     private fun initNavigationView(){
-        navigationView.apply {
-            addSpaceItem(SpaceItem("پروفایل" , R.drawable.ic_people_white_24dp))
-            addSpaceItem(SpaceItem("کد ها" , R.drawable.ic_code_white_24dp))
-            addSpaceItem(SpaceItem("سوالات" , R.drawable.ic_question_white_24dp))
-            addSpaceItem(SpaceItem("خانه" , R.drawable.ic_home_white_24dp))
-            showIconOnly()
-            changeCurrentItem(3)
-            setSpaceOnClickListener(object  : SpaceOnClickListener{
-                override fun onCentreButtonClick() {
-                    log("onCentreButton Clicked!")
-                }
+        navigationView.setSelectedWithId(R.id.item_menu_home)
 
-                override fun onItemReselected(itemIndex: Int, itemName: String?) {
-                    log("onItemReselected itemIndex $itemIndex , itemName $itemName")
-                }
-
-                override fun onItemClick(itemIndex: Int, itemName: String?) {
-                    log("onItemClick itemIndex $itemIndex , itemName $itemName")
-                    when(itemIndex){
-                        3-> {
-                            framelayout.anim(Techniques.FadeIn , 400)
-                            ContainerFragment.replaceFragment(this@MainActivity , FactoryFragment.HOME_FRAGMENT)
-                            (ContainerFragment.getFragment(FactoryFragment.HOME_FRAGMENT) as HomeFragment).onClickShowCodes = {
-                                navigationView.changeCurrentItem(1)
-                            }
-                        }
-
-                        2-> {
-                            framelayout.anim(Techniques.FadeIn , 400)
-                            ContainerFragment.replaceFragment(this@MainActivity , FactoryFragment.QUESTION_FRAGMENT)
-                        }
-
-                        1-> {
-                            framelayout.anim(Techniques.FadeIn , 400)
-                            ContainerFragment.replaceFragment(this@MainActivity , FactoryFragment.CODE_FRAGMENT)
-                        }
-
-                        0-> {
-                            framelayout.anim(Techniques.FadeIn , 400)
-                            ContainerFragment.replaceFragment(this@MainActivity , FactoryFragment.PROFILE_FRAGMENT)
-                        }
+        navigationView.addBubbleListener() { id ->
+        log("onItemClick itemIndex $id")
+            when(id){
+                R.id.item_menu_home -> {
+                    framelayout.anim(Techniques.FadeIn , 400)
+                    ContainerFragment.replaceFragment(this@MainActivity , FactoryFragment.HOME_FRAGMENT)
+                    (ContainerFragment.getFragment(FactoryFragment.HOME_FRAGMENT) as HomeFragment).onClickShowCodes = {
+                        navigationView.setSelectedWithId(R.id.item_menu_code)
                     }
                 }
-            })
+
+                R.id.item_menu_question -> {
+                    framelayout.anim(Techniques.FadeIn , 400)
+                    ContainerFragment.replaceFragment(this@MainActivity , FactoryFragment.QUESTION_FRAGMENT)
+                }
+
+                R.id.item_menu_code -> {
+                    framelayout.anim(Techniques.FadeIn , 400)
+                    ContainerFragment.replaceFragment(this@MainActivity , FactoryFragment.CODE_FRAGMENT)
+                }
+
+                R.id.item_menu_profile -> {
+                    framelayout.anim(Techniques.FadeIn , 400)
+                    ContainerFragment.replaceFragment(this@MainActivity , FactoryFragment.PROFILE_FRAGMENT)
+                }
+            }
         }
+
     }
 
     private fun getFragmentByTag(tag: String) = supportFragmentManager.findFragmentByTag(tag)

@@ -3,27 +3,31 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layoutDirection="rtl"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.ui.main.activity.MainActivity">
 
 
-    <com.luseen.spacenavigation.SpaceNavigationView
-        android:id="@+id/navigation_view"
-        android:layout_width="match_parent"
-        android:layout_height="38dp"
-        android:gravity="center"
-        android:layout_alignParentBottom="true"
-        app:centre_button_icon="@drawable/ic_giftcard_white_24dp"
-        app:space_background_color="@color/colorPrimaryDark"
-        app:active_centre_button_background_color="@color/colorAccent"
-        app:inactive_item_color="@color/space_white"
-        app:active_item_color="@color/colorAccent"
-        app:space_item_icon_size="24dp"
-        app:centre_button_color="@color/colorAccent"
-        app:inactive_centre_button_icon_color="@color/space_white"
-        app:active_centre_button_icon_color="@color/colorAccent"
-        android:elevation="4dp"
-        tools:targetApi="lollipop" />
+    <io.ak1.BubbleTabBar
+      android:id="@+id/navigation_view"
+      android:layout_width="match_parent"
+      android:layout_height="54dp"
+      android:background="#FFF"
+      android:elevation="12dp"
+      android:padding="6dp"
+      android:layout_alignParentBottom="true"
+      android:layout_alignParentRight="true"
+      android:layout_alignParentLeft="true"
+      app:bubbletab_menuResource="@menu/menu_bottom_nav"
+      app:bubbletab_custom_font="@font/iran"
+      app:bubbletab_disabled_icon_color="@color/colorPrimaryDark"
+      app:bubbletab_horizontal_padding="20dp"
+      app:bubbletab_icon_size="16dp"
+      app:bubbletab_title_size="12sp"
+      app:bubbletab_icon_padding="5sp"
+      app:bubbletab_vertical_padding="10dp"
+      app:bubbletab_tab_corner_radius="25dp">
+    </io.ak1.BubbleTabBar>
 
     <FrameLayout
         android:id="@+id/framelayout"

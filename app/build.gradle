@@ -23,7 +23,7 @@ android {
 
     defaultConfig {
         applicationId "hosseinzafari.github.codequestion"
-        minSdkVersion 19
+        minSdkVersion 21
         targetSdkVersion 31
         versionCode 1
         versionName "1.0"
@@ -146,5 +146,7 @@ dependencies {
     // --------------------  navigaiton view
     implementation 'com.github.armcha:SpaceNavigationView:1.6.0'
 
+    // -------------------- Bottom Navigation
+    implementation  'io.ak1:bubbletabbar:1.0.8'
 
 }

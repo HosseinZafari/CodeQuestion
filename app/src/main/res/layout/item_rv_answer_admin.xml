@@ -32,7 +32,21 @@
       android:layout_alignParentRight="true"
       app:fontFamily="@font/iran_light"
       android:textSize="12sp"
-      android:text="حسین ظفری" />
+      tools:text="حسین ظفری" />
+
+    <com.google.android.material.textview.MaterialTextView
+      android:id="@+id/txt_answer_id_question"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:paddingEnd="8dp"
+      android:paddingStart="8dp"
+      android:gravity="center|center_vertical"
+      android:layout_alignParentLeft="true"
+      android:textColor="@color/white"
+      android:background="@drawable/shape_bg_answered"
+      android:textSize="10dp"
+      tools:text="1" />
+
 
     <LinearLayout
       android:id="@+id/linearLayout_admin_answer_title"

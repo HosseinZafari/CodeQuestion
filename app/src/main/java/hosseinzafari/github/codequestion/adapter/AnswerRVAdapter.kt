@@ -49,6 +49,7 @@ class AnswerRVAdapter : RecyclerView.Adapter<AnswerRVAdapter.AnswerViewHolder>()
             txt_text.text = answer.text
             txt_answer_date.text = answer.date
             txt_course_type.text = answer.course
+            txt_id_question.text = answer.questionId.toString()
 
             if(answer.type.equals("1")){
                 txt_type_question.text = G.getContext().resources.getText(R.string.answer_type_pay)
@@ -90,5 +91,6 @@ class AnswerRVAdapter : RecyclerView.Adapter<AnswerRVAdapter.AnswerViewHolder>()
         val txt_item_answer_state: TextView = view.findViewById(R.id.txt_item_answer_state) ,
         val txt_answer_wrong: TextView = view.findViewById(R.id.txt_answer_wrong) ,
         val txt_answer_answered: TextView = view.findViewById(R.id.txt_answer_answered) ,
+        val txt_id_question: TextView = view.findViewById(R.id.txt_id_question) ,
     ) : RecyclerView.ViewHolder(view)
 }

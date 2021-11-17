@@ -56,7 +56,8 @@ class AdminAnswerRVAdapter(val onWrongItemClick: (AnswerModel , Int) -> Unit)
             txt_answer_date.text = answer.date
             txt_course_type.text = answer.course
             txt_name.text        = answer.name
-            
+            txt_answer_id_question.text        = answer.questionId.toString()
+
             if(answer.type.equals("1")){
                 txt_type_question.text = G.getContext().resources.getText(R.string.answer_type_pay)
             } else {
@@ -96,5 +97,6 @@ class AdminAnswerRVAdapter(val onWrongItemClick: (AnswerModel , Int) -> Unit)
         val btn_answer_wrong: Button = view.findViewById(R.id.btn_wrong_question_admin_answer),
         val btn_answer_send: Button = view.findViewById(R.id.btn_answer_admin),
         val txt_answer_answered: TextView = view.findViewById(R.id.txt_message_state_admin),
+        val txt_answer_id_question: TextView = view.findViewById(R.id.txt_answer_id_question),
     ) : RecyclerView.ViewHolder(view)
 }

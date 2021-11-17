@@ -4,9 +4,11 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
 import androidx.lifecycle.viewModelScope
+import hosseinzafari.github.codequestion.data.repository.AdminAnswerRepository
 import hosseinzafari.github.codequestion.data.repository.AskRepository
 import hosseinzafari.github.codequestion.data.repository.CourseRepository
 import hosseinzafari.github.codequestion.data.repository.SharedPrefRepository
+import hosseinzafari.github.codequestion.struct.AnswerModel
 import hosseinzafari.github.codequestion.struct.ResponseStdModel
 import hosseinzafari.github.codequestion.struct.UserSignupModel
 import hosseinzafari.github.codequestion.ui.data.repository.RulesRepository
@@ -31,7 +33,7 @@ class QuestionViewModel : ViewModel() {
     private val rulesRepository   by lazy { RulesRepository() }
     private val courseRepository  by lazy { CourseRepository() }
     private val askRepository     by lazy { AskRepository() }
-    
+    private val adminAnswerRepository by lazy { AdminAnswerRepository() }
 
     fun signupUser(userSignupModel: UserSignupModel): LiveData<Resource<ResponseStdModel?>> = liveData {
             emit(Resource.loading())
@@ -103,10 +105,10 @@ class QuestionViewModel : ViewModel() {
         }
     }
 
-    fun answers() = liveData {
+    fun answers(page: Int) = liveData {
         emit(Resource.loading())
         try {
-            val answers = io { askRepository.answers() }
+            val answers = io { askRepository.answers(page) }
             emit(Resource.success(answers.value))
         } catch (e: Exception) {
             emit(Resource.error<ResponseStdModel>(e.message.toString()))
@@ -127,5 +129,16 @@ class QuestionViewModel : ViewModel() {
         } catch (exception: Exception) {
              emit(Resource.error<ResponseStdModel>(exception.message.toString()))
         }
+    }
+
+    fun sendAnswer(model: AnswerModel) = liveData {
+        emit(Resource.loading())
+        try {
+            val result = io { adminAnswerRepository.response(model).value }
+            emit(Resource.success(result))
+        } catch (exception: Exception) {
+            emit(Resource.error(exception.message.toString()))
+        }
+
     }
 }

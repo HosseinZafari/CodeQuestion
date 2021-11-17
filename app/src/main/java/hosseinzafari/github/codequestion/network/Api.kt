@@ -29,7 +29,9 @@ interface Api {
     suspend fun getBestCode(): List<CodeModel>
 
     @GET("answers.php")
-    suspend fun getAnswers(): ResponseStdModel
+    suspend fun getAnswers(
+        @Query("page") page: Int
+    ): ResponseStdModel
 
     @GET("all-code.php")
     suspend fun getAllCodes(
@@ -78,4 +80,15 @@ interface Api {
         @Field("returnedType") returnedType: Int ,
         @Field("questionId")   questionId: Int
     ): ResponseStdModel
+
+
+    @FormUrlEncoded
+    @POST("send-answer.php")
+    suspend fun sendAnswer(
+        @Field("to_user") toUser: Int ,
+        @Field("title")  title: String ,
+        @Field("question_id")  questionId: Int ,
+        @Field("text")   text: String ,
+        @Field("type")   type: Int ,
+        @Field("course") course: String): ResponseStdModel
 }

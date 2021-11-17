@@ -26,7 +26,8 @@ import hosseinzafari.github.framework.core.app.G
 */
 
 class AdminAnswerDialog(
-    val answerdModel: AnswerModel
+    val answerdModel: AnswerModel ,
+    val onSubmit: (AnswerModel) -> Unit
 ) : DialogFragment() {
     private lateinit var btn_send: Button
     private lateinit var edt_answered: TextInputLayout
@@ -52,7 +53,11 @@ class AdminAnswerDialog(
 
 
         txt_title.text = answerdModel.title
-
+        btn_send.setOnClickListener {
+            answerdModel.text = edt_answered.editText?.text.toString()
+            answerdModel.toUser = answerdModel.fromUser
+            onSubmit(answerdModel)
+        }
     }
 
 

@@ -132,12 +132,12 @@ class QuestionViewModel : ViewModel() {
     }
 
     fun sendAnswer(model: AnswerModel) = liveData {
-        emit(Resource.loading())
+        emit(Resource.loading<ResponseStdModel>())
         try {
-            val result = io { adminAnswerRepository.response(model).value }
-            emit(Resource.success(result))
+            val result = io { adminAnswerRepository.response(model) }
+            emit(Resource.success(result.value))
         } catch (exception: Exception) {
-            emit(Resource.error(exception.message.toString()))
+            emit(Resource.error<ResponseStdModel>(exception.message.toString()))
         }
 
     }

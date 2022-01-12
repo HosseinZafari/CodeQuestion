@@ -23,6 +23,13 @@
       android:text="لیست سوالات پرسیده شده"
       android:textColor="@color/space_white" />
 
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/img_pending"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginLeft="8dp"
+        app:srcCompat="@drawable/ic_pending_24"
+        android:background="?attr/actionBarItemBackground"  />
   </com.google.android.material.card.MaterialCardView>
 
   <androidx.recyclerview.widget.RecyclerView
@@ -35,41 +42,52 @@
     tools:listitem="@layout/item_rv_answer_admin"
     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
-  <androidx.appcompat.widget.LinearLayoutCompat
-    android:id="@+id/linearLayout_admin_empty"
-    android:layout_below="@+id/card_admintoolbar"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_alignParentBottom="true"
-    android:gravity="center_horizontal"
-    android:orientation="vertical">
-
-
-    <com.airbnb.lottie.LottieAnimationView
+  <androidx.core.widget.NestedScrollView
+      android:id="@+id/scroll_admin_answer"
+      android:layout_alignParentBottom="true"
+      android:visibility="visible"
+      android:layout_below="@id/card_admintoolbar"
       android:layout_width="match_parent"
-      android:layout_height="450dp"
-      android:layout_marginTop="26dp"
-      app:lottie_autoPlay="true"
-      app:lottie_fileName="empty.json"
-      app:lottie_loop="true" />
+      android:layout_height="match_parent">
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/linearLayout_admin_empty"
+        android:layout_below="@+id/card_admintoolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
 
 
-    <com.google.android.material.textview.MaterialTextView
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:id="@+id/txt_admin_state_question"
-      android:layout_marginTop="26dp"
-      style="@style/Widget.MaterialComponents.Button"
-      android:paddingStart="20dp"
-      android:paddingTop="14dp"
-      android:paddingEnd="20dp"
-      android:paddingBottom="14dp"
-      app:rippleColor="@color/space_white"
-      app:backgroundTint="@color/colorOrragne"
-      android:text="در حال حاضر سوالی از شما پرسیده نشده"
-      android:textColor="@color/space_white" />
 
-  </androidx.appcompat.widget.LinearLayoutCompat>
+      <com.airbnb.lottie.LottieAnimationView
+          android:layout_width="match_parent"
+          android:layout_height="450dp"
+          android:layout_marginTop="26dp"
+          app:lottie_autoPlay="true"
+          app:lottie_fileName="empty.json"
+          app:lottie_loop="true" />
 
+
+      <com.google.android.material.textview.MaterialTextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:id="@+id/txt_admin_state_question"
+          android:layout_marginTop="26dp"
+          style="@style/Widget.MaterialComponents.Button"
+          android:paddingStart="20dp"
+          android:paddingTop="14dp"
+          android:paddingEnd="20dp"
+          android:paddingBottom="14dp"
+          app:rippleColor="@color/space_white"
+          app:backgroundTint="@color/colorOrragne"
+          android:text="در حال حاضر سوالی از شما پرسیده نشده"
+          android:textColor="@color/space_white" />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+  </androidx.core.widget.NestedScrollView>
 
 </RelativeLayout>

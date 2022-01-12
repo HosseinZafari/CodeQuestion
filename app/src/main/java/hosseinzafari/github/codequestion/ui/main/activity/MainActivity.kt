@@ -134,6 +134,10 @@ class MainActivity : GAppCompatActivity() {
             framelayout.anim(Techniques.SlideInLeft)
         }
 
+        if(getFragmentByTag("Pending") != null) {
+                framelayout.anim(Techniques.SlideInLeft)
+        }
+
 
         super.onBackPressed()
     }

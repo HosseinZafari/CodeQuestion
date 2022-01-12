@@ -17,6 +17,8 @@
         <entry key="..\:/dev/workspace/CodeQuestion/app/src/main/res/layout/fragment_code.xml" value="0.26197916666666665" />
         <entry key="..\:/dev/workspace/CodeQuestion/app/src/main/res/layout/fragment_detail_code.xml" value="0.26197916666666665" />
         <entry key="..\:/dev/workspace/CodeQuestion/app/src/main/res/layout/fragment_detail_course.xml" value="0.13385416666666666" />
+        <entry key="..\:/dev/workspace/CodeQuestion/app/src/main/res/layout/fragment_pending.xml" value="0.26197916666666665" />
+        <entry key="..\:/dev/workspace/CodeQuestion/app/src/main/res/layout/fragment_pending_list.xml" value="0.26197916666666665" />
         <entry key="..\:/dev/workspace/CodeQuestion/app/src/main/res/layout/fragment_profile.xml" value="0.264" />
         <entry key="..\:/dev/workspace/CodeQuestion/app/src/main/res/layout/fragment_question.xml" value="0.13385416666666666" />
         <entry key="..\:/dev/workspace/CodeQuestion/app/src/main/res/layout/fragment_rules.xml" value="0.13385416666666666" />
@@ -28,6 +30,7 @@
         <entry key="..\:/dev/workspace/CodeQuestion/app/src/main/res/layout/item_rv_bestuser.xml" value="0.13385416666666666" />
         <entry key="..\:/dev/workspace/CodeQuestion/app/src/main/res/layout/item_rv_course.xml" value="0.13385416666666666" />
         <entry key="..\:/dev/workspace/CodeQuestion/app/src/main/res/layout/item_rv_course_list.xml" value="0.13385416666666666" />
+        <entry key="..\:/dev/workspace/CodeQuestion/app/src/main/res/layout/item_rv_pending_list.xml" value="0.2" />
         <entry key="..\:/dev/workspace/CodeQuestion/app/src/main/res/layout/item_rv_rules.xml" value="0.13385416666666666" />
         <entry key="..\:/dev/workspace/CodeQuestion/app/src/main/res/menu/bottomnav.xml" value="0.25794871794871793" />
         <entry key="..\:/dev/workspace/CodeQuestion/app/src/main/res/menu/menu_bottom_nav.xml" value="0.26197916666666665" />
@@ -39,6 +42,9 @@
   </component>
   <component name="ProjectType">
     <option name="id" value="Android" />
+  </component>
+  <component name="SuppressKotlinCodeStyleNotification">
+    <option name="disableForAll" value="true" />
   </component>
   <component name="VisualizationToolProject">
     <option name="state">

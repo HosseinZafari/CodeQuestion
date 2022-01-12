@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.facebook.drawee.view.SimpleDraweeView
+import com.facebook.imagepipeline.request.ImageRequest
 import hosseinzafari.github.codequestion.R
 import hosseinzafari.github.codequestion.data.Room.entity.BookmarkCourseEntity
 import hosseinzafari.github.framework.extensions.inflate
@@ -45,7 +46,9 @@ class BookmarkRvAdapter(val onClickEvent: BookmarkCourseEntity.()-> Unit) : Recy
 
         fun bind(bookmarkCourse: BookmarkCourseEntity){
             txt_title_item_bookmark.text = bookmarkCourse.title
-            img_item_bookmark.setImageURI(Uri.parse(bookmarkCourse.image))
+
+            val imgUrl = Uri.parse(bookmarkCourse.image.toString())
+            img_item_bookmark.setImageRequest(ImageRequest.fromUri(imgUrl))
         }
     }
 }

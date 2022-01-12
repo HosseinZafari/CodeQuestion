@@ -4,14 +4,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
-import androidx.appcompat.widget.LinearLayoutCompat
+import androidx.core.widget.NestedScrollView
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.RecyclerView
 import com.daimajia.androidanimations.library.Techniques
 import hosseinzafari.github.codequestion.R
 import hosseinzafari.github.codequestion.adapter.AdminAnswerRVAdapter
-import hosseinzafari.github.codequestion.adapter.AnswerRVAdapter
 import hosseinzafari.github.codequestion.struct.AnswerModel
 import hosseinzafari.github.codequestion.ui.dialogs.AdminAnswerDialog
 import hosseinzafari.github.codequestion.ui.helper.anim
@@ -39,7 +39,8 @@ class AdminAnswerFragment : GFragment() {
 	private var currentPage = 1
 	var isShowAnimation = true
 	private lateinit var txt_state_question: TextView
-	private lateinit var linearLayout_empty: LinearLayoutCompat
+	private lateinit var scroll_admin_answer: NestedScrollView
+	private lateinit var img_pending: ImageView
 	private lateinit var rv_answer: RecyclerView
 	private var adminDialogAnswer: AdminAnswerDialog? = null
 	private val questionViewModel: QuestionViewModel by viewModels()
@@ -52,10 +53,14 @@ class AdminAnswerFragment : GFragment() {
 			adminDialogAnswer = AdminAnswerDialog(answer) { model ->
 				adminDialogAnswer?.dismiss()
 
-				questionViewModel.sendAnswer(model).observe(viewLifecycleOwner) {
-					when(it.status) {
-						Status.ERROR -> { log("Error in sending Answers ..." + it.data?.msg) }
-						Status.LOADING -> { log("Loading in sending Answers ..." + it.data?.msg) }
+				questionViewModel.sendAnswer(model).observe(viewLifecycleOwner) { it ->
+					when (it.status) {
+						Status.ERROR -> {
+							log("Error in sending Answers ..." + it.data?.msg)
+						}
+						Status.LOADING -> {
+							log("Loading in sending Answers ..." + it.data?.msg)
+						}
 						Status.SUCCEESS -> {
 							if (it.data?.code!! >= 300) {
 								toast("  مشکلی وجود دارد")
@@ -83,10 +88,11 @@ class AdminAnswerFragment : GFragment() {
 	}
 	
 	private fun setupViews(view: View){
-		txt_state_question   = view.findViewById(R.id.txt_admin_state_question)
-		linearLayout_empty   = view.findViewById(R.id.linearLayout_admin_empty)
-		rv_answer            = view.findViewById(R.id.rv_admin_answer)
-		rv_answer.adapter    = answerAdapter
+		txt_state_question    = view.findViewById(R.id.txt_admin_state_question)
+		scroll_admin_answer   = view.findViewById(R.id.scroll_admin_answer)
+		rv_answer             = view.findViewById(R.id.rv_admin_answer)
+		img_pending			  = view.findViewById(R.id.img_pending)
+		rv_answer.adapter     = answerAdapter
 		rv_answer.addOnScrollListener(object : RecyclerView.OnScrollListener(){
 			override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
 				if(!recyclerView.canScrollVertically(1)) {
@@ -94,6 +100,10 @@ class AdminAnswerFragment : GFragment() {
 				}
 			}
 		})
+
+		img_pending.setOnClickListener {
+			ContainerFragment.replaceFragmentWithBack(requireActivity() , FactoryFragment.PENDING_FRAGMENT , tag = "Pending")
+		}
 	}
 	
 	
@@ -116,7 +126,7 @@ class AdminAnswerFragment : GFragment() {
 					// set data to adapter and show Recyclerview
 					if(it.data.answers.size > 0 && isFirstPage) {
 						rv_answer.visibility = View.VISIBLE
-						linearLayout_empty.visibility = View.GONE
+						scroll_admin_answer.visibility = View.GONE
 					}
 
 					if (isFirstPage) {
@@ -134,7 +144,7 @@ class AdminAnswerFragment : GFragment() {
 	
 	override fun onActivityCreated(savedInstanceState: Bundle?) {
 		super.onActivityCreated(savedInstanceState)
-		
+
 		if(isShowAnimation)
 			uiUtil.getLayoutRootFragment().anim(Techniques.SlideInRight)
 		else

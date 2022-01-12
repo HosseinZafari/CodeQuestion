@@ -30,6 +30,8 @@ object FactoryFragment {
     const val BOOKMARK_FRAGMENT: Byte = 16
     const val ALL_COURSE_FRAGMNET: Byte = 17
     const val ADMIN_ANSWER_FRAGMENT: Byte = 18
+    const val PENDING_FRAGMENT: Byte = 19
+    const val PENDING_LIST_FRAGMENT: Byte = 20
 
 
     fun getFragment(type: Byte): GFragment =
@@ -52,6 +54,8 @@ object FactoryFragment {
             BOOKMARK_FRAGMENT -> BookmarkFragment()
             ALL_COURSE_FRAGMNET -> AllCourseFragment()
             ADMIN_ANSWER_FRAGMENT -> AdminAnswerFragment()
+            PENDING_FRAGMENT -> PendingFragment()
+            PENDING_LIST_FRAGMENT -> PendingCodeFragment()
             else -> throw IllegalArgumentException("Not Found Type Fragment For You")
         }
 

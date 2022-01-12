@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.facebook.drawee.view.SimpleDraweeView
+import com.facebook.imagepipeline.request.ImageRequest
 import hosseinzafari.github.codequestion.R
 import hosseinzafari.github.codequestion.ui.struct.UserModel
 import hosseinzafari.github.framework.core.app.G
@@ -61,7 +62,8 @@ class BestUserRVAdapter(val block:(String?)-> Unit) : RecyclerView.Adapter<BestU
                     img_user.setActualImageResource(R.drawable.user_famale)
                 }
             } else {
-                img_user.setImageURI(Uri.parse(userModel.image))
+                val imgUrl = Uri.parse(userModel.image.toString())
+                img_user.setImageRequest(ImageRequest.fromUri(imgUrl))
             }
         }
     }

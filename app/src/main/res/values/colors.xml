@@ -33,4 +33,5 @@
   <color name="colorDark1">#111</color>
   <color name="colorDark2">#222</color>
   <color name="colorDark3">#333</color>
+    <color name="space_white">#ffffff</color>
 </resources>

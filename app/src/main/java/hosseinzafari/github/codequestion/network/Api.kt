@@ -38,6 +38,9 @@ interface Api {
         @Query("category") category: Int
     ): ResponseStdModel
 
+    @GET("all-pending-code.php")
+    suspend fun getAllPendingCode( ): ResponseStdModel
+
     @GET("code-point.php")
     suspend fun changeScore(
         @Query("score") score: Int ,
@@ -91,4 +94,11 @@ interface Api {
         @Field("text")   text: String ,
         @Field("type")   type: Int ,
         @Field("course") course: String): ResponseStdModel
+
+
+    @FormUrlEncoded
+    @POST("update-pending-code.php")
+    suspend fun updatePendingCode(
+        @Field("codeId") codeId: Int
+    ) : ResponseStdModel
 }

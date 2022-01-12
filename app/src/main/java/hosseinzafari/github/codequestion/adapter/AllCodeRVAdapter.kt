@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.facebook.drawee.view.SimpleDraweeView
+import com.facebook.imagepipeline.request.ImageRequest
 import hosseinzafari.github.codequestion.R
 import hosseinzafari.github.codequestion.data.memory.SaveInMemory
 import hosseinzafari.github.codequestion.struct.CodeModel
@@ -64,7 +65,7 @@ class AllCodeRVAdapter(
                 img_item_code_profile.setActualImageResource(imgResource)
             } else {
                 val imgUrl = Uri.parse(codeModel.image.toString())
-                img_item_code_profile.setImageURI(imgUrl)
+                img_item_code_profile.setImageRequest(ImageRequest.fromUri(imgUrl))
             }
         }
 

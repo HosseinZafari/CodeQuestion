@@ -42,10 +42,10 @@ class QuestionFragment : GFragment() {
             }
         })
         
-        val fab_new_question = view.findViewById<FloatingActionButton>(R.id.fab_new_question)
+        val fab_new_question    = view.findViewById<FloatingActionButton>(R.id.fab_new_question)
         val cv_show_rules       = view.findViewById<MaterialCardView>(R.id.cv_show_rules)
         val cv_list_rules       = view.findViewById<MaterialCardView>(R.id.cv_list_rules)
-        val chk_agree_rules    = view.findViewById<MaterialCheckBox>(R.id.chk_agree_rules)
+        val chk_agree_rules     = view.findViewById<MaterialCheckBox>(R.id.chk_agree_rules)
 
         fab_new_question.hide()
 

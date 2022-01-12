@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.facebook.drawee.view.SimpleDraweeView
+import com.facebook.imagepipeline.request.ImageRequest
 import hosseinzafari.github.codequestion.R
 import hosseinzafari.github.codequestion.struct.CourseModel
 import hosseinzafari.github.framework.extensions.inflate
@@ -32,7 +33,9 @@ class AllCourseAdapter(
 
     override fun onBindViewHolder(holder: AllCourseViewHolder, position: Int) {
         val courseModel = data[position]
-        holder.img_item.setImageURI(Uri.parse(courseModel.image))
+        val imgUrl = Uri.parse(courseModel.image.toString())
+        holder.img_item.setImageRequest(ImageRequest.fromUri(imgUrl))
+
         holder.txt_title.text = courseModel.title
 
         holder.rootView.setOnClickListener { onClickEvent(courseModel) }

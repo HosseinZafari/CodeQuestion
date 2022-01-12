@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.facebook.drawee.view.SimpleDraweeView
+import com.facebook.imagepipeline.request.ImageRequest
 import hosseinzafari.github.codequestion.R
 import hosseinzafari.github.codequestion.struct.CourseModel
 import hosseinzafari.github.framework.core.app.G
@@ -55,7 +56,10 @@ class CourseRVAdapter(val onItemClick:(CourseModel)-> Unit) : RecyclerView.Adapt
             txt_title_course.text = courseModel.title
             txt_price_course.text = courseModel.price
             txt_prority_course.text = courseModel.priority
-            img_course.setImageURI(Uri.parse(courseModel.image))
+
+            val imgUrl = Uri.parse(courseModel.image.toString())
+            img_course.setImageRequest(ImageRequest.fromUri(imgUrl))
+
         }
     }
 }

@@ -14,4 +14,7 @@ interface CodeMain {
 
     suspend fun addCode(title: String , text: String , source: String) : LiveData<ResponseStdModel>
 
+    suspend fun getAllPendingCode(): LiveData<ResponseStdModel>
+
+    suspend fun updatePendingCode(codeId: Int): LiveData<ResponseStdModel>
 }

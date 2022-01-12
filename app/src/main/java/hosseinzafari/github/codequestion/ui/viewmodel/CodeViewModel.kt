@@ -26,7 +26,17 @@ class CodeViewModel : ViewModel(){
         emit(Resource.loading())
         try {
             val codes = io { codeRepository.getAllCode(category) }
-            Log.i("Tehran" , "value "  )
+            Log.i("Test" , "value "  )
+            emit(Resource.success(codes.value))
+        } catch (e: Exception) {
+            emit(Resource.error<ResponseStdModel>())
+        }
+    }
+
+    fun getAllPendingCode() = liveData {
+        emit(Resource.loading())
+        try {
+            val codes = io { codeRepository.getAllPendingCode() }
             emit(Resource.success(codes.value))
         } catch (e: Exception) {
             emit(Resource.error<ResponseStdModel>())
@@ -37,7 +47,7 @@ class CodeViewModel : ViewModel(){
         emit(Resource.loading())
         try {
             val state = io { codeRepository.changeScore(isAdd , codeId) }
-            Log.i("Tehran" , "value " + state.value)
+            Log.i("Test" , "value " + state.value)
             emit(Resource.success(state.value))
         } catch (e: Exception) {
             emit(Resource.error<ResponseStdModel>())
@@ -55,4 +65,15 @@ class CodeViewModel : ViewModel(){
     }
 
     fun getToken() = tokenRepository.getToken()
+
+
+    fun updatePendingCode(codeId: Int) = liveData {
+        emit(Resource.loading())
+        try {
+            val result = io { codeRepository.updatePendingCode(codeId) }
+            emit(Resource.success(result.value))
+        } catch (e: Exception) {
+            emit(Resource.error<ResponseStdModel>(e.message.toString()))
+        }
+    }
 }

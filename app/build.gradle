@@ -8,7 +8,7 @@ apply plugin: 'kotlin-android-extensions'
 
 android {
     compileSdkVersion 31
-  //  buildToolsVersion '30.0.2'
+    buildToolsVersion '30.0.3'
 
     kapt { arguments { arg("micronaut.processing.incremental", true) } }
     if(project.hasProperty('devBuild')){
